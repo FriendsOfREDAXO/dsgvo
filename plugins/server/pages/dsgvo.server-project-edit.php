@@ -16,6 +16,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_projects_column_domain'));
 		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'edit']);
+
+		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_projects_column_api_key'));
 		
 		$list->removeColumn('id');
 
@@ -47,11 +49,17 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server_project', '', 'id='.$id);
 		
-		//Start - add name-field
-			$field = $form->addTextField('domain');
-			$field->setLabel($this->i18n('dsgvo_server_projects_column_domain'));
-			$field->setNotice($this->i18n('sets_label_domain_note'));
-		//End - add name-field
+		//Start - add domain-field
+		$field = $form->addTextField('domain');
+		$field->setLabel($this->i18n('dsgvo_server_projects_column_domain'));
+		$field->setNotice($this->i18n('dsgvo_server_projects_column_domain_note'));
+	//End - add domain-field
+
+		//Start - add domain-field
+			$field = $form->addTextField('api_key');
+			$field->setLabel($this->i18n('dsgvo_server_projects_column_api_key'));
+			$field->setNotice($this->i18n('dsgvo_server_projects_column_api_key_note'));
+		//End - add domain-field
 		
 		if ($func == 'edit') {
 			$form->addParam('id', $id);
@@ -59,15 +67,27 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		$content = $form->get();
 
-		
 		$fragment = new rex_fragment();
 		$fragment->setVar('class', 'edit', false);
 		$fragment->setVar('title', $formLabel, false);
 		$fragment->setVar('body', $content, false);
 		$content = $fragment->parse('core/page/section.php');
-		
-		$content .= "Hier Logs hinzufügen";
 
 		echo $content;
+
+		if ($func == 'edit') {
+
+			// LOGS
+			$domain = "pixelfirma.de";
+			$list2 = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY datestamp DESC LIMIT 30', 10, "domain");
+			
+			$fragment2 = new rex_fragment();
+			$fragment2->setVar('class', 'default', false);
+			$fragment2->setVar('title', $this->i18n('dsgvo_server_project_log_title'), false);
+			$fragment2->setVar('body', $list2->get(), false);
+			$content2 = $fragment2->parse('core/page/section.php');
+
+			echo $content2;
+		}
 	}
 ?>

@@ -1,8 +1,8 @@
+dsgvo = DSGVO - Addon zur Datenschutz-Grundverordnung
 title = DSGVO
 setup = Setup
-edit = Texte
+edit = Datenschutz-Erklärung
 docs = Hilfe
-dsgvo = DSGVO - Addon zur Datenschutz-Grundverordnung
 
 # Cronjob Beschriftung
 
@@ -36,6 +36,7 @@ dsgvo_privacy_cronjob_domains_notice = z.B. <code>redaxo.org</code>
 dsgvo_privacy_cronjob_version_label = API-Version 
 dsgvo_privacy_cronjob_version_notice = z.B. <code>beta</code> 
 
+# Setups
 
 install_dsgvo_modul = Schritt 2: Modul zur Datenschutz-Erklärung installieren
 install_dsgvo_modul_description = Dieses Modul auf der Seite "Datenschutz" ausgeben, um die im Cronjob importierten Texte auszugeben. Bei Diensten, bei denen ein Opt-Out möglich ist, wird automatisch ein Opt-Out-Link generiert, der dem Nutzer die Möglichkeit gibt, den Tracking-Code abzuschalten.
@@ -62,33 +63,35 @@ check_dsgvo_dementiasql_cronjob_description = In alten SQL-Backups könnten eben
 
 dsgvo_dementiasql_add_cronjob = Jetzt Cronjob einrichten
 
+# Datenschutz-Erklärung im Backend
 
+dsgvo_client_text_title = Hier werden externe Dienste für die Datenschutz-Erklärung verwaltet.
 
-
-# Ansicht im Backend
-
-dsgvo_client_text_title = Diese Texte werden in der Datenschutz-Seite ausgegeben.
-
+dsgvo_client_text_column_domain = Domain
+dsgvo_client_text_column_lang = Sprache
 dsgvo_client_text_column_keyword = Schlüssel
-dsgvo_client_text_column_name = Name
-dsgvo_client_text_column_text = Datenschutz Eintrag
-dsgvo_client_text_column_custom_text = Eigener Datenschutz Eintrag
+dsgvo_client_text_column_name = Überschrift
+dsgvo_client_text_column_text = Datenschutz-Erklärung
+dsgvo_client_text_column_custom_text = Eigene Datenschutz-Erklärung
+dsgvo_client_text_column_code = Tracking-Code
 dsgvo_client_text_column_source = Quelle
 dsgvo_client_text_column_source_url = Link zur Quelle
-dsgvo_client_text_column_status = In Datenschutz-Seite auflisten?
-
-dsgvo_client_text_edit = Text der Datenschutzseite bearbeiten
-dsgvo_client_text_add = Text zur Datenschutzseite hinzufügen
-
+dsgvo_client_text_column_status = In Datenschutz-Erklärung anzeigen?
 dsgvo_client_text_column_status_is_offline = ausblenden
 dsgvo_client_text_column_status_is_online = anzeigen
+dsgvo_client_text_column_prio = Reihenfolge
 
-# Anmerkungen im Backend
+dsgvo_client_text_column_domain_note = Falls die REDAXO-Installation über mehrere Domains verfügt, bspw. in YRewrite: Domain, für die der Text gilt.
+dsgvo_client_text_column_lang_note = REDAXO-Sprache
+dsgvo_client_text_column_keyword_note = Dieser Schlüssel darf nur aus <code>a-zA-Z1-9_-</code> bestehen, bspw. <code>facebook_pixel</code>
+dsgvo_client_text_column_name_note = Überschrift, wie sie in der Datenschutz-Erklärung steht 
+dsgvo_client_text_column_status_note = 
+dsgvo_client_text_column_text_note = Text der Datenschutz-Erklärung als Textile-Code. Wird ggf. vom Texte-Server überschrieben.
+dsgvo_client_text_column_custom_text_note = Text der Datenschutz-Erklärung als Textile-Code. Überschreibt Texte vom Texte-Server.
+dsgvo_client_text_column_source_note = Quelle der Datenschutz-Erklärung, bspw. <code>E-Recht 24</code>
+dsgvo_client_text_column_source_url_note = Link zur Quelle
+dsgvo_client_text_column_prio_note = 
+dsgvo_client_text_column_code_note = Dienst- oder Tracking-Code, z.B. der tatsächliche Code des Facebook-Pixel, Google Analytics o.ä. - doeser wird dann um einen Opt-Out-Link ergänzt.
 
-sets_label_keyword_note = 
-sets_label_name_note = 
-sets_label_status_note = 
-sets_label_text_note = 
-sets_label_custom_text_note = 
-sets_label_source_note = 
-sets_label_source_url_note = 
+dsgvo_client_text_edit = Dienst bearbeiten
+dsgvo_client_text_add = Dienst hinzufügen

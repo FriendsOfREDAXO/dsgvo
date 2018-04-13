@@ -7,7 +7,6 @@ icon: fa-gavel
 
 requires:
     packages:
-        yform: '^2.1'
         cronjob: '^2.0'
         dsgvo: '^0.1'
 
