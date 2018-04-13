@@ -1,0 +1,24 @@
+# Anzeige im Backend
+
+dsgvo_server_text_column_keyword = Schlüssel
+dsgvo_server_text_column_name = Überschrift
+dsgvo_server_text_column_text = Datenschutz Eintrag
+dsgvo_server_text_column_custom_text = Eigener Datenschutz Eintrag
+dsgvo_server_text_column_source = Quelle
+dsgvo_server_text_column_source_url = Link zur Quelle
+dsgvo_server_text_column_status = In Datenschutz-Seite auflisten?
+
+dsgvo_server_text_edit = Text der Datenschutzseite bearbeiten
+dsgvo_server_text_add = Text zur Datenschutzseite hinzufügen
+
+dsgvo_server_text_column_status_is_offline = ausblenden
+dsgvo_server_text_column_status_is_online = anzeigen
+
+# Anmerkungen im Backend
+
+sets_label_keyword_note =
+sets_label_name_note = 
+sets_label_status_note = 
+sets_label_text_note = 
+sets_label_source_note = 
+sets_label_source_url_note = 

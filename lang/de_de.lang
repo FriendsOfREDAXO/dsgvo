@@ -1,0 +1,92 @@
+title = DSGVO
+setup = Setup
+edit = Texte
+docs = Hilfe
+dsgvo = DSGVO - Addon zur Datenschutz-Grundverordnung
+
+# Cronjob Beschriftung
+
+dsgvo_dementia_cronjob_name = DSGVO: Alte Datensätze entfernen
+
+dsgvo_dementia_cronjob_rex_table_label = Tabelle 
+dsgvo_dementia_cronjob_rex_table_notice = Name der Tabelle, deren Datensätze regelmäßig gelöscht werden sollen.
+
+dsgvo_dementia_cronjob_interval_label = Speicherzeit
+dsgvo_dementia_cronjob_interval_notice = Alter des Datensatzes in Monaten, bis der Datensatz gelöscht werden soll, z.B. <code>6</code>
+
+dsgvo_dementia_cronjob_field_label = Feldname
+dsgvo_dementia_cronjob_field_notice = Name des Feldes, in dem der Zeitstempel gespeichert ist, z.B. <code>createdate</code> oder <code>updatedate</code>
+
+dsgvo_privacy_cronjob_name = DSGVO: Texte für die Datenschutz-Seite laden...
+
+dsgvo_privacy_cronjob_name = DSGVO: Texte für die Datenschutz-Seite laden...
+
+dsgvo_privacy_cronjob_url_label = Quell-API
+dsgvo_privacy_cronjob_url_notice = 
+
+dsgvo_privacy_cronjob_fields_label = Schlüssel 
+dsgvo_privacy_cronjob_fields_notice = z.B. <code>contact,cookies,facebook</code>
+
+dsgvo_privacy_cronjob_lang_codes_label = Sprachen 
+dsgvo_privacy_cronjob_lang_codes_notice = z.B. <code>de,en</code> 
+
+dsgvo_privacy_cronjob_domains_label = Domains 
+dsgvo_privacy_cronjob_domains_notice = z.B. <code>redaxo.org</code> 
+
+dsgvo_privacy_cronjob_version_label = API-Version 
+dsgvo_privacy_cronjob_version_notice = z.B. <code>beta</code> 
+
+
+install_dsgvo_modul = Schritt 2: Modul zur Datenschutz-Erklärung installieren
+install_dsgvo_modul_description = Dieses Modul auf der Seite "Datenschutz" ausgeben, um die im Cronjob importierten Texte auszugeben. Bei Diensten, bei denen ein Opt-Out möglich ist, wird automatisch ein Opt-Out-Link generiert, der dem Nutzer die Möglichkeit gibt, den Tracking-Code abzuschalten.
+
+install_dsgvo_module = Modul installieren
+install_update_dsgvo_module = Modul reinstallieren
+
+check_dsgvo_cronjob = Schritt 1: Cronjob zur Abfrage der Datenschutz-Texte einrichten
+check_dsgvo_cronjob_description = Wenn die Datenschutz-Texte zentral verwaltet werden sollen, muss zunächst ein Cronjob eingerichtet werden, der diese Texte in Abhängigkeit zur Website und zur Sprache abruft. Dem DSGVO-Addon liegt ein Server-Plugin bei.
+
+dsgvo_add_cronjob = Neuen Cronjob anlegen
+dsgvo_edit_cronjob = bestehenden Cronjob bearbeiten
+
+dsgvo_edit_text = Texte manuell anlegen
+
+check_dsgvo_dementia_cronjob = Schritt 3: Cronjob für alte Datensätze einrichten
+check_dsgvo_dementia_cronjob_description = Alte Datensätze mit personenbezogenen Daten sollten überprüft werden, ob sensible / personenbezogene Datensätze gesammelt werden, z.B. bei einem Kontaktformular oder in der History.
+
+check_dsgvo_tracking = Schritt 4: weitere Tracking-Codes manuell migrieren
+check_dsgvo_tracking_description = Das DSGVO-Helferlein versucht herauszufinden, ob zusätzliche Maßnahmen erforderlich sind. Auch hierfür gibt es keine Gewähr!
+
+check_dsgvo_dementiasql_cronjob = Schritt 5: Cronjob für alte REDAXO-Datenbank-Backups anpassen
+check_dsgvo_dementiasql_cronjob_description = In alten SQL-Backups könnten ebenfalls personenbezogene Daten archiviert sein. Auch hier sollten nicht mehr benötigte Backups gelöscht werden.
+
+dsgvo_dementiasql_add_cronjob = Jetzt Cronjob einrichten
+
+
+
+
+# Ansicht im Backend
+
+dsgvo_client_text_column_keyword = Schlüssel
+dsgvo_client_text_column_name = Name
+dsgvo_client_text_column_text = Datenschutz Eintrag
+dsgvo_client_text_column_custom_text = Eigener Datenschutz Eintrag
+dsgvo_client_text_column_source = Quelle
+dsgvo_client_text_column_source_url = Link zur Quelle
+dsgvo_client_text_column_status = In Datenschutz-Seite auflisten?
+
+dsgvo_client_text_edit = Text der Datenschutzseite bearbeiten
+dsgvo_client_text_add = Text zur Datenschutzseite hinzufügen
+
+dsgvo_client_text_column_status_is_offline = ausblenden
+dsgvo_client_text_column_status_is_online = anzeigen
+
+# Anmerkungen im Backend
+
+sets_label_keyword_note = 
+sets_label_name_note = 
+sets_label_status_note = 
+sets_label_text_note = 
+sets_label_custom_text_note = 
+sets_label_source_note = 
+sets_label_source_url_note = 

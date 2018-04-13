@@ -1,0 +1,28 @@
+package: dsgvo
+version: '0.1'
+title: 'translate:title'
+author: 'Pixelfirma, alexplus_de, FriendsOfREDAXO'
+supportpage: 'https://github.com/alexplusde/dsgvo_helferlein/'
+icon: fa-gavel
+
+requires:
+    packages:
+        yform: '^2.1'
+        cronjob: '^2.0'
+
+page:
+    title: 'translate:title'
+    pjax: false
+    icon: rex-icon fa-gavel
+
+pages:
+    dsgvo/setup:
+        title: 'translate:setup'
+        icon: rex-icon fa-gavel
+    dsgvo/edit:
+        title: 'translate:edit'
+        icon: rex-icon fa-edit
+    dsgvo/docs:
+        title: 'translate:docs'
+        icon: rex-icon fa-info-circle
+        itemclass: pull-right 
