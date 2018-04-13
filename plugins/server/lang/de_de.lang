@@ -1,4 +1,10 @@
-# Anzeige im Backend
+dsgvo_client_text_server_title = Diese Texte werden vom Server gesendet.
+dsgvo_client_project_server_title = An diese Domains werden Texte gesendet.
+
+dsgvo_server_text_edit = Text der Datenschutzseite bearbeiten
+dsgvo_server_text_add = Text zur Datenschutzseite hinzufügen
+
+# Anzeige im Texte Server Backend
 
 dsgvo_server_text_column_keyword = Schlüssel
 dsgvo_server_text_column_name = Überschrift
@@ -8,17 +14,21 @@ dsgvo_server_text_column_source = Quelle
 dsgvo_server_text_column_source_url = Link zur Quelle
 dsgvo_server_text_column_status = In Datenschutz-Seite auflisten?
 
-dsgvo_server_text_edit = Text der Datenschutzseite bearbeiten
-dsgvo_server_text_add = Text zur Datenschutzseite hinzufügen
-
 dsgvo_server_text_column_status_is_offline = ausblenden
 dsgvo_server_text_column_status_is_online = anzeigen
+
+# Anzeige im Projekte Server Backend
+
+dsgvo_server_projects_column_domain = Domain
+dsgvo_server_projects_column_last_call = Letzter Abruf
+dsgvo_server_projects_column_manage_text = Texte verwalten
 
 # Anmerkungen im Backend
 
 sets_label_keyword_note =
 sets_label_name_note = 
-sets_label_status_note = 
+sets_label_status_note =
 sets_label_text_note = 
 sets_label_source_note = 
 sets_label_source_url_note = 
+sets_label_domain_note = 

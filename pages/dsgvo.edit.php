@@ -17,6 +17,14 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		$list->setColumnLabel('name', $this->i18n('dsgvo_client_text_column_name'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_client_text_column_source'));
+		$list->setColumnFormat('source', 'custom', function ($params) {
+			$list = $params['list'];  
+			if ($params['value'] != "") {
+				$str = $list->getColumnLink('source', '<a href="'.rex_i18n::msg("dsgvo_client_text_column_source_url").'">'.rex_i18n::msg("dsgvo_client_text_column_source").'</a>');
+			}
+			return $str;
+		});
+		
 
 		$list->setColumnLabel('status', $this->i18n('dsgvo_client_text_column_status'));
 		//$list->setColumnParams('status', ['func' => 'setstatus', 'oldstatus' => '###status###', 'oid' => '###id###']);
@@ -38,12 +46,13 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->removeColumn('text');
 		$list->removeColumn('custom_text');
 		$list->removeColumn('source_url');
+		$list->removeColumn('code');
 		
 		$content = $list->get();
 		
 		 $fragment = new rex_fragment();
 		 $fragment->setVar('class', "info", false);
-		 $fragment->setVar('title', "Diese Texte werden in der Datenschutz-Seite ausgegeben.", false);
+		 $fragment->setVar('title', $this->i18n('dsgvo_client_text_title'), false);
 		 $fragment->setVar('content', $content, false);
 		 $content = $fragment->parse('core/page/section.php');
 		
@@ -62,13 +71,13 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//Start - add keyword-field
 			$field = $form->addTextField('keyword');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_keyword'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_keyword_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_keyword_note'));
 		//End - add keyword-field
 
 		//Start - add name-field
 			$field = $form->addTextField('name');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_name'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_name_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_name_note'));
 		//End - add name-field
 		
 		//Start - add status-field 
@@ -81,31 +90,33 @@ echo rex_view::title($this->i18n('dsgvo'));
 		    if ($func == 'add') {
 		        $select->setSelected(1);
 		    }		
-		    $field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_status_note').'</p></dd></dl>');
+		    $field->setNotice($this->i18n('sets_label_status_note'));
 		//End - add status-field
 
 		//Start - add text-field
 			$field = $form->addTextAreaField('text');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_text'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_text_note').'</p></dd></dl>');
+			$field->setAttribute('class', 'form-control markitupEditor-textile_full');
+			$field->setNotice($this->i18n('sets_label_text_note'));
 		//End - add text-field
 		
 		//Start - add custom_text-field
 			$field = $form->addTextAreaField('custom_text');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_custom_text'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_custom_text_note').'</p></dd></dl>');
+			$field->setAttribute('class', 'form-control markitupEditor-textile_full');
+			$field->setNotice($this->i18n('sets_label_custom_text_note'));
 		//End - add custom_text-field
 		
 		//Start - add source-field
 			$field = $form->addTextField('source');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_source'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_source_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_source_note'));
 		//End - add source-field
 
 		//Start - add source_url-field
 			$field = $form->addTextField('source_url');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_source_url'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_source_url_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_source_url_note'));
 		//End - add source_url-field
 		
 		if ($func == 'edit') {

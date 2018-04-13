@@ -4,7 +4,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 	$func = rex_request('func', 'string');
 	
 	if ($func == '') {
-		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."yf_dsgvo` ORDER BY `prio` ASC");
+		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_server` ORDER BY `prio` ASC");
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('sets_norowsmessage'));
 		
@@ -31,6 +31,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$content = $list->get();
 		
 		$fragment = new rex_fragment();
+		$fragment->setVar('class', "info", false);
+		$fragment->setVar('title', $this->i18n('dsgvo_client_text_server_title'), false);
 		$fragment->setVar('content', $content, false);
 		$content = $fragment->parse('core/page/section.php');
 		
@@ -44,18 +46,18 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$formLabel = $this->i18n('dsgvo_server_text_add');
 		}
 		
-		$form = rex_form::factory(rex::getTablePrefix().'yf_dsgvo', '', 'id='.$id);
+		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server', '', 'id='.$id);
 
 		//Start - add keyword-field
 			$field = $form->addTextField('keyword');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_keyword'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_keyword_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_keyword_note'));
 		//End - add keyword-field
 		
 		//Start - add name-field
 			$field = $form->addTextField('name');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_name'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_name_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_name_note'));
 		//End - add name-field
 		
 		//Start - add status-field 
@@ -68,25 +70,26 @@ echo rex_view::title($this->i18n('dsgvo'));
 		    if ($func == 'add') {
 		        $select->setSelected(1);
 		    }		
-		    $field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_status_note').'</p></dd></dl>');
+		    $field->setNotice($this->i18n('sets_label_status_note'));
 		//End - add status-field
 		
 		//Start - add text-field
 			$field = $form->addTextAreaField('text');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_text'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_text_note').'</p></dd></dl>');
+			$field->setAttribute('class', 'form-control markitupEditor-textile_full');
+			$field->setNotice($this->i18n('sets_label_text_note'));
 		//End - add text-field
 		
 		//Start - add source-field
 			$field = $form->addTextField('source');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_source'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_source_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_source_note'));
 		//End - add source-field
 		
 		//Start - add source_url-field
 			$field = $form->addTextField('source_url');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_source_url'));
-			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_source_url_note').'</p></dd></dl>');
+			$field->setNotice($this->i18n('sets_label_source_url_note'));
 		//End - add source_url-field
 		
 		if ($func == 'edit') {

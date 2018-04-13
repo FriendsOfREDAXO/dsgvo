@@ -67,6 +67,8 @@ dsgvo_dementiasql_add_cronjob = Jetzt Cronjob einrichten
 
 # Ansicht im Backend
 
+dsgvo_client_text_title = Diese Texte werden in der Datenschutz-Seite ausgegeben.
+
 dsgvo_client_text_column_keyword = Schlüssel
 dsgvo_client_text_column_name = Name
 dsgvo_client_text_column_text = Datenschutz Eintrag

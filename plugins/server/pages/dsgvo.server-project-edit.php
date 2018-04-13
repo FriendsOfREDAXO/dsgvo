@@ -14,22 +14,24 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
 		$list->setColumnParams($thIcon, ['func' => 'edit', 'id' => '###id###']);
 		
-		$list->setColumnLabel('domain', $this->i18n('sets_column_name'));
+		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_projects_column_domain'));
 		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'edit']);
 		
 		$list->removeColumn('id');
 
-		$th = 'Letzter Abruf';
+		$th = $this->i18n('dsgvo_server_projects_column_last_call');
 		$td = '<i class="rex-icon rex-icon-success"></i>';
 		$list->addColumn($th, $td, 5, ['<th class="">###VALUE###</th>', '<td class="">###VALUE###</td>']);
 		
-		$th = 'Texte verwalten';
+		$th = $this->i18n('dsgvo_server_projects_column_manage_text');
 		$td = '<i class="rex-icon rex-icon-success"></i>';
 		$list->addColumn($th, $td, 5, ['<th class="">###VALUE###</th>', '<td class="">###VALUE###</td>']);
 		
 		$content = $list->get();
 		
 		$fragment = new rex_fragment();
+		$fragment->setVar('class', "info", false);
+		$fragment->setVar('title', $this->i18n('dsgvo_client_project_server_title'), false);
 		$fragment->setVar('content', $content, false);
 		$content = $fragment->parse('core/page/section.php');
 		
@@ -38,16 +40,17 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$id = rex_request('id', 'int');
 		
 		if ($func == 'edit') {
-			$formLabel = $this->i18n('sets_formcaption_edit');
+			$formLabel = $this->i18n('dsgvo_server_text_edit');
 		} elseif ($func == 'add') {
-			$formLabel = $this->i18n('sets_formcaption_add');
+			$formLabel = $this->i18n('dsgvo_server_text_add');
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server_project', '', 'id='.$id);
 		
 		//Start - add name-field
 			$field = $form->addTextField('domain');
-			$field->setLabel($this->i18n('sets_label_name'));
+			$field->setLabel($this->i18n('dsgvo_server_projects_column_domain'));
+			$field->setNotice($this->i18n('sets_label_domain_note'));
 		//End - add name-field
 		
 		if ($func == 'edit') {
