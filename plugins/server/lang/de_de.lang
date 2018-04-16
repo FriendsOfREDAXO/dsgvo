@@ -16,6 +16,12 @@ dsgvo_server_text_column_source = Quelle
 dsgvo_server_text_column_source_url = Link zur Quelle
 dsgvo_server_text_column_status = In Datenschutz-Erklärung anzeigen?
 dsgvo_server_text_column_prio = Reihenfolge
+dsgvo_server_text_column_updatedate = Zuletzt geändert am...
+
+dsgvo_server_status_activate_success = Status erfolgreich geändert auf "anzeigen"
+dsgvo_server_status_deactivate_success = Status erfolgreich geändert auf "ausblenden"
+
+dsgvo_server_norows_message = Keine Einträge vorhanden
 
 dsgvo_server_text_column_keyword_note = Dieser Schlüssel darf nur aus <code>a-zA-Z1-9_-</code> bestehen, bspw. <code>facebook_pixel</code>
 dsgvo_server_text_column_name_note = Überschrift, wie sie in der Datenschutz-Erklärung steht 

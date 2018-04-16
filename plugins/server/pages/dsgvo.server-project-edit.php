@@ -6,7 +6,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 	if ($func == '') {
 		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_server_project` ORDER BY `domain` ASC");
 		$list->addTableAttribute('class', 'table-striped');
-		$list->setNoRowsMessage($this->i18n('sets_norowsmessage'));
+		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
 		// icon column
 		$thIcon = '<a href="'.$list->getUrl(['func' => 'add']).'"><i class="rex-icon rex-icon-add-action"></i></a>';
@@ -16,9 +16,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_projects_column_domain'));
 		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'edit']);
-
-		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_projects_column_api_key'));
-		
+		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_projects_column_api_key'));	
 		$list->removeColumn('id');
 
 		$th = $this->i18n('dsgvo_server_projects_column_last_call');

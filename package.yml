@@ -1,8 +1,8 @@
 package: dsgvo
-version: '0.1'
+version: '0.1.1'
 title: 'translate:title'
-author: 'Pixelfirma, alexplus_de, FriendsOfREDAXO'
-supportpage: 'https://github.com/alexplusde/dsgvo_helferlein/'
+author: 'Pixelfirma, alexplus_de'
+supportpage: 'https://github.com/alexplusde/dsgvo/'
 icon: fa-gavel
 
 requires:

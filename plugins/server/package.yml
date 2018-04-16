@@ -1,8 +1,8 @@
 package: dsgvo/server
 version: '0.1'
 title: 'DSGVO Helferlein (Server-Addon)'
-author: 'Pixelfirma, alexplus_de, FriendsOfREDAXO'
-supportpage: 'https://github.com/alexplusde/dsgvo_helferlein/'
+author: 'Pixelfirma, alexplus_de'
+supportpage: 'https://github.com/alexplusde/dsgvo/'
 icon: fa-gavel
 
 requires:

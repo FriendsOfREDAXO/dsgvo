@@ -2,11 +2,23 @@
 echo rex_view::title($this->i18n('dsgvo'));
 
 	$func = rex_request('func', 'string');
+	if ($func == 'setstatus') {
+		$status = (rex_request('oldstatus', 'int') + 1) % 2;
+		$msg = $status == 1 ? 'dsgvo_server_status_activate' : 'dsgvo_server_status_deactivate';
+		$oid = rex_request("oid", "int");
+		$update = rex_sql::factory()->setQuery('UPDATE rex_dsgvo_server SET status = :status WHERE id = :oid',array(':status' => $status, ':oid' => $oid))->execute(array(':status' => $status, ':oid' => $oid));
+		if ($update) {
+			echo rex_view::success($this->i18n($msg . '_success', $name));
+		} else {
+			echo rex_view::error($this->i18n($msg . '_error', $name));
+		}
+		$func = '';
+	}
 	
 	if ($func == '') {
 		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_server` ORDER BY `prio` ASC");
 		$list->addTableAttribute('class', 'table-striped');
-		$list->setNoRowsMessage($this->i18n('sets_norowsmessage'));
+		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
 		// icon column
 		$thIcon = '<a href="'.$list->getUrl(['func' => 'add']).'"><i class="rex-icon rex-icon-add-action"></i></a>';
@@ -24,17 +36,19 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_server_text_column_source'));
 		$list->setColumnLabel('prio', $this->i18n('dsgvo_server_text_column_prio'));
 		$list->setColumnLabel('status', $this->i18n('dsgvo_server_text_column_status'));
+		$list->setColumnParams('status', ['func' => 'setstatus', 'oldstatus' => '###status###', 'oid' => '###id###']);
 		$list->setColumnFormat('status', 'custom', function ($params) {
 			$list = $params['list'];  
 	        if ($params['value'] == "") {
 	            $str = rex_i18n::msg('cronjob_status_invalid');
 	        } elseif ($params['value'] == 1) {
-	            $str = $list->getColumnLink('status', '<span class="rex-online"><i class="rex-icon rex-icon-active-true"></i> ' . rex_i18n::msg('dsgvo_server_text_column_status_is_online') . '</span>');
+	            $str = $list->getColumnLink('status', '<span class="rex-online"><i class="rex-icon rex-icon-online"></i> ' . rex_i18n::msg('dsgvo_client_text_column_status_is_online') . '</span>');
 	        } else {
-	            $str = $list->getColumnLink('status', '<span class="rex-offline"><i class="rex-icon rex-icon-active-false"></i> ' . rex_i18n::msg('dsgvo_server_text_column_status_is_offline') . '</span>');
+	            $str = $list->getColumnLink('status', '<span class="rex-offline"><i class="rex-icon rex-icon-offline"></i> ' . rex_i18n::msg('dsgvo_client_text_column_status_is_offline') . '</span>');
 	        }
 	        return $str;
 	    });
+	    $list->setColumnLabel('updatedate', $this->i18n('dsgvo_server_text_column_updatedate'));
 		
 		$list->removeColumn('keyword');
 		$list->removeColumn('id');
@@ -75,17 +89,20 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//End - add name-field
 
 		//Start - add domain-field
-			$field = $form->addTextField('domain');
+			$field = $form->addSelectField('domain','',['class'=>'form-control selectpicker']); 
 			$field->setLabel($this->i18n('dsgvo_server_text_column_domain'));
+			$select = $field->getSelect();
+			$select->setSize(1);
+			$select->addDBSqlOptions("select domain as name, domain as id FROM rex_dsgvo_server_project ORDER BY domain");
 			$field->setNotice($this->i18n('dsgvo_server_text_column_domain_note'));
 		//End - add domain-field
 
 		//Start - add lang-field
-			$field = $form->addSelectField('lang');
+			$field = $form->addSelectField('lang','',['class'=>'form-control selectpicker']);
 			$field->setLabel($this->i18n('dsgvo_server_text_column_lang'));
 			$select = $field->getSelect();
 		    $select->setSize(1);
-		    $select->addOption($this->i18n('dsgvo_server_text_column_lang_is_german'), 'de');
+		    $select->addOption($this->i18n('dsgvo_server_text_column_lang_is_german'), "de");
 		    $select->addOption($this->i18n('dsgvo_server_text_column_lang_is_english'), 'en');
 			$field->setNotice($this->i18n('dsgvo_server_text_column_lang_note'));
 		//End - add lang-field

@@ -25,7 +25,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_client` ORDER BY `prio` ASC", 20);
 		$list->addTableAttribute('class', 'table-striped');
-		$list->setNoRowsMessage($this->i18n('sets_norowsmessage'));
+		$list->setNoRowsMessage($this->i18n('dsgvo_client_norows_message'));
 		
 		// icon column
 		$thIcon = '<a href="'.$list->getUrl(['func' => 'add']).'"><i class="rex-icon rex-icon-add-action"></i></a>';
@@ -37,12 +37,9 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('lang', $this->i18n('dsgvo_client_text_column_lang'));
 		$list->setColumnLabel('name', $this->i18n('dsgvo_client_text_column_name'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_client_text_column_source'));
-		$list->setColumnLabel('prio', $this->i18n('dsgvo_server_text_column_prio'));
+		$list->setColumnLabel('prio', $this->i18n('dsgvo_client_text_column_prio'));
 		$list->setColumnLabel('status', $this->i18n('dsgvo_client_text_column_status'));
 		$list->setColumnParams('status', ['func' => 'setstatus', 'oldstatus' => '###status###', 'oid' => '###id###']);
-
-
-
 		$list->setColumnFormat('status', 'custom', function ($params) {
 			$list = $params['list'];  
 	        if ($params['value'] == "") {
@@ -54,8 +51,9 @@ echo rex_view::title($this->i18n('dsgvo'));
 	        }
 	        return $str;
 	    });
-		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);
-		
+	    $list->setColumnLabel('updatedate', $this->i18n('dsgvo_client_text_column_updatedate'));
+
+		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);		
 		$list->removeColumn('keyword');
 		$list->removeColumn('id');
 		$list->removeColumn('text');

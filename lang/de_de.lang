@@ -80,6 +80,7 @@ dsgvo_client_text_column_status = In Datenschutz-Erklärung anzeigen?
 dsgvo_client_text_column_status_is_offline = ausblenden
 dsgvo_client_text_column_status_is_online = anzeigen
 dsgvo_client_text_column_prio = Reihenfolge
+dsgvo_client_text_column_updatedate = Zuletzt geändert am...
 
 dsgvo_client_text_column_domain_note = Falls die REDAXO-Installation über mehrere Domains verfügt, bspw. in YRewrite: Domain, für die der Text gilt.
 dsgvo_client_text_column_lang_note = REDAXO-Sprache
@@ -93,5 +94,10 @@ dsgvo_client_text_column_source_url_note = Link zur Quelle
 dsgvo_client_text_column_prio_note = 
 dsgvo_client_text_column_code_note = Dienst- oder Tracking-Code, z.B. der tatsächliche Code des Facebook-Pixel, Google Analytics o.ä. - doeser wird dann um einen Opt-Out-Link ergänzt.
 
+dsgvo_client_status_activate_success = Status erfolgreich geändert auf "anzeigen"
+dsgvo_client_status_deactivate_success = Status erfolgreich geändert auf "ausblenden"
+
 dsgvo_client_text_edit = Dienst bearbeiten
 dsgvo_client_text_add = Dienst hinzufügen
+
+dsgvo_client_norows_message = Keine Einträge vorhanden
