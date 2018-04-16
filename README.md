@@ -12,7 +12,7 @@ Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein ode
 
 ## Client-Plugin
 
-### Features (Client)
+### Features
 
 Die Client-Funktion ist für die Darstellung und die ggf. automatische Aktualisierung von Datenschutz-Textbausteinen und der Verwaltung von Tracking-Codes gedacht.
 

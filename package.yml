@@ -17,6 +17,27 @@ pages:
     dsgvo/setup:
         title: 'translate:setup'
         icon: rex-icon fa-gavel
+    dsgvo/setup/overview:
+        title: 'translate:setup-overview'
+        icon: rex-icon rex-icon-info
+    dsgvo/setup/modul:
+        title: 'translate:setup-modul'
+        icon: rex-icon rex-icon-module
+    dsgvo/setup/backup:
+        title: 'translate:setup-backup'
+        icon: rex-icon rex-icon-backup
+    dsgvo/setup/phpmailer:
+        title: 'translate:setup-phpmailer'
+        icon: rex-icon rex-icon-envelope
+    dsgvo/setup/dementia:
+        title: 'translate:setup-dementia'
+        icon: rex-icon rex-icon-delete
+    dsgvo/setup/import:
+        title: 'translate:setup-import'
+        icon: rex-icon rex-icon-import
+    dsgvo/setup/external:
+        title: 'translate:setup-external'
+        icon: rex-icon rex-icon-linkmap
     dsgvo/edit:
         title: 'translate:edit'
         icon: rex-icon fa-edit
