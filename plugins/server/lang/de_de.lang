@@ -33,7 +33,7 @@ dsgvo_server_text_column_domain_note = Falls die REDAXO-Installation über mehre
 dsgvo_server_text_column_code_note = Dienst- oder Tracking-Code, z.B. der tatsächliche Code des Facebook-Pixel, Google Analytics o.ä. - doeser wird dann um einen Opt-Out-Link ergänzt.
 dsgvo_server_text_column_prio_note = 
 dsgvo_server_text_column_status_note = 
-dsgvo_server_text_column_lang_note = 
+dsgvo_server_text_column_lang_note = Sprache als zweistelliger ISO-Code, z.B. <code>de</code>
 
 dsgvo_server_text_column_status_is_offline = ausblenden
 dsgvo_server_text_column_status_is_online = anzeigen

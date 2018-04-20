@@ -9,8 +9,7 @@ docs = Hilfe
 setup-overview = Übersicht
 setup-dementia = automatisiertes Löschen
 setup-consent = Cookie-Einverständnis
-setup-modul = Modul zur Datenschutz-Erklärung
-setup-import = Import der Datenschutz-Erklärung 
+setup-modul = Datenschutz-Erklärung einbinden
 setup-backup = SQL-Backups
 setup-phpmailer = PHP-Mailer Logs
 setup-external = externe Dienste
@@ -49,16 +48,25 @@ dsgvo_privacy_cronjob_domains_notice = z.B. <code>redaxo.org</code>
 dsgvo_privacy_cronjob_version_label = API-Version 
 dsgvo_privacy_cronjob_version_notice = z.B. <code>beta</code> 
 
-# Setup-Schritte
+# Setup-Seiten
 
-install_dsgvo_modul = Schritt 2: Modul zur Datenschutz-Erklärung installieren
+dsgvo_description_all_title = Übersicht
+dsgvo_description_all = Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. Ein Rechtsanspruch besteht jedoch nicht. Für die DSGVO-konforme Umsetzung ist die ganzheitliche Betrachtung der auf einer Website anfallenden Daten und deren Nutzung unerlässlich. Hierzu gibt es im Bereich Hilfe eine wachsende Sammlung an Tipps und Empfehlungen.
+
+dsgvo_description_ad_title = Weiterentwicklung unterstützen
+dsgvo_description_ad = Hat dieses Addon dir wertvolle Zeit gespart oder in besonderem Maße bei der Umsetzung genutzt? Dann würden wir uns über eine Spende freuen.
+
+dsgvo_backup_title = REDAXO-Backups
+dsgvo_backup_description = Wenn REDAXO manuell oder automatisch regelmäßige Backups anlegt, können diese sensible Daten enthalten. Daher sollten auch Backups nach angemessener Zeit gelöscht werden.
+
+install_dsgvo_modul = Modul zur Datenschutz-Erklärung installieren
 install_dsgvo_modul_description = Dieses Modul auf der Seite "Datenschutz" ausgeben, um die im Cronjob importierten Texte auszugeben. Bei Diensten, bei denen ein Opt-Out möglich ist, wird automatisch ein Opt-Out-Link generiert, der dem Nutzer die Möglichkeit gibt, den Tracking-Code abzuschalten.
 
 install_dsgvo_module = Modul installieren
 install_update_dsgvo_module = Modul reinstallieren
 
-check_dsgvo_cronjob = Schritt 1: Cronjob zur Abfrage der Datenschutz-Texte einrichten
-check_dsgvo_cronjob_description = Wenn die Datenschutz-Texte zentral verwaltet werden sollen, muss zunächst ein Cronjob eingerichtet werden, der diese Texte in Abhängigkeit zur Website und zur Sprache abruft. Dem DSGVO-Addon liegt ein Server-Plugin bei.
+check_dsgvo_cronjob = Cronjob zur Abfrage der Textbausteine / zentrale Verwaltung der Tracking-Codes
+check_dsgvo_cronjob_description = Wenn die Datenschutz-Texte zentral verwaltet werden sollen, kann ein Cronjob eingerichtet werden, der diese Texte in Abhängigkeit zur Website und zur Sprache abruft. Dem DSGVO-Addon liegt ein Server-Plugin bei.
 
 dsgvo_add_cronjob = Neuen Cronjob anlegen
 dsgvo_edit_cronjob = bestehenden Cronjob bearbeiten
@@ -69,10 +77,13 @@ check_dsgvo_dementia_cronjob = Cronjob für alte Datensätze einrichten
 check_dsgvo_dementia_cronjob_description = Alte Datensätze mit personenbezogenen Daten sollten überprüft werden, ob sensible / personenbezogene Datensätze gesammelt werden, z.B. bei einem Kontaktformular oder in der History.
 
 
-check_dsgvo_tracking = Schritt 4: weitere Tracking-Codes manuell migrieren
-check_dsgvo_tracking_description = Das DSGVO-Helferlein versucht herauszufinden, ob zusätzliche Maßnahmen erforderlich sind. Auch hierfür gibt es keine Gewähr!
-check_dsgvo_tracking_danger = In der Tabelle <code>{0}</code> eins der folgenden Keywords entdeckt: <code>{1}</code>. Für diese Tabelle gibt es keinen DSGVO-Cronjob.
-check_dsgvo_tracking_success = Es wurden keine Templates gefunden, die folgende Keywords enthalten: <code>{0}</code>
+check_dsgvo_tracking = Tracking-Codes und externe Dienste manuell migrieren / anpassen
+check_dsgvo_tracking_description = In diesem Setup-Schritt werden Templates nach folgenden Keywords durchsucht: <code>{0}</code>. Hier ist ggf. zu überprüfen, ob es sich dabei um externe Dienste handelt, die bspw. direkt via <code><link></code>-, <code><iframe></code>- oder <code><script></code>-Tag eingebunden werden.
+check_dsgvo_tracking_templates_danger = In den folgenden Templates wurde eins der folgenden Keywords entdeckt: <code>{0}</code>
+check_dsgvo_tracking_templates_success = Es wurden keine Templates gefunden, die folgende Keywords enthalten: <code>{0}</code>
+check_dsgvo_tracking_modules_danger = In den folgenden Modulen wurde eins der folgenden Keywords entdeckt: <code>{0}</code>
+check_dsgvo_tracking_modules_success = Es wurden keine Module gefunden, die folgende Keywords enthalten: <code>{0}</code>
+
 
 check_dsgvo_dementiasql_cronjob = Schritt 5: Cronjob für alte REDAXO-Datenbank-Backups anpassen
 check_dsgvo_dementiasql_cronjob_description = In alten SQL-Backups könnten ebenfalls personenbezogene Daten archiviert sein. Auch hier sollten nicht mehr benötigte Backups gelöscht werden.

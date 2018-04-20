@@ -1,5 +1,5 @@
 package: dsgvo
-version: '0.1.3'
+version: '0.1.4'
 title: 'translate:title'
 author: 'Pixelfirma, alexplus_de'
 supportpage: 'https://github.com/alexplusde/dsgvo/'
@@ -32,9 +32,6 @@ pages:
     dsgvo/setup/dementia:
         title: 'translate:setup-dementia'
         icon: rex-icon rex-icon-delete
-    dsgvo/setup/import:
-        title: 'translate:setup-import'
-        icon: rex-icon rex-icon-import
     dsgvo/setup/external:
         title: 'translate:setup-external'
         icon: rex-icon rex-icon-linkmap

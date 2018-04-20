@@ -5,7 +5,14 @@ echo rex_view::title($this->i18n('dsgvo'));
 if (rex::getUser()->isAdmin()) {
 
 
-    // Schritt 3
+    $content = '';
+    $content .= '<p>'.$this->i18n('check_dsgvo_dementiasql_cronjob_description').'</p>';
+
+    $fragment = new rex_fragment();
+    $fragment->setVar('title', $this->i18n('check_dsgvo_dementiasql_cronjob'), false);
+    $fragment->setVar('body', $content, false);
+    echo $fragment->parse('core/page/section.php');
+    
     $content = '';
     $content .= '<p>'.$this->i18n('check_dsgvo_dementia_cronjob_description').'</p>';
 
@@ -79,10 +86,12 @@ if (rex::getUser()->isAdmin()) {
         }
     }
 
-
     $fragment = new rex_fragment();
     $fragment->setVar('title', $this->i18n('check_dsgvo_dementia_cronjob'), false);
-    $fragment->setVar('body', $content, false);
+    $fragment->setVar('body',  $content, false);
     echo $fragment->parse('core/page/section.php');
     
+
+
+
 }

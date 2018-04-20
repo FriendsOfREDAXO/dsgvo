@@ -70,6 +70,30 @@ echo rex_view::title($this->i18n('dsgvo'));
 		 $content = $fragment->parse('core/page/section.php');
 		
 		echo $content;
+
+		// Hinweis auf Server-Plugin
+
+		
+		$content = '';
+		$searchtext = 'rex_cronjob_dsgvo_privacy';
+	
+		$gm = rex_sql::factory();
+		$cronjobs = $gm->setQuery('select * from '.rex::getTable('cronjob').' where type = "rex_cronjob_dsgvo_privacy"')->getArray();
+	
+		$content .= '<p>'.$this->i18n('check_dsgvo_cronjob_description').'</p>';
+	
+		if (!count($cronjobs)) {
+			$content .= '<p><a class="btn btn-primary" href="index.php?page=cronjob/cronjobs&amp;func=add&amp;list=cronjobs=1" class="rex-button">' . $this->i18n('dsgvo_add_cronjob', htmlspecialchars($module_name)) . '</a>';
+		} else {
+			$content .= '<p><a class="btn btn-primary" href="index.php?page=cronjob/cronjobs&amp;func=edit&amp;oid='.$cronjobs[0]['id'].'&amp;list=cronjobs" class="rex-button">' . $this->i18n('dsgvo_edit_cronjob', $dsgvo_module_name) . '</a>';
+		}
+	
+		$fragment = new rex_fragment();
+		$fragment->setVar('title', $this->i18n('check_dsgvo_cronjob'), false);
+		$fragment->setVar('body', $content, false);
+		echo $fragment->parse('core/page/section.php');
+
+
 	} else if ($func == 'add' || $func == 'edit') {
 		$id = rex_request('id', 'int');
 		
