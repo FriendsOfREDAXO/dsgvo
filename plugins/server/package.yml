@@ -15,8 +15,5 @@ page:
 
 pages:
     dsgvo/server-edit:
-        title: 'Texte-Server'
-        icon: glyphicon glyphicon-globe
-    dsgvo/server-project-edit:
-        title: 'Projekte-Server'
+        title: 'Server'
         icon: glyphicon glyphicon-globe

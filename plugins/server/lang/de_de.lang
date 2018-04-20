@@ -49,3 +49,4 @@ dsgvo_server_projects_column_domain_note =
 dsgvo_server_projects_column_api_key_note = 
 
 dsgvo_server_project_log_title = Letzer Abruf
+dsgvo_server_projects_column_last_call_none = Nie
