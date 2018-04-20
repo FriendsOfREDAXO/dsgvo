@@ -38,6 +38,9 @@ pages:
     dsgvo/edit:
         title: 'translate:edit'
         icon: rex-icon fa-edit
+    dsgvo/consent:
+        title: 'translate:consent'
+        icon: rex-icon fa-check
     dsgvo/docs:
         title: 'translate:docs'
         icon: rex-icon fa-info-circle

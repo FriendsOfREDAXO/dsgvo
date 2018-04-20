@@ -4,14 +4,6 @@
 
 Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. Ein Rechtsanspruch besteht jedoch nicht. Für die DSGVO-konforme Umsetzung ist die ganzheitliche Betrachtung der auf einer Website anfallenden Daten und deren Nutzung unerlässlich.
 
-### Bugmeldungen Hilfe und Links
-
-* Auf Github: https://github.com/alexplusde/dsgvo/issues/
-* im Forum: https://www.redaxo.org/forum/
-* im Slack-Channel: https://friendsofredaxo.slack.com/
-
-## Client-Plugin
-
 ### Features
 
 Die Client-Funktion ist für die Darstellung und die ggf. automatische Aktualisierung von Datenschutz-Textbausteinen und der Verwaltung von Tracking-Codes gedacht.
@@ -26,13 +18,21 @@ Die Client-Funktion ist für die Darstellung und die ggf. automatische Aktualisi
 * Cronjob zum Löschen alter Backups (in Arbeit)
 * Cronjob zum Löschen alter PHP-Mailer-Logs (in Arbeit)
 
+### Bugmeldungen Hilfe und Links
+
+* Auf Github: https://github.com/alexplusde/dsgvo/issues/
+* im Forum: https://www.redaxo.org/forum/
+* im Slack-Channel: https://friendsofredaxo.slack.com/
+
 ### Installation
 
 Voraussetzung für die aktuelle Version des DSGVO-Addons: REDAXO 5.5
 Beim Installieren und Aktivieren des Addons werden die Tabellen für den Client und ggf. den Server angelegt.
 Nach erfolgreicher Installation gibt es im Backend unter AddOns einen Eintrag "DSGVO".
 
-### Setup
+## Setup
+
+### Übersicht
 
 Unter dem Reiter **Setup** wird in mehreren Schritten die aktuelle Installation sowie deren Konfiguration überprüft. Alle Schritte sind optional und erfordern ggf. ein händisches eingreifen. Sie erheben nicht den Anspruch auf Vollständigkeit.
 
@@ -43,9 +43,11 @@ Unter dem Reiter **Setup** wird in mehreren Schritten die aktuelle Installation 
 * Cronjob für alte REDAXO-Datenbank-Backups
 * Cronjob für alte PHP-Mailer-Logs
 
-### Texte
+## Datenschutz-Erklärung 
 
-Unter dem Reiter **Texte** werden Text-Bausteine der Datenschutz-Erklärung sowie deren Codes verwaltet. Diese können 
+### Übersicht
+
+Unter dem Reiter **Datenschutz-Erklärung** werden Text-Bausteine der Datenschutz-Erklärung sowie deren Codes verwaltet. Diese können 
 
 * manuell hinzugefügt werden, oder
 * via Cronjob seitens des Clients von einem Server abgerufen werden, oder
@@ -101,6 +103,8 @@ echo $output->parse('dsgvo-tracking.fragment.inc.php');
 
 
 ### Einrichtung des Cookie-Einverständnis-Banners
+
+### Übersicht
 
 Dem Addon liegt eine generischer Code bei, der ein minimalistisches Cookie-Einverständnis-Banner ("Cookie Consent") erzeugt. Das CSS kann angepasst werden.
 
