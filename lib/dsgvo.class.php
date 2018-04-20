@@ -2,6 +2,7 @@
 
 class dsgvo {
 
+    var $domain = '';
     var $lang = '';
     var $dsgvo_pool = [];
 

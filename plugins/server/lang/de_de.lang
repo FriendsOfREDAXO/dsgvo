@@ -46,7 +46,7 @@ dsgvo_server_projects_column_last_call = Letzter Abruf
 dsgvo_server_projects_column_manage_text = Texte verwalten
 
 dsgvo_server_projects_column_domain_note = 
-dsgvo_server_projects_column_api_key_note = 
+dsgvo_server_projects_column_api_key_note = API-Key (optional) abrufen, um unbefugten Zugriff auf die Texte zu verweigern, z.B. <code>{0}</code>
 
 dsgvo_server_project_log_title = Letzer Abruf
 dsgvo_server_projects_column_last_call_none = Nie

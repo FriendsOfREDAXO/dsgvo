@@ -19,7 +19,9 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_projects_column_domain'));
 		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit']);
+
 		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_projects_column_api_key'));	
+		
 		$list->removeColumn('id');
 		$list->removeColumn('updatedate');
 
@@ -171,7 +173,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//Start - add domain-field
 		$field = $form->addTextField('api_key');
 		$field->setLabel($this->i18n('dsgvo_server_projects_column_api_key'));
-		$field->setNotice($this->i18n('dsgvo_server_projects_column_api_key_note'));
+		$field->setNotice($this->i18n('dsgvo_server_projects_column_api_key_note', md5(time())));
 		//End - add domain-field
 		
 		if ($func == 'domain_edit') {
