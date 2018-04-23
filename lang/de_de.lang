@@ -4,6 +4,7 @@ dsgvo = DSGVO - Addon zur Datenschutz-Grundverordnung
 title = DSGVO
 setup = Setup
 edit = Datenschutz-Erklärung
+consent = Cookie-Einverständnis
 docs = Hilfe
 
 setup-overview = Übersicht
@@ -128,3 +129,9 @@ dsgvo_client_text_edit = Dienst bearbeiten
 dsgvo_client_text_add = Dienst hinzufügen
 
 dsgvo_client_norows_message = Keine Einträge vorhanden
+
+# Cookie-Consent
+
+dsgvo_consent_css_title = Cookie-Einverständnis-Banner
+dsgvo_consent_css_label = CSS eingeben
+save                    = Speichern
