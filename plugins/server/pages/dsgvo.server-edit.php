@@ -26,15 +26,15 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->removeColumn('updatedate');
 
 		
-		$list->addColumn($this->i18n('dsgvo_server_projects_column_manage_text'), $this->i18n('dsgvo_server_projects_column_manage_text'));
+		$list->addColumn($this->i18n('dsgvo_server_projects_column_manage_text'), $this->i18n('dsgvo_server_projects_column_manage_text'), 3);
 		$list->setColumnParams($this->i18n('dsgvo_server_projects_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
 
 		$list->addColumn('last_call', '');
 		$list->setColumnLabel('last_call', $this->i18n('dsgvo_server_projects_column_last_call'));
 		$list->setColumnFormat('last_call', 'custom', function ($params) {
-			$last_call = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY datestamp DESC')));
+			$last_call = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
 			if ($last_call) {
-				return $last_call['datestamp'];
+				return $last_call['createdate'];
 			}
 			return rex_i18n::msg("dsgvo_server_projects_column_last_call_none");
 		});
@@ -260,7 +260,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		// LOGS
 		$domain = rex_request('domain', 'string', "");
-		$list = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY datestamp DESC LIMIT 30', 10, "domain");
+		$list = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY createdate DESC LIMIT 30', 10, "domain");
 		
 		$fragment = new rex_fragment();
 		$fragment->setVar('class', 'default', false);

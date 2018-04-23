@@ -17,3 +17,6 @@ rex_sql_table::get(rex::getTable('dsgvo_client'))
     ->setPrimaryKey('id')
     ->ensure();
 
+if (!$this->hasConfig()) {
+    $this->setConfig('dsgvo_consent_css', 'TEST');
+}    

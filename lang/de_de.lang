@@ -134,4 +134,5 @@ dsgvo_client_norows_message = Keine Einträge vorhanden
 
 dsgvo_consent_css_title = Cookie-Einverständnis-Banner
 dsgvo_consent_css_label = CSS eingeben
+dsgvo_consent_css_notice = Dieses CSS für den Cookie-Einverständnis-Banner kann je nach Bedarf an das Aussehen der Website angepasst werden.  
 save                    = Speichern
