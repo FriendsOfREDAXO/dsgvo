@@ -41,6 +41,19 @@ if (rex::getUser()->isAdmin()) {
         $class = " panel-success";
     }
     $list->setNoRowsMessage($this->i18n("check_dsgvo_tracking_templates_success", implode(",",$keywords)));
+    
+    $list->addColumn('external_template_edit', '');
+    $list->setColumnLabel('external_template_edit', $this->i18n('check_dsgvo_external_template_column'));
+    $list->setColumnFormat('external_template_edit', 'custom', function ($params) {
+ //       $has_template = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
+        if ($has_template) {
+            return '<a href="">'.$this->i18n('check_dsgvo_external_template_edit').'</a>';
+        } else {
+            return '<a href="">'.$this->i18n('check_dsgvo_external_template_add').'</a>';
+        }
+    });
+
+
     $fragment = new rex_fragment();
 
     $fragment->setVar('title', $this->i18n('check_dsgvo_tracking_templates_danger', implode(",",$keywords)), false);
@@ -50,14 +63,30 @@ if (rex::getUser()->isAdmin()) {
 
     // Module
     $sql = rex_sql::factory();
-    $modules = array_filter($sql->setDebug(0)->getArray('SELECT `id`, `name` FROM `rex_module` WHERE `output` LIKE "%'.implode('%" OR `output` LIKE "%', $keywords).'%"'));
-    $list = rex_list::factory('SELECT `id`, `name` FROM `rex_module` WHERE `output` LIKE "%'.implode('%" OR `output` LIKE "%', $keywords).'%"', 10, $listName, $debug);
+    $query = 'SELECT `id`, `name` FROM `rex_module` WHERE `output` LIKE "%'.implode('%" OR `output` LIKE "%', $keywords).'%"';
+    $modules = array_filter($sql->setDebug(0)->getArray($query));
+    $list = rex_list::factory($query, 10, $listName, $debug);
     if(count($modules)) {
         $class = " panel-danger";
     } else {
         $class = " panel-success";
     }
     $list->setNoRowsMessage($this->i18n("check_dsgvo_tracking_modules_success", implode(",",$keywords)));
+
+
+    
+    $list->addColumn('external_module_edit', '');
+    $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_external_module_column'));
+    $list->setColumnFormat('external_module_edit', 'custom', function ($params) {
+ //       $has_template = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
+        if ($has_template) {
+            return '<a href="">'.$this->i18n('check_dsgvo_external_module_edit').'</a>';
+        } else {
+            return '<a href="">'.$this->i18n('check_dsgvo_external_module_add').'</a>';
+        }
+    });
+
+
     $fragment = new rex_fragment();
 
     $fragment->setVar('title', $this->i18n('check_dsgvo_tracking_modules_danger', implode(",",$keywords)), false);

@@ -2,11 +2,17 @@
 echo rex_view::title($this->i18n('dsgvo'));
 
 	$func = rex_request('func', 'string');
-	
-	if ($func == '') { 
+	$domain = rex_request('domain', 'string');
+
+	if ($func == '' || $func == "domain_delete") { 
+
+		if($func == 'domain_delete') {
+    		$oid = rex_request('oid', 'int');
+			$delete = rex_sql::factory()->setQuery('DELETE FROM rex_dsgvo_server_project WHERE id = :oid',array(':oid' => $oid));
+			echo rex_view::success( $this->i18n('dsgvo_server_domain_deleted'));
+    	}	
 
 		// Domain-Übersicht ANFANG //
-
 		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_server_project` ORDER BY `domain` ASC");
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
@@ -17,29 +23,33 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
 		$list->setColumnParams($thIcon, ['func' => 'domain_edit', 'id' => '###id###']);
 		
-		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_projects_column_domain'));
+		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_domain_column_domain'));
 		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit']);
 
-		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_projects_column_api_key'));	
+		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_domain_column_api_key'));	
 		
 		$list->removeColumn('id');
 		$list->removeColumn('updatedate');
 
 		
-		$list->addColumn($this->i18n('dsgvo_server_projects_column_manage_text'), $this->i18n('dsgvo_server_projects_column_manage_text'), 3);
-		$list->setColumnParams($this->i18n('dsgvo_server_projects_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
+		$list->addColumn($this->i18n('dsgvo_server_domain_column_manage_text'), $this->i18n('dsgvo_server_domain_column_manage_text'), 3);
+		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
 
 		$list->addColumn('last_call', '');
-		$list->setColumnLabel('last_call', $this->i18n('dsgvo_server_projects_column_last_call'));
+		$list->setColumnLabel('last_call', $this->i18n('dsgvo_server_domain_column_last_call'));
 		$list->setColumnFormat('last_call', 'custom', function ($params) {
 			$last_call = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
 			if ($last_call) {
 				return $last_call['createdate'];
+			} else { 
+				return rex_i18n::msg("dsgvo_server_domain_column_last_call_none");
 			}
-			return rex_i18n::msg("dsgvo_server_projects_column_last_call_none");
 		});
 		
-
+		$list->addColumn('domain_delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_server_domain_column_delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
+    	$list->setColumnParams('domain_delete', ['func' => 'domain_delete', 'oid' => '###id###']);
+    	$list->addLinkAttribute('domain_delete', 'data-confirm', $this->i18n('dsgvo_server_domain_delete_confirm'));
+		
 		$content1 = $list->get();
 		
 		$fragment = new rex_fragment();
@@ -82,6 +92,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$select = $field->getSelect();
 			$select->setSize(1);
 			$select->addDBSqlOptions("select domain as name, domain as id FROM rex_dsgvo_server_project ORDER BY domain");
+			$select->setSelected($domain);
 			$field->setNotice($this->i18n('dsgvo_server_text_column_domain_note'));
 		//End - add domain-field
 
@@ -166,14 +177,14 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		//Start - add domain-field
 		$field = $form->addTextField('domain');
-		$field->setLabel($this->i18n('dsgvo_server_projects_column_domain'));
-		$field->setNotice($this->i18n('dsgvo_server_projects_column_domain_note'));
+		$field->setLabel($this->i18n('dsgvo_server_domain_column_domain'));
+		$field->setNotice($this->i18n('dsgvo_server_domain_column_domain_note'));
 		//End - add domain-field
 
 		//Start - add domain-field
 		$field = $form->addTextField('api_key');
-		$field->setLabel($this->i18n('dsgvo_server_projects_column_api_key'));
-		$field->setNotice($this->i18n('dsgvo_server_projects_column_api_key_note', md5(time())));
+		$field->setLabel($this->i18n('dsgvo_server_domain_column_api_key'));
+		$field->setNotice($this->i18n('dsgvo_server_domain_column_api_key_note', md5(time())));
 		//End - add domain-field
 		
 		if ($func == 'domain_edit') {
@@ -192,9 +203,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		// Domain bearbeiten ENDE //
 
 	} else if ($func == 'domain_details') { 
-
+		
 		// Offline / Online schalten
-		$func = rex_request('func', 'string');
 		if ($func == 'setstatus') {
 			$status = (rex_request('oldstatus', 'int') + 1) % 2;
 			$msg = $status == 1 ? 'dsgvo_server_status_activate' : 'dsgvo_server_status_deactivate';
@@ -213,16 +223,17 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
 		// icon column
-		$thIcon = '<a href="'.$list->getUrl(['func' => 'text_add']).'"><i class="rex-icon rex-icon-add-action"></i></a>';
+		$thIcon = '<a href="'.$list->getUrl(['func' => 'text_add', 'domain' => $domain]).'"><i class="rex-icon rex-icon-add-action"></i></a>';
 		$tdIcon = '<i class="rex-icon fa-file-text-o"></i>';
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
-		$list->setColumnParams($thIcon, ['func' => 'text_edit', 'id' => '###id###']);
+		$list->setColumnParams($thIcon, ['func' => 'text_edit', 'domain' => $domain, 'id' => '###id###']);
 		
 		//$list->setColumnLabel('name', $this->i18n('sets_column_name'));
 		$list->setColumnLabel('type', $this->i18n('sets_column_type'));		
 		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'text_edit']);
 
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_text_column_domain'));
+		
 		$list->setColumnLabel('lang', $this->i18n('dsgvo_server_text_column_lang'));
 		$list->setColumnLabel('name', $this->i18n('dsgvo_server_text_column_name'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_server_text_column_source'));

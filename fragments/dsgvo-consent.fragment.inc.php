@@ -1,13 +1,13 @@
 <? if($_COOKIE['dsgvo_cookie_consent'] != 1) { ?>
-<div class="dsgvo-cookie_consent uk-alert uk-animation-slide-bottom uk-margin-remove" style="position: fixed; right: 0; left: 0; bottom: 0;">
-	<div class="dsgvo-cookie_consent-inner uk-padding-small" style="display: flex; align-items: center;">
-		<div class="dsgvo-cookie_consent-info" style="flex: 1 1 auto; margin-right: 10px;">
-			<p class=""><?= $this->info; ?><a class="uk-button uk-button-text" href="<?= $this->url; ?>"><?= $this->learn_more; ?></a></p>
-</p>		</div>
+<div class="dsgvo-cookie_consent">
+	<div class="dsgvo-cookie_consent-inner">
+		<div class="dsgvo-cookie_consent-info">
+			<p class="dsgvo-cookie_consent-text"><?= $this->info; ?> <a class="dsgvo-cookie_consent-more" href="<?= $this->url; ?>"><?= $this->learn_more; ?></a></p>
+		</div>
 		<div class="dsgvo-cookie_consent-dismiss">
-		<button class="uk-button uk-button-default" onClick="dsgvoConsent(1);"><?= $this->dismiss; ?></button>
+			<button class="dsgvo-cookie_consent-ok" onClick="dsgvoConsent(1);"><?= $this->dismiss; ?></button>
+		</div>
 	</div>
-</div>
 <script>
 function dsgvoConsent(status) {
 	if(status == 1) {
@@ -16,6 +16,7 @@ function dsgvoConsent(status) {
 	} else {
 		Cookies.set("dsgvo_cookie_consent", -1, { expires: 365 });
 	}
-}
+	}
 </script>
-<?php } ?>
+<?= rex_config::get("dsgvo", "dsgvo_consent_css"); ?>
+<? } ?>

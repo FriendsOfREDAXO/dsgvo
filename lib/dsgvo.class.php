@@ -10,10 +10,17 @@ class dsgvo {
         return $this;
     }
 
-    public function getDsgvoConsent() {
-
+    private function getDsgvoItems() {
         $this->lang = rex_clang::getCurrent()->getCode();
         $this->dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio',[':lang'=>$lang]);
+        return $this->dsgvo_pool;
+    }
+
+    public function getDsgvoConsent() {
+
+        if($this->dsgvo_pool == []) {
+            $this->dsgvo_pool = getDsgvoItems();
+        }
 
         $output = new rex_fragment();
         $output->setVar("dsgvo_pool", $this->dsgvo_pool);
@@ -26,9 +33,10 @@ class dsgvo {
 
     public function getDsgvoTracking() {
 
-        $this->lang = rex_clang::getCurrent()->getCode();
-        $this->dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio',[':lang'=>$lang]);
-
+        if($this->dsgvo_pool == []) {
+            $this->dsgvo_pool = getDsgvoItems();
+        }
+        
         $output = new rex_fragment();
         $output->setVar("dsgvo_pool", $this->dsgvo_pool);
         $output->setVar("lang", $this->lang);
@@ -40,9 +48,10 @@ class dsgvo {
 
     public function getDsgvoPage() {
 
-        $this->lang = rex_clang::getCurrent()->getCode();
-        $this->dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio',[':lang'=>$lang]);
-
+        if($this->dsgvo_pool == []) {
+            $this->dsgvo_pool = getDsgvoItems();
+        }
+        
         $output = new rex_fragment();
         $output->setVar("dsgvo_pool", $this->dsgvo_pool);
         $output->setVar("lang", $this->lang);
