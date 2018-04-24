@@ -1,0 +1,1 @@
+Das Verzeichnis `dsgvo` in den Root-Ordner der Domain verschieben und analog zu `standalone.php` verwenden.

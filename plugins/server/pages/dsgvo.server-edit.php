@@ -109,7 +109,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//Start - add text-field
 			$field = $form->addTextAreaField('text');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_text'));
-			$field->setAttribute('class', 'form-control markitupEditor-textile_full');
+			$field->setAttribute('class', 'form-control markitupEditor-textile_dsgvo');
 			$field->setNotice($this->i18n('dsgvo_server_text_column_text_note'));
 		//End - add text-field
 		

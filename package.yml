@@ -1,5 +1,5 @@
 package: dsgvo
-version: '0.1.5'
+version: '0.1.6'
 title: 'translate:title'
 author: 'Pixelfirma, alexplus_de'
 supportpage: 'https://github.com/alexplusde/dsgvo/'
@@ -8,6 +8,7 @@ icon: fa-gavel
 requires:
     packages:
         cronjob: '^2.0'
+        markitup: '^3.0'
 page:
     title: 'translate:title'
     pjax: false

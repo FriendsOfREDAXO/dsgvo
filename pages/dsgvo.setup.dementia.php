@@ -73,15 +73,17 @@ if (rex::getUser()->isAdmin()) {
 
 
 
-    $list->addColumn('demetnia_cronjob', '');
-    $list->setColumnLabel('demetnia_cronjob', $this->i18n('check_dsgvo_dementia_cronjob_column'));
-    $list->setColumnFormat('demetnia_cronjob', 'custom', function ($params) {
+    $list->addColumn('dementia_cronjob', '');
+    $list->setColumnLabel('dementia_cronjob', $this->i18n('check_dsgvo_dementia_cronjob_column'));
+    $list->setColumnFormat('dementia_cronjob', 'custom', function ($params) {
  //       $has_cronjob = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
         if ($has_cronjob) {
-            return '<a href="">'.$this->i18n('check_dsgvo_dementia_cronjob_edit').'</a>';
+            $str = '<a href="">'.$this->i18n('check_dsgvo_dementia_cronjob_edit').'</a>';
         } else {
-            return '<a href="">'.$this->i18n('check_dsgvo_dementia_cronjob_add').'</a>';
+            $str = '<a href="index.php?page=cronjob/cronjobs&func=add&list=cronjobs">'.$this->i18n('check_dsgvo_dementia_cronjob_add').'</a>';
+            //$list->addLinkAttribute('dementia_cronjob','test','test');
         }
+        return $str;
     });
 
 

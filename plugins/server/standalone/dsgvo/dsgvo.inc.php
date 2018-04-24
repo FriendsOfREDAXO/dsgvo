@@ -1,20 +1,25 @@
 <?
 
-$key = 'test';
-$url = 'http://dsgvo.pixelfirma.de/?rex-api-call=dsgvo&version=standalone1&projects=standalone.pixelfirma.de&language=de&keywords=facebook_like,cookies,cdn,newsletter';
+$params['rex-api-call'] = 'dsgvo';
+$params['api_key']      = '893ee5d818228af93d9e91679d6479be';
+$params['domains']      = 'lonex.de';
+$params['version']      = 'standalone';
+$params['subversion']   = '20180424';
+$params['langs']        = 'de';
+$params['timestamp']    = time();
+
+$url = 'http://dsgvo.pixelfirma.de/?'.urldecode(http_build_query($params));
+
 $filename = "dsgvo.json";
 
-// später rauslöschen
-$lang = "de";
-$domain = "standalone.pixelfirma.de";
-
-if($_GET['key'] == $key) {
-    getDsgvoFromServer();
+if($_GET['api_key'] == $params['api_key']) {
+    if(getDsgvoFromServer()) {
+        $params['status'] = '1';
+    } else {
+        $params['status'] = '0';
+    }
+    echo json_encode($params);
 }
-
-echo getTrackingCodes($lang, $domain);
-echo getDsgvoPage($lang, $domain);
-echo getDsgvoConsent($lang, $domain);
 
 function getDsgvoFromServer() {
     global $url, $filename;
@@ -23,7 +28,7 @@ function getDsgvoFromServer() {
     $resp = curl_exec($curl);
 
     if (!curl_errno($curl)) { 
-        file_put_contents($filename, $resp);
+        file_put_contents(dirname(__FILE__)."/".$filename, $resp);
         return true;
     } else {
         return curl_error($curl);
@@ -33,12 +38,10 @@ function getDsgvoFromServer() {
 
 function getLocalPool() {
     global $filename;
-    return json_decode(file_get_contents($filename));
+    return json_decode(file_get_contents(dirname(__FILE__)."/".$filename));
 }
 
 function getTrackingCodes($lang, $domain) { // Stellt Tracking Codes für den Header zusammen
-
-    $dsgvo_pool = getLocalPool();
 
     $output = new Template();
     $output->dsgvo_pool = getLocalPool();
@@ -58,18 +61,18 @@ function getDsgvoPage($lang, $domain) { // Stellt Texte für die DSGVO-Seite zus
     return $output->render('dsgvo-page.tpl.php');
 
 }
-function getDsgvoConsent($lang, $domain) { // Stellt Texte für die DSGVO-Seite zusammen
+function getDsgvoConsent($consent) { // Stellt Texte für die DSGVO-Seite zusammen
 
     $output = new Template();
-    $output->dsgvo_pool = getLocalPool();
-    $output->lang = $lang;
-    $output->domain = $domain;
+    $output->consent = $consent;
 
     return $output->render('dsgvo-consent.tpl.php');
 
 }
 
+// Mini Template-Engine, um Fragmente ähnlich zu REDAXO zu verwenden. Quelle:
 // http://chadminick.com/articles/simple-php-template-engine.html#sthash.tbm78ED0.dpbs
+
 class Template {
   private $vars  = array();
 
