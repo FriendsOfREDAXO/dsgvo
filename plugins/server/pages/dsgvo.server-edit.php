@@ -131,8 +131,9 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//Start - add prio-field
 			$field = $form->addPrioField('prio');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_prio'));
-			$field->setLabelField('CONCAT(name, " ", domain)');
+			$field->setLabelField('CONCAT(name, " (", domain,"-" ,lang, ")")');
 			$field->setAttribute('class', 'selectpicker form-control');
+			$field->setWhereCondition('domain = "'.$domain.'"');
 			$field->setNotice($this->i18n('dsgvo_server_text_column_prio_note'));
 		//End - add prio-field
 
