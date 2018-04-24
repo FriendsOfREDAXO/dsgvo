@@ -22,7 +22,7 @@ class rex_api_dsgvo extends rex_api_function
                 $where_query .= " AND FIND_IN_SET(s.domain, :domains)";
                 $params[":domains"] = $domains;
             } else {
-                $where_query .= ' AND s.domain = "default")';
+                $where_query .= ' AND s.domain = "default"';
             }
 
             if($langs) {
@@ -52,7 +52,9 @@ class rex_api_dsgvo extends rex_api_function
         header('Content-Type: application/json; charset=UTF-8');
         echo json_encode($dsgvo_items);
 
-
+        // LOG
+        $raw = ["version" => $version, "domains" => $domains, "langs" => $langs, $keywords => $keywords];
+        rex_sql::factory()->setDebug(0)->setQuery('INSERT INTO rex_dsgvo_server_log (`domain`, `status`, `createdate`, `raw`) VALUES(?,?,?,?)', [$domains, 1, date('Y-m-d G:i:s'), json_encode($raw)] );
 
         exit();
 

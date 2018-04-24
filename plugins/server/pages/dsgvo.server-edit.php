@@ -97,12 +97,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//End - add domain-field
 
 		//Start - add lang-field
-			$field = $form->addSelectField('lang','',['class'=>'form-control selectpicker']);
+			$field = $form->addTextField('lang');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_lang'));
-			$select = $field->getSelect();
-			$select->setSize(1);
-			$select->addOption($this->i18n('dsgvo_server_text_column_lang_is_german'), "de");
-			$select->addOption($this->i18n('dsgvo_server_text_column_lang_is_english'), 'en');
 			$field->setNotice($this->i18n('dsgvo_server_text_column_lang_note'));
 		//End - add lang-field
 		
@@ -111,6 +107,13 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$field->setLabel($this->i18n('dsgvo_server_text_column_text'));
 			$field->setAttribute('class', 'form-control markitupEditor-textile_dsgvo');
 			$field->setNotice($this->i18n('dsgvo_server_text_column_text_note'));
+		//End - add text-field
+
+		//Start - add code-field
+			$field = $form->addTextAreaField('code');
+			$field->setLabel($this->i18n('dsgvo_server_text_column_code'));
+			$field->setAttribute('class', 'codemirror form-control');
+			$field->setNotice($this->i18n('dsgvo_server_text_column_code_note'));
 		//End - add text-field
 		
 		//Start - add source-field
@@ -258,6 +261,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->removeColumn('text');
 		$list->removeColumn('custom_text');
 		$list->removeColumn('source_url');
+		$list->removeColumn('code');
 		
 		$content4 = $list->get();
 		

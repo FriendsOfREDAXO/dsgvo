@@ -45,12 +45,7 @@ if (rex::getUser()->isAdmin()) {
     $list->addColumn('external_template_edit', '');
     $list->setColumnLabel('external_template_edit', $this->i18n('check_dsgvo_external_template_column'));
     $list->setColumnFormat('external_template_edit', 'custom', function ($params) {
- //       $has_template = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
-        if ($has_template) {
-            return '<a href="">'.$this->i18n('check_dsgvo_external_template_edit').'</a>';
-        } else {
-            return '<a href="">'.$this->i18n('check_dsgvo_external_template_add').'</a>';
-        }
+            return '<a href="index.php?page=templates&start=0&function=edit&template_id=###id###&list=feb98055ee8721432e8326ab2dc0d609">'.$this->i18n('check_dsgvo_external_template_edit').'</a>';
     });
 
 
@@ -78,12 +73,7 @@ if (rex::getUser()->isAdmin()) {
     $list->addColumn('external_module_edit', '');
     $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_external_module_column'));
     $list->setColumnFormat('external_module_edit', 'custom', function ($params) {
- //       $has_template = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
-        if ($has_template) {
-            return '<a href="">'.$this->i18n('check_dsgvo_external_module_edit').'</a>';
-        } else {
-            return '<a href="">'.$this->i18n('check_dsgvo_external_module_add').'</a>';
-        }
+        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=modules/modules&start=0&function=edit&module_id=###id###&list=fcbe7c7a02e42a4eaf0874a32644e84e">'.$this->i18n('check_dsgvo_external_module_add').'</a>';
     });
 
 
