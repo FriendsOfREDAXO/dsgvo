@@ -41,6 +41,9 @@ if (rex::getUser()->isAdmin()) {
         $class = " panel-success";
     }
     $list->setNoRowsMessage($this->i18n("check_dsgvo_tracking_templates_success", implode(",",$keywords)));
+
+    $list->setColumnLabel('id', $this->i18n('check_dsgvo_external_template_id'));
+    $list->setColumnLabel('name', $this->i18n('check_dsgvo_external_template_name'));
     
     $list->addColumn('external_template_edit', '');
     $list->setColumnLabel('external_template_edit', $this->i18n('check_dsgvo_external_template_column'));
@@ -68,12 +71,13 @@ if (rex::getUser()->isAdmin()) {
     }
     $list->setNoRowsMessage($this->i18n("check_dsgvo_tracking_modules_success", implode(",",$keywords)));
 
-
+    $list->setColumnLabel('id', $this->i18n('check_dsgvo_external_module_id'));
+    $list->setColumnLabel('name', $this->i18n('check_dsgvo_external_module_name'));
     
     $list->addColumn('external_module_edit', '');
     $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_external_module_column'));
     $list->setColumnFormat('external_module_edit', 'custom', function ($params) {
-        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=modules/modules&start=0&function=edit&module_id=###id###&list=fcbe7c7a02e42a4eaf0874a32644e84e">'.$this->i18n('check_dsgvo_external_module_add').'</a>';
+        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=modules/modules&start=0&function=edit&module_id=###id###&list=fcbe7c7a02e42a4eaf0874a32644e84e">'.$this->i18n('check_dsgvo_external_module_edit').'</a>';
     });
 
 

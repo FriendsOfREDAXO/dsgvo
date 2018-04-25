@@ -21,7 +21,13 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$func = '';
 	}
 
-	if ($func == '') {
+	if ($func == ''|| $func == "entry_delete") {
+
+		if($func == 'entry_delete') {
+    		$oid = rex_request('oid', 'int');
+			$delete = rex_sql::factory()->setQuery('DELETE FROM rex_dsgvo_client WHERE id = :oid',array(':oid' => $oid));
+			echo rex_view::success( $this->i18n('dsgvo_client_text_entry_deleted'));
+    	}	
 
 		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_client` ORDER BY `prio` ASC", 20);
 		$list->addTableAttribute('class', 'table-striped');
@@ -52,8 +58,12 @@ echo rex_view::title($this->i18n('dsgvo'));
 	        return $str;
 	    });
 	    $list->setColumnLabel('updatedate', $this->i18n('dsgvo_client_text_column_updatedate'));
+		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);	
 
-		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);		
+		$list->addColumn('entry_delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_client_text_column_delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
+    	$list->setColumnParams('entry_delete', ['func' => 'entry_delete', 'oid' => '###id###']);
+    	$list->addLinkAttribute('entry_delete', 'data-confirm', $this->i18n('dsgvo_server_domain_delete_confirm'));
+
 		$list->removeColumn('keyword');
 		$list->removeColumn('id');
 		$list->removeColumn('text');
