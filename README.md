@@ -233,14 +233,15 @@ Der Sync-Cronjob kann sich mit externen REDAXO-Installationen verbinden und dere
 Dem DSGVO-Server-Plugin liegt ein Standalone-Client bei, um beim Server verwaltete Texte auch am Client zu aktualisieren. Es befindet sich unter `/redaxo/src/addons/dsgvo/plugins/server/standalone`
 
 <a name="more-info"></a>
-## Weiterführende Informationen und Links zur DSGDVO
+## Weiterführende Informationen und Links zur DSGVO
 
 <a name="avv-dpa"></a>
-### Auftragsverarbeitungs-Verträge (AV-Vertrag, vormals Auftragsdatenverarbeitungs-Vertrag ADV-Vertrag) / Data-processing-agreements (DPA-contract)
+### Auftragsverarbeitungs-Verträge 
+
+(AV-Vertrag, vormals Auftragsdatenverarbeitungs-Vertrag ADV-Vertrag) / Data-processing-agreements (DPA-contract)
 
 Liste internationaler Datenverarbeiter und ihrer AVV/DPAs
 [www.tollwerk.github.io/data-processing-agreements/](https://tollwerk.github.io/data-processing-agreements/)
 [www.github.com/tollwerk/data-processing-agreements](https://github.com/tollwerk/data-processing-agreements)
-
 
 &uarr; [zurück zur Übersicht](#top)
