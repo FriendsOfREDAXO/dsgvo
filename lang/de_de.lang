@@ -32,8 +32,6 @@ dsgvo_dementia_cronjob_field_notice = Name des Feldes, in dem der Zeitstempel ge
 
 dsgvo_privacy_cronjob_name = DSGVO: Texte für die Datenschutz-Seite laden...
 
-dsgvo_privacy_cronjob_name = DSGVO: Texte für die Datenschutz-Seite laden...
-
 dsgvo_privacy_cronjob_url_label = Quell-API
 dsgvo_privacy_cronjob_url_notice = 
 
@@ -85,11 +83,27 @@ check_dsgvo_tracking_templates_success = Es wurden keine Templates gefunden, die
 check_dsgvo_tracking_modules_danger = In den folgenden Modulen wurde eins der folgenden Keywords entdeckt: <code>{0}</code>
 check_dsgvo_tracking_modules_success = Es wurden keine Module gefunden, die folgende Keywords enthalten: <code>{0}</code>
 
+check_dsgvo_dementia_cronjob_table_name = Tabellenname
+check_dsgvo_dementia_cronjob_column_name = Spaltenname
+check_dsgvo_dementia_cronjob_data_type = Dateityp
+check_dsgvo_dementia_cronjob_column = Cronjob anlegen?
+check_dsgvo_dementia_cronjob_edit = Cronjob bearbeiten
+check_dsgvo_dementia_cronjob_add = Cronjob hinzufügen
 
 check_dsgvo_dementiasql_cronjob = Schritt 5: Cronjob für alte REDAXO-Datenbank-Backups anpassen
 check_dsgvo_dementiasql_cronjob_description = In alten SQL-Backups könnten ebenfalls personenbezogene Daten archiviert sein. Auch hier sollten nicht mehr benötigte Backups gelöscht werden.
 
 dsgvo_dementiasql_add_cronjob = Jetzt Cronjob einrichten
+
+check_dsgvo_external_template_id = ID
+check_dsgvo_external_template_name = Name
+check_dsgvo_external_template_column = Template bearbeiten?
+check_dsgvo_external_template_edit = Template bearbeiten
+
+check_dsgvo_external_module_id = ID
+check_dsgvo_external_module_name = Name
+check_dsgvo_external_module_column = Modul bearbeiten?
+check_dsgvo_external_module_edit = Modul bearbeiten
 
 # Datenschutz-Erklärung im Backend
 
@@ -109,6 +123,7 @@ dsgvo_client_text_column_status_is_offline = ausblenden
 dsgvo_client_text_column_status_is_online = anzeigen
 dsgvo_client_text_column_prio = Reihenfolge
 dsgvo_client_text_column_updatedate = Zuletzt geändert am...
+dsgvo_client_text_column_delete = löschen
 
 dsgvo_client_text_column_domain_note = Falls die REDAXO-Installation über mehrere Domains verfügt, bspw. in YRewrite: Domain, für die der Text gilt.
 dsgvo_client_text_column_lang_note = REDAXO-Sprache

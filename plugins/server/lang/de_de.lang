@@ -1,56 +1,74 @@
-dsgvo_server_text_title = Diese Textbausteine werden vom Server gesendet.
-dsgvo_server_project_title = An diese Domains werden Texte gesendet.
+dsgvo_server_text_title 					= Diese Textbausteine werden vom Server gesendet.
+dsgvo_server_project_title 					= An diese Domains werden Texte gesendet.
 
-dsgvo_server_text_edit = Text der Datenschutzseite bearbeiten
-dsgvo_server_text_add = Text zur Datenschutzseite hinzufügen
+dsgvo_server_text_edit 						= Text der Datenschutzseite bearbeiten
+dsgvo_server_text_add 						= Text zur Datenschutzseite hinzufügen
 
-# Anzeige im Server Backend
+# Domainliste
 
-dsgvo_server_text_column_domain = Domain
-dsgvo_server_text_column_lang = Sprache
-dsgvo_server_text_column_keyword = Schlüssel
-dsgvo_server_text_column_name = Überschrift
-dsgvo_server_text_column_text = Datenschutz-Erklärung
-dsgvo_server_text_column_custom_text = Eigene Datenschutz-Erklärung
-dsgvo_server_text_column_source = Quelle
-dsgvo_server_text_column_source_url = Link zur Quelle
-dsgvo_server_text_column_status = In Datenschutz-Erklärung anzeigen?
-dsgvo_server_text_column_prio = Reihenfolge
-dsgvo_server_text_column_updatedate = Zuletzt geändert am...
+dsgvo_server_domain_list_title				= Domainliste
 
-dsgvo_server_status_activate_success = Status erfolgreich geändert auf "anzeigen"
-dsgvo_server_status_deactivate_success = Status erfolgreich geändert auf "ausblenden"
+dsgvo_server_domain_column_domain 			= Domain
+dsgvo_server_domain_column_manage_text 		= Texte verwalten
+dsgvo_server_domain_column_api_key 			= API Schlüssel
+dsgvo_server_domain_column_last_call 		= Letzter Abruf
+dsgvo_server_domain_column_delete 			= löschen
+dsgvo_server_domain_delete_confirm 			= Eintrag wirklich löschen?
+dsgvo_server_domain_deleted 				= Domain wurde gelöscht.
 
-dsgvo_server_norows_message = Keine Einträge vorhanden
+dsgvo_server_domain_column_domain_note 		= 
+dsgvo_server_domain_column_api_key_note 	= API-Key (optional) abrufen, um unbefugten Zugriff auf die Texte zu verweigern, z.B. <code>{0}</code>
 
-dsgvo_server_text_column_keyword_note = Dieser Schlüssel darf nur aus <code>a-zA-Z1-9_-</code> bestehen, bspw. <code>facebook_pixel</code>
-dsgvo_server_text_column_name_note = Überschrift, wie sie in der Datenschutz-Erklärung steht 
-dsgvo_server_text_column_status_note =
-dsgvo_server_text_column_text_note = Text der Datenschutz-Erklärung als Textile-Code
-dsgvo_server_text_column_source_note = Quelle der Datenschutz-Erklärung, bspw. <code>E-Recht 24</code>
-dsgvo_server_text_column_source_url_note = Link zur Quelle
-dsgvo_server_text_column_domain_note = Falls die REDAXO-Installation über mehrere Domains verfügt, bspw. in YRewrite: Domain, für die der Text gilt.
-dsgvo_server_text_column_code = Tracking Code
-dsgvo_server_text_column_code_note = Dienst- oder Tracking-Code, z.B. der tatsächliche Code des Facebook-Pixel, Google Analytics o.ä. - dieser wird dann um einen Opt-Out-Link ergänzt.
-dsgvo_server_text_column_prio_note = 
-dsgvo_server_text_column_status_note = 
-dsgvo_server_text_column_lang_note = Sprache als zweistelliger ISO-Code, z.B. <code>de</code>
+dsgvo_server_project_log_title 				= Letzer Abruf
+dsgvo_server_domain_column_last_call_none 	= Nie
 
-dsgvo_server_text_column_status_is_offline = ausblenden
-dsgvo_server_text_column_status_is_online = anzeigen
+# Texte verwalten
 
-# Anzeige im Projekte Server Backend
+dsgvo_server_default_title = Default Texte
+dsgvo_server_default_text_copy = Default Texte übernehmen
+dsgvo_server_text_default_copied = Texte erfolgreich kopiert
 
-dsgvo_server_domain_column_domain = Domain
-dsgvo_server_domain_column_api_key = API Schlüssel
-dsgvo_server_domain_column_last_call = Letzter Abruf
-dsgvo_server_domain_column_manage_text = Texte verwalten
-dsgvo_server_domain_column_delete = löschen
-dsgvo_server_domain_delete_confirm = Eintrag wirklich löschen?
-dsgvo_server_domain_deleted = Domain wurde gelöscht.
+dsgvo_server_text_column_domain 			= Domain
+dsgvo_server_text_column_lang 				= Sprache
+dsgvo_server_text_column_keyword 			= Schlüssel
+dsgvo_server_text_column_name 				= Überschrift
+dsgvo_server_text_column_text 				= Datenschutz-Erklärung
+dsgvo_server_text_column_custom_text 		= Eigene Datenschutz-Erklärung
+dsgvo_server_text_column_source 			= Quelle
+dsgvo_server_text_column_source_url 		= Link zur Quelle
+dsgvo_server_text_column_status 			= In Datenschutz-Erklärung anzeigen?
+dsgvo_server_text_column_prio 				= Reihenfolge
+dsgvo_server_text_column_updatedate 		= Zuletzt geändert am...
+dsgvo_server_text_column_delete				= löschen
+dsgvo_server_text_delete_confirm			= Eintrag wirklich löschen?
+dsgvo_server_text_deleted					= Eintrag erfolgreich gelöscht.
 
-dsgvo_server_domain_column_domain_note = 
-dsgvo_server_domain_column_api_key_note = API-Key (optional) abrufen, um unbefugten Zugriff auf die Texte zu verweigern, z.B. <code>{0}</code>
+dsgvo_server_status_activate_success 		= Status erfolgreich geändert auf "anzeigen"
+dsgvo_server_status_deactivate_success 		= Status erfolgreich geändert auf "ausblenden"
 
-dsgvo_server_project_log_title = Letzer Abruf
-dsgvo_server_domain_column_last_call_none = Nie
+dsgvo_server_norows_message 				= Keine Einträge vorhanden
+
+dsgvo_server_text_column_keyword_note 		= Dieser Schlüssel darf nur aus <code>a-zA-Z1-9_-</code> bestehen, bspw. <code>facebook_pixel</code>
+dsgvo_server_text_column_name_note 			= Überschrift, wie sie in der Datenschutz-Erklärung steht 
+dsgvo_server_text_column_status_note 		=
+dsgvo_server_text_column_text_note 			= Text der Datenschutz-Erklärung als Textile-Code
+dsgvo_server_text_column_source_note 		= Quelle der Datenschutz-Erklärung, bspw. <code>E-Recht 24</code>
+dsgvo_server_text_column_source_url_note 	= Link zur Quelle
+dsgvo_server_text_column_domain_note 		= Falls die REDAXO-Installation über mehrere Domains verfügt, bspw. in YRewrite: Domain, für die der Text gilt.
+dsgvo_server_text_column_code 				= Tracking Code
+dsgvo_server_text_column_code_note 			= Dienst- oder Tracking-Code, z.B. der tatsächliche Code des Facebook-Pixel, Google Analytics o.ä. - dieser wird dann um einen Opt-Out-Link ergänzt.
+dsgvo_server_text_column_prio_note 			= 
+dsgvo_server_text_column_status_note 		= 
+dsgvo_server_text_column_lang_note 			= Sprache als zweistelliger ISO-Code, z.B. <code>de</code>
+
+dsgvo_server_text_column_status_is_offline 	= ausblenden
+dsgvo_server_text_column_status_is_online 	= anzeigen
+
+# Änderungslog
+
+dsgvo_server_project_log_id 				= ID
+dsgvo_server_project_log_domain 			= Domain
+dsgvo_server_project_log_status 			= Status
+dsgvo_server_project_log_createdate 		= Erstellt am...
+
+

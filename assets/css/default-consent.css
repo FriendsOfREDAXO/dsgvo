@@ -1,0 +1,38 @@
+<style>
+    html {
+        position: relative;
+    }
+    .dsgvo-cookie_consent {
+        display: flex;
+        z-index: 1000;
+        position: fixed;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: white; /* Hintergrundfarbe anpassen */
+        box-shadow: 0px 0px 4px rgba(128,128,128,0.5);
+    }
+    .dsgvo-cookie_consent * {
+        margin: 0;
+    }
+    .dsgvo-cookie_consent-inner {
+        padding: 10px;  /* Abstand anpassen */
+        width: 100%;
+        display: flex;
+    }
+    .dsgvo-cookie_consent-info {
+        flex: 1 1 auto;
+        width: auto;
+    }
+    .dsgvo-cookie_consent-dismiss {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .dsgvo-cookie_consent-dismiss button {
+        border: 1px solid grey; /* Farbe anpassen */
+        background: white;
+        padding: 5px;
+        cursor: pointer;
+    }
+</style>

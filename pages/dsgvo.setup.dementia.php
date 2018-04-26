@@ -21,7 +21,10 @@ if (rex::getUser()->isAdmin()) {
 */
 
     $sql = rex_sql::factory();
-    $query = 'SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE 
+    $query = 'SELECT 
+    TABLE_NAME, 
+    COLUMN_NAME, 
+    DATA_TYPE AS "Datentyp"
     FROM INFORMATION_SCHEMA.COLUMNS
     WHERE 
          TABLE_NAME LIKE "rex_%" AND 
@@ -61,6 +64,7 @@ if (rex::getUser()->isAdmin()) {
          ORDER BY table_name';
 
     $templates = array_filter($sql->setDebug(0)->getArray($query));
+
     $list = rex_list::factory($query, 50, $listName, $debug);
     if(count($templates)) {
         $class = " panel-danger";
@@ -69,9 +73,9 @@ if (rex::getUser()->isAdmin()) {
     }
     $list->setNoRowsMessage($this->i18n("check_dsgvo_dementia_cronjob_success"));
 
-
-
-
+    $list->setColumnLabel('TABLE_NAME', $this->i18n('check_dsgvo_dementia_cronjob_table_name'));
+    $list->setColumnLabel('COLUMN_NAME', $this->i18n('check_dsgvo_dementia_cronjob_column_name'));
+    $list->setColumnLabel('DATA_TYPE', $this->i18n('check_dsgvo_dementia_cronjob_data_type'));
 
     $list->addColumn('dementia_cronjob', '');
     $list->setColumnLabel('dementia_cronjob', $this->i18n('check_dsgvo_dementia_cronjob_column'));
