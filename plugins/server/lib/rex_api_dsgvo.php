@@ -53,6 +53,7 @@ class rex_api_dsgvo extends rex_api_function
         echo json_encode($dsgvo_items);
 
         // LOG
+
         $raw = ["version" => $version, "domains" => $domains, "langs" => $langs, $keywords => $keywords];
         rex_sql::factory()->setDebug(0)->setQuery('INSERT INTO rex_dsgvo_server_log (`domain`, `status`, `createdate`, `raw`) VALUES(?,?,?,?)', [$domains, 1, date('Y-m-d G:i:s'), json_encode($raw)] );
 
