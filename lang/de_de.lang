@@ -102,8 +102,8 @@ check_dsgvo_dementia_cronjob_column 		= Cronjob anlegen?
 check_dsgvo_dementia_cronjob_edit 			= Cronjob bearbeiten
 check_dsgvo_dementia_cronjob_add 			= Cronjob hinzufügen
 
-check_dsgvo_dementiasql_cronjob 			= Schritt 5: Cronjob für alte REDAXO-Datenbank-Backups anpassen
-check_dsgvo_dementiasql_cronjob_description = In alten SQL-Backups könnten ebenfalls personenbezogene Daten archiviert sein. Auch hier sollten nicht mehr benötigte Backups gelöscht werden.
+check_dsgvo_dementiasql_cronjob 			= Datenbank-Tabellen mit möglicherweise personenbezogenen Daten ("Recht auf Vergessen")
+check_dsgvo_dementiasql_cronjob_description = In der REDAXO-Datenbank könnten ebenfalls personenbezogene Daten archiviert sein, zum Beispiel Anfragen über eine Kontaktformular. Nicht mehr benötigte Datensätze können nach einer bestimmten Zeitspanne automatisch durch einen Cronjob gelöscht werden.
 
 dsgvo_dementiasql_add_cronjob 				= Jetzt Cronjob einrichten
 

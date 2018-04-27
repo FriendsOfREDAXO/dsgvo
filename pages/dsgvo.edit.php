@@ -67,7 +67,6 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->removeColumn('keyword');
 		$list->removeColumn('id');
 		$list->removeColumn('text');
-		$list->removeColumn('custom_text');
 		$list->removeColumn('source_url');
 		$list->removeColumn('code');
 		
@@ -171,19 +170,12 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$field->setNotice($this->i18n('dsgvo_client_text_column_text_note'));
 		//End - add text-field
 		
-		//Start - add custom_text-field
-			$field = $form->addTextAreaField('custom_text');
-			$field->setLabel($this->i18n('dsgvo_client_text_column_custom_text'));
-			$field->setAttribute('class', 'form-control markitupEditor-textile_full');
-			$field->setNotice($this->i18n('dsgvo_client_text_column_custom_text_note'));
-		//End - add custom_text-field
-
-		//Start - add custom_text-field
+		//Start - add code-field
 			$field = $form->addTextAreaField('code');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_code'));
 			$field->setAttribute('class', 'form-control codemirror');
 			$field->setNotice($this->i18n('dsgvo_client_text_column_code_note'));
-		//End - add custom_text-field
+		//End - add code-field
 		
 		//Start - add source-field
 			$field = $form->addTextField('source');
