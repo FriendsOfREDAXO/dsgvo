@@ -29,7 +29,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 			echo rex_view::success( $this->i18n('dsgvo_client_text_entry_deleted'));
     	}	
 
-		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_client` ORDER BY `prio` ASC", 20);
+		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_client` ORDER BY `prio` ASC", 50);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_client_norows_message'));
 		
