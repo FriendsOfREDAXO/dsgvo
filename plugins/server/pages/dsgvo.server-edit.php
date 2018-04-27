@@ -135,7 +135,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 
-		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC');
+		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',100);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		

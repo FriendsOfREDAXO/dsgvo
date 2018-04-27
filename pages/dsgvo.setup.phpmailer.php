@@ -17,19 +17,22 @@ if (rex::getUser()->isAdmin()) {
 
     $files = [];
 
-    $dh = opendir($dir);
-    while($file = readdir($dh)) {
-      if($file != "." && $file != "..") {
-        if(is_dir("$dir/$file")) {
-          # echo "$pre $file [DIR]<br>";
-          getDir("$dir/$file",$pre);
-        } else {
-          $files[] = $file;
+    function getDir($dir,$pre) {
+        global $files;
+        $pre.= "-";
+        $dh = opendir($dir);
+        while($file = readdir($dh)) {
+          if($file != "." && $file != "..") {
+            if(is_dir("$dir/$file")) {
+              dump("$pre $file [DIR]");
+              getDir("$dir/$file",$pre);
+            } else {
+              $files[] = $file;
+            }
+          }
         }
+        closedir($dh);
       }
-    }
-    closedir($dh);
-
     
     $content = '<table class="table table-striped table-hover">
     <thead>

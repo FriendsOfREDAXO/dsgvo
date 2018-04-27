@@ -33,8 +33,9 @@ if (rex::getUser()->isAdmin()) {
 
     // Templates
     $sql = rex_sql::factory();
-    $templates = array_filter($sql->setDebug(0)->getArray('SELECT `id`, `name` FROM `rex_template` WHERE `content` LIKE "%'.implode('%" OR `content` LIKE "%', $keywords).'%"'));
-    $list = rex_list::factory('SELECT `id`, `name` FROM `rex_template` WHERE `content` LIKE "%'.implode('%" OR `content` LIKE "%', $keywords).'%"', 10, $listName, $debug);
+    $query = 'SELECT `id`, `name` FROM `rex_template` WHERE (`content` REGEXP \'([\\S]*)('.implode('|', $keywords).')([\\S]*)\')';
+    $templates = array_filter($sql->setDebug(0)->getArray($query));
+    $list = rex_list::factory($query, 10, $listName, $debug);
     if(count($templates)) {
         $class = " panel-danger";
     } else {
@@ -61,7 +62,8 @@ if (rex::getUser()->isAdmin()) {
 
     // Module
     $sql = rex_sql::factory();
-    $query = 'SELECT `id`, `name` FROM `rex_module` WHERE `output` LIKE "%'.implode('%" OR `output` LIKE "%', $keywords).'%"';
+    $query = 'SELECT `id`, `name` FROM `rex_module` WHERE (`output` REGEXP \'([\\S]*)('.implode('|', $keywords).')([\\S]*)\')';
+
     $modules = array_filter($sql->setDebug(0)->getArray($query));
     $list = rex_list::factory($query, 10, $listName, $debug);
     if(count($modules)) {

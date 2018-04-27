@@ -9,6 +9,29 @@ if (rex::getUser()->isAdmin()) {
     $fragment->setVar('body', $content, false);
     echo $fragment->parse('core/page/section.php');
 
+    // Cronjob
+    
+    $sql = rex_sql::factory();
+    $query = 'SELECT `id`, `name`, parameters, nexttime, environment, `status` FROM `rex_cronjob` WHERE `type` = "rex_cronjob_export"';
+    $list = rex_list::factory($query, 10, $listName, $debug);
+  
+    $list->setNoRowsMessage($this->i18n("check_dsgvo_backupcronjob_none"));
+
+    $list->setColumnLabel('id', $this->i18n('check_dsgvo_backupcronjob_id'));
+    $list->setColumnLabel('name', $this->i18n('check_dsgvo_backupcronjob_name'));
+    
+    $list->addColumn('external_module_edit', '');
+    $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_backupcronjob_column'));
+    $list->setColumnFormat('external_module_edit', 'custom', function ($params) {
+        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=modules/modules&start=0&function=edit&module_id=###id###&list=fcbe7c7a02e42a4eaf0874a32644e84e">'.$this->i18n('check_dsgvo_external_module_edit').'</a>';
+    });
+
+
+    $fragment = new rex_fragment();
+
+    $fragment->setVar('title', $this->i18n('check_dsgvo_backupcronjob_title'), false);
+    $fragment->setVar('body', $list->get(), false);
+    echo $fragment->parse('core/page/section.php');
     // Aus dem Backup-Addon kopiert und angepasst:
     // import.server.php ab Zeile 128
 
@@ -52,29 +75,6 @@ if (rex::getUser()->isAdmin()) {
     
     echo $content;
     
-    // Cronjob
-    
-    $sql = rex_sql::factory();
-    $query = 'SELECT `id`, `name`, parameters, nexttime, environment, `status` FROM `rex_cronjob` WHERE `type` = "rex_cronjob_export"';
-    $list = rex_list::factory($query, 10, $listName, $debug);
-  
-    $list->setNoRowsMessage($this->i18n("check_dsgvo_backupcronjob_none"));
-
-    $list->setColumnLabel('id', $this->i18n('check_dsgvo_backupcronjob_id'));
-    $list->setColumnLabel('name', $this->i18n('check_dsgvo_backupcronjob_name'));
-    
-    $list->addColumn('external_module_edit', '');
-    $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_backupcronjob_column'));
-    $list->setColumnFormat('external_module_edit', 'custom', function ($params) {
-        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=modules/modules&start=0&function=edit&module_id=###id###&list=fcbe7c7a02e42a4eaf0874a32644e84e">'.$this->i18n('check_dsgvo_external_module_edit').'</a>';
-    });
-
-
-    $fragment = new rex_fragment();
-
-    $fragment->setVar('title', $this->i18n('check_dsgvo_backupcronjob_title'), false);
-    $fragment->setVar('body', $list->get(), false);
-    echo $fragment->parse('core/page/section.php');
 
 
 }
