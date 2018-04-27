@@ -10,7 +10,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		if($func == 'domain_delete') {
     		$oid = rex_request('oid', 'int');
 			$delete = rex_sql::factory()->setQuery('DELETE FROM rex_dsgvo_server_project WHERE id = :oid',array(':oid' => $oid));
-			$delete = rex_sql::factory()->setDebug(1)->setQuery('DELETE FROM rex_dsgvo_server WHERE domain = :domain',array(':domain' => $domain));
+			$delete = rex_sql::factory()->setDebug(0)->setQuery('DELETE FROM rex_dsgvo_server WHERE domain = :domain',array(':domain' => $domain));
 			echo rex_view::success( $this->i18n('dsgvo_server_domain_deleted'));
     	}	
 
@@ -103,15 +103,20 @@ echo rex_view::title($this->i18n('dsgvo'));
 		echo $content3;
 		// Domain bearbeiten ENDE //
 
-	} else if ($func == 'domain_details' || $func == 'text_copy_default' || $func == 'text_delete' || $func == 'set_text_status' || ($func == '' && $result)) {
+	} else if ($func == 'domain_details' || $func == 'text_copy_default_de' || $func == 'text_copy_default_en'|| $func == 'text_delete' || $func == 'set_text_status' || ($func == '' && $result)) {
 
 		if($func == 'text_delete') {
     		$oid = rex_request('oid', 'int');
 			$delete = rex_sql::factory()->setQuery('DELETE FROM rex_dsgvo_server WHERE id = :oid',array(':oid' => $oid));
 			echo rex_view::success( $this->i18n('dsgvo_server_text_deleted'));
 		}	
-		if($func == 'text_copy_default') {
-			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default")';
+		if($func == 'text_copy_default_de') {
+			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "de")';
+			rex_sql::factory()->setDebug(0)->setQuery($query, [":domain" => $domain]);
+			echo rex_view::success( $this->i18n('dsgvo_server_text_default_copied'));
+		}	
+		if($func == 'text_copy_default_en') {
+			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "en")';
 			rex_sql::factory()->setDebug(0)->setQuery($query, [":domain" => $domain]);
 			echo rex_view::success( $this->i18n('dsgvo_server_text_default_copied'));
 		}	
@@ -142,7 +147,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		//$list->setColumnLabel('name', $this->i18n('sets_column_name'));
 		$list->setColumnLabel('type', $this->i18n('sets_column_type'));		
-		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'text_edit']);
+		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'text_edit', 'domain' => $domain]);
 
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_text_column_domain'));
 		
@@ -206,13 +211,13 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 
 		if(rex_request('domain','string') != 'default') {
-			$buttons = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy') . '</a>';
+			$buttons_de = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default_de&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy_de') . '</a>';
+			$buttons_en = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default_en&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy_en') . '</a>';
 
 			$fragment = new rex_fragment();
 			$fragment->setVar('class', 'default', false);
 			$fragment->setVar('title', $this->i18n('dsgvo_server_default_title'), false);
-			$fragment->setVar('body', $buttons, false);
-			// $fragment->setVar('buttons', , false);
+			$fragment->setVar('body', $buttons_de." ".$buttons_en, false);
 			echo $fragment->parse('core/page/section.php');
 		}
 
@@ -229,6 +234,22 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server', '', 'id='.$id);
+
+		//Start - add status-field 
+		$field = $form->addSelectField('category');
+		$field->setLabel($this->i18n('dsgvo_server_text_column_category'));
+		$select = $field->getSelect();
+		$select->setSize(1);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_1'), 1);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_2'), 2);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_3'), 3);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_4'), 4);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_5'), 5);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_6'), 6);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_7'), 7);
+		$select->addOption($this->i18n('dsgvo_server_text_column_category_8'), 8);
+		$field->setNotice($this->i18n('dsgvo_server_text_column_status_note'));
+		//End - add status-field
 
 		//Start - add keyword-field
 			$field = $form->addTextField('keyword');

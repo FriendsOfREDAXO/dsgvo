@@ -24,8 +24,12 @@ dsgvo_server_domain_column_last_call_none 	= Nie
 
 # Texte verwalten
 
-dsgvo_server_default_title = Default Texte
-dsgvo_server_default_text_copy = Default Texte übernehmen
+dsgvo_server_default_title_de = Deutsche Default Texte
+dsgvo_server_default_text_copy_de = Default Texte übernehmen
+
+dsgvo_server_default_title_en = Englische Default Texte
+dsgvo_server_default_text_copy_en = Default Texte übernehmen
+
 dsgvo_server_text_default_copied = Texte erfolgreich kopiert
 
 dsgvo_server_text_column_domain 			= Domain
