@@ -113,19 +113,63 @@ Die einzelnen Felder sind:
 
 Dem Addon liegt ein generisches Modul bei, das automatisch in Abhängigkeit der gewählten REDAXO-Sprache und der gewählten Domain einen Code erzeugt. Es erzeugt ebenfalls bei den passenden Diensten einen Opt-Out-Code.
 
+**Moduleingabe (benötigt aktuell MForm)**
+
+```php
+
+<?php // dsgvo_module_input - Diese Zeile nicht löschen 
+
+if(rex_addon::get('mform')->isAvailable()) {
+    $mform = new MForm();
+
+    if(rex_addon::get('yrewrite')->isAvailable()) {
+        $domains = [];
+        foreach(rex_yrewrite::getDomains(true) as $domain => $object) {
+            $domains[$domain] = $domain;
+        } 
+
+        $mform->addSelectField("1", $domains, array('label'=>'Domain')); // use string for x.0 json values
+    } else {
+        $mform->addSelectField("1", [rex::getServer()], array('label'=>'Domain')); // use string for x.0 json values
+    }
+
+    $langs = [];
+
+    foreach(rex_clang::getAll(true) as $lang) {
+        $langs[$lang->getCode()] = $lang->getCode();
+    }
+    $mform->addSelectField("2", $langs, array('label'=>'Sprachen')); // use string for x.0 json values
+    echo $mform->show();
+} else {
+    // Input-Felder ohne MForm. TODO   
+}
+?>
+
+
+```
+
+** Modulausgabe **
+
 ```php
 <?php // dsgvo_module_output - Diese Zeile nicht löschen ?>
 <section class="modul modul-privacy">
 <?
-    // Für mehrere YRewrite-Domains ggf. weiter eingrenzen mit `WHERE domain = "domain.de"`
     $lang = rex_clang::getCurrent()->getCode();
-    $dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio',[':lang'=>$lang]);
+    $dsgvo_pool = array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND domain = :domain AND lang = :lang ORDER by prio',[':domain'=> "REX_VALUE[1]", ':lang'=> "REX_VALUE[2]"]));
 
+foreach($dsgvo_pool AS $key => $dsgvo_item) {
+    $dsgvo_pool[$key]['text'] = markitup::parseOutput ('textile', $dsgvo_item['text']);
+}
+
+    $output = new rex_fragment();
     // ggf. Sprache anpassen
+    $output->setVar("dsgvo_pool", $dsgvo_pool);
+    $output->setVar("lang", $lang);
+    $output->setVar("domain", $domain);
     $output->setVar("consent", "Einwilligen");
     $output->setVar("revoke", "Widerrufen");
     $output->setVar("source", "Quelle:");
-    $output->parse('dsgvo-page.fragment.inc.php');
+    echo $output->parse('dsgvo-page.fragment.inc.php');
 ?>
 </section>
 ```
@@ -166,12 +210,13 @@ Dem Addon liegt eine generischer Code bei, der ein minimalistisches Cookie-Einve
 
 ```php
 $output = new rex_fragment();
-// ggf. Sprache anpassen
 
-$output->setVar("info", "Diese Seite verwendet Cookies");
-$output->setVar("learn_more", "Datenschutz-Informationen anzeigen");
+// ggf. Sprache anpassen
+$output->setVar("info", "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu. Weitere Informationen zu Cookies erhalten Sie in unserer");
+$output->setVar("learn_more", "Datenschutzerklärung");
 $output->setVar("dismiss", "OK");
-$output->setVar("url", "/datenschutzerklaerung/");
+$output->setVar("url", "/datenschutz/");
+
 echo $output->parse('dsgvo-consent-custom.fragment.inc.php');
 ```
 
