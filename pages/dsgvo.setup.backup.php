@@ -2,7 +2,7 @@
 
 echo rex_view::title($this->i18n('dsgvo'));
 
-if (rex::getUser()->isAdmin()) {
+if (rex::getUser()->isAdmin() && rex_addon::get('backup')->isAvailable()) {
     $content = rex_i18n::rawMsg('dsgvo_backup_description', false);
     $fragment = new rex_fragment();
     $fragment->setVar('title', $this->i18n('dsgvo_backup_title'), false);
@@ -19,11 +19,16 @@ if (rex::getUser()->isAdmin()) {
 
     $list->setColumnLabel('id', $this->i18n('check_dsgvo_backupcronjob_id'));
     $list->setColumnLabel('name', $this->i18n('check_dsgvo_backupcronjob_name'));
+    $list->setColumnLabel('nexttime', $this->i18n('check_dsgvo_backupcronjob_nexttime'));
+    $list->setColumnLabel('status', $this->i18n('check_dsgvo_backupcronjob_status'));
     
+    $list->removeColumn('parameters');
+    $list->removeColumn('id');
+    $list->removeColumn('environment');
     $list->addColumn('external_module_edit', '');
-    $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_backupcronjob_column'));
+    $list->setColumnLabel('external_module_edit', $this->i18n('check_dsgvo_backupcronjob_edit'));
     $list->setColumnFormat('external_module_edit', 'custom', function ($params) {
-        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=modules/modules&start=0&function=edit&module_id=###id###&list=fcbe7c7a02e42a4eaf0874a32644e84e">'.$this->i18n('check_dsgvo_external_module_edit').'</a>';
+        return '<a href="http://dsgvo.pixelfirma.de/redaxo/index.php?page=cronjob/cronjobs&func=edit&oid=###id###">'.$this->i18n('check_dsgvo_backupcronjob_edit').'</a>';
     });
 
 
