@@ -39,6 +39,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
 		$list->setColumnParams($thIcon, ['func' => 'edit', 'id' => '###id###']);
 		
+		$list->setColumnLabel('category', $this->i18n('dsgvo_client_text_column_category'));
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_client_text_column_domain'));
 		$list->setColumnLabel('lang', $this->i18n('dsgvo_client_text_column_lang'));
 		$list->setColumnLabel('name', $this->i18n('dsgvo_client_text_column_name'));
@@ -133,12 +134,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//End - add domain-field
 
 		//Start - add lang-field
-			$field = $form->addSelectField('lang');
+			$field = $form->addTextField('lang');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_lang'));
-			$select = $field->getSelect();
-		    $select->setSize(1);
-		    $select->addOption($this->i18n('dsgvo_client_text_column_lang_is_german'), 'de');
-		    $select->addOption($this->i18n('dsgvo_client_text_column_lang_is_english'), 'en');
 			$field->setNotice($this->i18n('dsgvo_client_text_column_lang_note'));
 		//End - add lang-field
 
@@ -166,7 +163,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		//Start - add text-field
 			$field = $form->addTextAreaField('text');
 			$field->setLabel($this->i18n('dsgvo_client_text_column_text'));
-			$field->setAttribute('class', 'form-control markitupEditor-textile_full');
+			$field->setAttribute('class', 'form-control markitupEditor-textile_dsgvo');
 			$field->setNotice($this->i18n('dsgvo_client_text_column_text_note'));
 		//End - add text-field
 		

@@ -8,6 +8,7 @@ class rex_api_dsgvo extends rex_api_function
     {
         ob_end_clean();
         $version = rex_request('version','int', 0.1); // Version der API
+        $subversion = rex_request('subversion','int'); // Version der API
         $domains = rex_request('domains','string', ""); // Domain(s), kommasepariert
         $langs = rex_request('langs','string', ""); // Sprache(n) als ISO-Code, kommasepariert, optional 
         $keywords = rex_request('keywords','string', ""); // Schlüssel der einzelnen Dienste, kommasepariert, optional
@@ -42,7 +43,7 @@ class rex_api_dsgvo extends rex_api_function
                 $where_query .= ' AND (`api_key` = "" OR `api_key` IS NULL)';
             }
 
-            $dsgvo_items = array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server s LEFT JOIN rex_dsgvo_server_project p on s.domain = p.domain WHERE true '.$where_query.' ORDER BY prio', $params));
+            $dsgvo_items = array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server s LEFT JOIN rex_dsgvo_server_project p on s.domain = p.domain WHERE status = 1 '.$where_query.' ORDER BY prio', $params));
         
             if($html) {
                 $dsgvo_items = $this->Textile2HTML($dsgvo_items);

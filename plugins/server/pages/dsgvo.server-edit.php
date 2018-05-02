@@ -15,7 +15,8 @@ echo rex_view::title($this->i18n('dsgvo'));
     	}	
 
 		// Domain-Übersicht ANFANG //
-		$list = rex_list::factory("SELECT * FROM `".rex::getTablePrefix()."dsgvo_server_project` ORDER BY `domain` ASC");
+		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, logdate FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(status=1) AS count_text, COUNT(id) AS count_total, domain FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log GROUP BY domain ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY S.`domain` ORDER BY S.`domain` ASC';
+		$list = rex_list::factory($query);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
@@ -33,12 +34,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_domain_column_api_key'));
 
-		$list->addColumn('last_call', '');
-		$list->setColumnLabel('last_call', $this->i18n('dsgvo_server_domain_column_last_call'));
-		$list->setColumnFormat('last_call', 'custom', function ($params) {
-			$last_call = array_shift(array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$params['list']->getValue('domain').'" ORDER BY createdate DESC')));
-			if ($last_call) {
-				return $last_call['createdate'];
+		$list->setColumnLabel('logdate', $this->i18n('dsgvo_server_domain_column_last_call'));
+		$list->setColumnFormat('logdate', 'custom', function ($params) {
+			if ($params['list']->getValue('logdate') != "") {
+				return $params['list']->getValue('logdate');
 			} else { 
 				return rex_i18n::msg("dsgvo_server_domain_column_last_call_none");
 			}
@@ -111,12 +110,12 @@ echo rex_view::title($this->i18n('dsgvo'));
 			echo rex_view::success( $this->i18n('dsgvo_server_text_deleted'));
 		}	
 		if($func == 'text_copy_default_de') {
-			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "de")';
+			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "de" AND status = 1)';
 			rex_sql::factory()->setDebug(0)->setQuery($query, [":domain" => $domain]);
 			echo rex_view::success( $this->i18n('dsgvo_server_text_default_copied'));
 		}	
 		if($func == 'text_copy_default_en') {
-			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "en")';
+			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "en" AND status = 1)';
 			rex_sql::factory()->setDebug(0)->setQuery($query, [":domain" => $domain]);
 			echo rex_view::success( $this->i18n('dsgvo_server_text_default_copied'));
 		}	
@@ -152,6 +151,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_text_column_domain'));
 		
 		$list->setColumnLabel('lang', $this->i18n('dsgvo_server_text_column_lang'));
+		$list->setColumnLabel('category', $this->i18n('dsgvo_server_text_column_category'));
 		$list->setColumnLabel('name', $this->i18n('dsgvo_server_text_column_name'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_server_text_column_source'));
 		$list->setColumnLabel('prio', $this->i18n('dsgvo_server_text_column_prio'));

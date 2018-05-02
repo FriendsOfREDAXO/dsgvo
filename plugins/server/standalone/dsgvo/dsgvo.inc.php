@@ -1,14 +1,15 @@
 <?
 
 $params['rex-api-call'] = 'dsgvo';
-$params['api_key']      = '893ee5d818228af93d9e91679d6479be';
-$params['domains']      = 'lonex.de';
+$params['api_key']      = '';
+$params['domains']      = 'example.com';
 $params['version']      = 'standalone';
-$params['subversion']   = '20180424';
+$params['subversion']   = '20180502';
 $params['langs']        = 'de';
+$params['html']        = '1';
 $params['timestamp']    = time();
 
-$url = 'http://dsgvo.pixelfirma.de/?'.urldecode(http_build_query($params));
+$url = 'http://dsgvo.example.com/?'.urldecode(http_build_query($params));
 
 $filename = "dsgvo.json";
 

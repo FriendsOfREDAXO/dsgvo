@@ -121,6 +121,7 @@ check_dsgvo_external_module_edit 			= Modul bearbeiten
 
 dsgvo_client_text_title 					= Hier werden externe Dienste für die Datenschutz-Erklärung verwaltet.
 
+dsgvo_client_text_column_category			= Kategorie
 dsgvo_client_text_column_domain 			= Domain
 dsgvo_client_text_column_lang 				= Sprache
 dsgvo_client_text_column_keyword 			= Schlüssel

@@ -32,6 +32,7 @@ dsgvo_server_default_text_copy_en = Default Texte übernehmen
 
 dsgvo_server_text_default_copied = Texte erfolgreich kopiert
 
+dsgvo_server_text_column_category			= Kategorie
 dsgvo_server_text_column_domain 			= Domain
 dsgvo_server_text_column_lang 				= Sprache
 dsgvo_server_text_column_keyword 			= Schlüssel
