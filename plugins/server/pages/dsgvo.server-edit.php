@@ -15,7 +15,7 @@ echo rex_view::title($this->i18n('dsgvo'));
     	}	
 
 		// Domain-Übersicht ANFANG //
-		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, logdate FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(status=1) AS count_text, COUNT(id) AS count_total, domain FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log GROUP BY domain ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY S.`domain` ORDER BY S.`domain` ASC';
+		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log GROUP BY domain ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
 		$list = rex_list::factory($query);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
@@ -33,6 +33,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
 
 		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_domain_column_api_key'));
+
+		$list->setColumnLabel('count_text', $this->i18n('dsgvo_server_domain_column_count_text'));
+		$list->setColumnLabel('count_total', $this->i18n('dsgvo_server_domain_column_count_total'));
+		$list->setColumnLabel('has_code', $this->i18n('dsgvo_server_domain_column_has_code'));
 
 		$list->setColumnLabel('logdate', $this->i18n('dsgvo_server_domain_column_last_call'));
 		$list->setColumnFormat('logdate', 'custom', function ($params) {
