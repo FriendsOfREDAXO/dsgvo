@@ -1,7 +1,7 @@
 <?php
 /**
  */
-class rex_cronjob_dsgvo_privacy extends rex_cronjob
+class rex_cronjob_dsgvo_sync extends rex_cronjob
 {
 
     
@@ -27,7 +27,7 @@ class rex_cronjob_dsgvo_privacy extends rex_cronjob
                     (:keyword, :name, :text, :source, :source_url, :status, :lang)';
 
                 $values = [];
-                $values[':keyword']         = $key['keyword'];
+                $values[':keyword']     = $key['keyword'];
                 $values[':name']        = $key['name'];
                 $values[':text']        = $key['text'];
                 $values[':source']      = $key['source'];
