@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS `%TABLE_PREFIX%dsgvo_client`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%dsgvo_server_project`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%dsgvo_server_logs`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%dsgvo_server`;
