@@ -11,6 +11,9 @@ dsgvo_server_domain_list_title				= Domainliste
 dsgvo_server_domain_column_domain 			= Domain
 dsgvo_server_domain_column_manage_text 		= Texte verwalten
 dsgvo_server_domain_column_api_key 			= API Schlüssel
+dsgvo_server_domain_column_count_text 		= online
+dsgvo_server_domain_column_count_total		= gesamt
+dsgvo_server_domain_column_has_code 		= Tracking
 dsgvo_server_domain_column_last_call 		= Letzter Abruf
 dsgvo_server_domain_column_delete 			= löschen
 dsgvo_server_domain_delete_confirm 			= Eintrag wirklich löschen?
@@ -77,3 +80,17 @@ dsgvo_server_project_log_status 			= Status
 dsgvo_server_project_log_createdate 		= Erstellt am...
 
 
+check_dsgvo_backupcronjob_title             = Backup-Cronjobs
+check_dsgvo_backupcronjob_name              = Name
+check_dsgvo_backupcronjob_nexttime          = nächste geplante Ausführung
+check_dsgvo_backupcronjob_status            = Status
+check_dsgvo_backupcronjob_edit              = Backup-Cronjob bearbeiten
+
+
+check_dsgvo_phpmailer-logs_cronjob = PHP-Mailer Logs
+
+check_dsgvo_phpmailer-logs_caption = Log-Dateien
+check_dsgvo_phpmailer-logs_filename = Dateiname
+check_dsgvo_phpmailer-logs_folder = Ordner
+check_dsgvo_phpmailer-logs_filesize = Dateigröße
+check_dsgvo_phpmailer-logs_createdate = Erstellt am...
