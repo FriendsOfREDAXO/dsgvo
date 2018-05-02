@@ -2,7 +2,7 @@
 
 echo rex_view::title($this->i18n('dsgvo'));
 
-if (rex::getUser()->isAdmin()) {
+if (rex::getUser()->isAdmin() && rex_addon::get('phpmailer')->isAvailable()) {
    
     $content = '';
     $content .= '<p>'.$this->i18n('check_dsgvo_phpmailer-logs_cronjob_description').'</p>';
