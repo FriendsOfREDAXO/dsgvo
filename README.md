@@ -25,7 +25,9 @@
 <a name="ueber-das-addon"></a>
 ### Über das Addon
 
-Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. Ein Rechtsanspruch besteht jedoch nicht. Für die DSGVO-konforme Umsetzung ist die ganzheitliche Betrachtung der auf einer Website anfallenden Daten und deren Nutzung unerlässlich.
+Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. 
+
+Das Addon kann eine anwaltliche Beratung und sorgfältige Prüfung des Einzelfalls nicht ersetzen. Für die DSGVO-konforme Umsetzung ist die ganzheitliche Betrachtung der auf einer Website anfallenden Daten und deren Nutzung unerlässlich.
 
 &uarr; [zurück zur Übersicht](#top)
 
