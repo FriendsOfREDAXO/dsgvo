@@ -3,7 +3,7 @@
 dsgvo 										= DSGVO - Addon zur Datenschutz-Grundverordnung
 title 										= DSGVO
 setup 										= Setup
-edit 										= Datenschutz-Erklärung
+dsgvo_page_edit								= Datenschutz-Erklärung
 consent 									= Cookie-Einverständnis
 docs 										= Hilfe
 

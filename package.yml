@@ -40,7 +40,7 @@ pages:
         title: 'translate:setup-external'
         icon: rex-icon rex-icon-linkmap
     dsgvo/edit:
-        title: 'translate:edit'
+        title: 'translate:dsgvo_page_edit'
         icon: rex-icon fa-edit
     dsgvo/consent:
         title: 'translate:consent'
