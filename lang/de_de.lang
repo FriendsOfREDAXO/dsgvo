@@ -48,7 +48,7 @@ dsgvo_privacy_cronjob_domains_notice 		= z.B. <code>redaxo.org</code>
 dsgvo_privacy_cronjob_version_label 		= API-Version 
 dsgvo_privacy_cronjob_version_notice 		= z.B. <code>beta</code> 
 
-# Setup-Seiten
+# Setup Übersicht
 
 dsgvo_description_all_title 				= Übersicht
 dsgvo_description_all 						= Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. Ein Rechtsanspruch besteht jedoch nicht. Für die DSGVO-konforme Umsetzung ist die ganzheitliche Betrachtung der auf einer Website anfallenden Daten und deren Nutzung unerlässlich. Hierzu gibt es im Bereich Hilfe eine wachsende Sammlung an Tipps und Empfehlungen.
@@ -56,8 +56,7 @@ dsgvo_description_all 						= Dieses Addon bietet Unterstützung bei der DSGVO-k
 dsgvo_description_ad_title 					= Weiterentwicklung unterstützen
 dsgvo_description_ad 						= Hat dieses Addon dir wertvolle Zeit gespart oder in besonderem Maße bei der Umsetzung genutzt? Dann würden wir uns über eine Spende freuen.
 
-dsgvo_backup_title 							= REDAXO-Backups
-dsgvo_backup_description 					= Wenn REDAXO manuell oder automatisch regelmäßige Backups anlegt, können diese sensible Daten enthalten. Daher sollten auch Backups nach angemessener Zeit gelöscht werden.
+# Setup Datenschutz-Erklärung einbinden
 
 install_dsgvo_modul 						= Modul zur Datenschutz-Erklärung installieren
 install_dsgvo_modul_description 			= Dieses Modul auf der Seite "Datenschutz" ausgeben, um die im Cronjob importierten Texte auszugeben. Bei Diensten, bei denen ein Opt-Out möglich ist, wird automatisch ein Opt-Out-Link generiert, der dem Nutzer die Möglichkeit gibt, den Tracking-Code abzuschalten.
@@ -65,7 +64,32 @@ install_dsgvo_modul_description 			= Dieses Modul auf der Seite "Datenschutz" au
 install_dsgvo_module 						= Modul installieren
 install_update_dsgvo_module 				= Modul reinstallieren
 
+# Setup SQL-Backups
+
+dsgvo_backup_title 							= REDAXO-Backups
+dsgvo_backup_description 					= Wenn REDAXO manuell oder automatisch regelmäßige Backups anlegt, können diese sensible Daten enthalten. Daher sollten auch Backups nach angemessener Zeit gelöscht werden.
+
+check_dsgvo_backupcronjob_title             = Backup-Cronjobs
+check_dsgvo_backupcronjob_name              = Name
+check_dsgvo_backupcronjob_nexttime          = nächste geplante Ausführung
+check_dsgvo_backupcronjob_status            = Status
+check_dsgvo_backupcronjob_edit              = Backup-Cronjob bearbeiten
+
+# Setup PHP-Mailer Logs
+
+check_dsgvo_phpmailer-logs_cronjob 			= PHP-Mailer Logs
+check_dsgvo_phpmailer-logs_cronjob_description = 
+
+check_dsgvo_phpmailer-logs_caption 			= Log-Dateien
+check_dsgvo_phpmailer-logs_filename 		= Dateiname
+check_dsgvo_phpmailer-logs_folder 			= Ordner
+check_dsgvo_phpmailer-logs_filesize 		= Dateigröße
+check_dsgvo_phpmailer-logs_createdate 		= Erstellt am...
+
 # Setup Kontaktformular
+
+dsgvo_setup_contactform_title 				= DSGVO-konformes Kontaktformular
+dsgvo_setup_contactform_description			= Mit den neuen DSGVO Richtlinien muss bei einem Kontakformular der Datenverarbeitung explizit zugestimmt werden.
 
 dsgvo_setup_contactform_pipe_title 			= YForm Pipe-Schreibweise
 dsgvo_setup_contactform_php_title 			= YForm PHP-Schreibweise
@@ -73,6 +97,38 @@ dsgvo_setup_contactform_general_title 		= Allgemeine Schreibweise
 dsgvo_setup_contactform_pipe_content 		=
 dsgvo_setup_contactform_php_content 		=
 dsgvo_setup_contactform_general_content 	= Bei händisch erzeugten Kontakt-Formularen wird ebenfalls empfohlen, eine Checkbox mitzugeben und zu validieren
+
+#Setup Automatisiertes Löschen
+
+check_dsgvo_dementiasql_cronjob 			= Datenbank-Tabellen mit möglicherweise personenbezogenen Daten ("Recht auf Vergessen")
+check_dsgvo_dementiasql_cronjob_description = In der REDAXO-Datenbank könnten ebenfalls personenbezogene Daten archiviert sein, zum Beispiel Anfragen über eine Kontaktformular. Nicht mehr benötigte Datensätze können nach einer bestimmten Zeitspanne automatisch durch einen Cronjob gelöscht werden.
+check_dsgvo_dementia_cronjob 				= Cronjob für alte Datensätze einrichten
+
+check_dsgvo_dementia_cronjob_table_name 	= Tabellenname
+check_dsgvo_dementia_cronjob_column_name 	= Spaltenname
+check_dsgvo_dementia_cronjob_data_type 		= Dateityp
+check_dsgvo_dementia_cronjob_column 		= Cronjob anlegen?
+check_dsgvo_dementia_cronjob_edit 			= Cronjob bearbeiten
+check_dsgvo_dementia_cronjob_add 			= Cronjob hinzufügen
+
+#Setup Externe Dienste
+
+check_dsgvo_tracking 						= Tracking-Codes und externe Dienste manuell migrieren / anpassen
+check_dsgvo_tracking_description 			= In diesem Setup-Schritt werden Templates nach folgenden Keywords durchsucht: <code>{0}</code>. Hier ist ggf. zu überprüfen, ob es sich dabei um externe Dienste handelt, die bspw. direkt via <code><link></code>-, <code><iframe></code>- oder <code><script></code>-Tag eingebunden werden.
+check_dsgvo_tracking_templates_danger 		= Templates
+check_dsgvo_tracking_templates_success 		= Es wurden keine Templates gefunden, die folgende Keywords enthalten: <code>{0}</code>
+check_dsgvo_tracking_modules_danger 		= Module
+check_dsgvo_tracking_modules_success 		= Es wurden keine Module gefunden, die folgende Keywords enthalten: <code>{0}</code>
+
+check_dsgvo_external_template_id 			= ID
+check_dsgvo_external_template_name 			= Name
+check_dsgvo_external_template_column 		= Template bearbeiten?
+check_dsgvo_external_template_edit 			= Template bearbeiten
+
+check_dsgvo_external_module_id 				= ID
+check_dsgvo_external_module_name 			= Name
+check_dsgvo_external_module_column 			= Modul bearbeiten?
+check_dsgvo_external_module_edit 			= Modul bearbeiten
 
 # Setup Cronjob
 
@@ -84,38 +140,13 @@ dsgvo_edit_cronjob 							= bestehenden Cronjob bearbeiten
 
 dsgvo_edit_text 							= Texte manuell anlegen
 
-check_dsgvo_dementia_cronjob 				= Cronjob für alte Datensätze einrichten
+
 check_dsgvo_dementia_cronjob_description 	= Alte Datensätze mit personenbezogenen Daten sollten überprüft werden, ob sensible / personenbezogene Datensätze gesammelt werden, z.B. bei einem Kontaktformular oder in der History.
 
 
-check_dsgvo_tracking 						= Tracking-Codes und externe Dienste manuell migrieren / anpassen
-check_dsgvo_tracking_description 			= In diesem Setup-Schritt werden Templates nach folgenden Keywords durchsucht: <code>{0}</code>. Hier ist ggf. zu überprüfen, ob es sich dabei um externe Dienste handelt, die bspw. direkt via <code><link></code>-, <code><iframe></code>- oder <code><script></code>-Tag eingebunden werden.
-check_dsgvo_tracking_templates_danger 		= In den folgenden Templates wurde eins der folgenden Keywords entdeckt: <code>{0}</code>
-check_dsgvo_tracking_templates_success 		= Es wurden keine Templates gefunden, die folgende Keywords enthalten: <code>{0}</code>
-check_dsgvo_tracking_modules_danger 		= In den folgenden Modulen wurde eins der folgenden Keywords entdeckt: <code>{0}</code>
-check_dsgvo_tracking_modules_success 		= Es wurden keine Module gefunden, die folgende Keywords enthalten: <code>{0}</code>
-
-check_dsgvo_dementia_cronjob_table_name 	= Tabellenname
-check_dsgvo_dementia_cronjob_column_name 	= Spaltenname
-check_dsgvo_dementia_cronjob_data_type 		= Dateityp
-check_dsgvo_dementia_cronjob_column 		= Cronjob anlegen?
-check_dsgvo_dementia_cronjob_edit 			= Cronjob bearbeiten
-check_dsgvo_dementia_cronjob_add 			= Cronjob hinzufügen
-
-check_dsgvo_dementiasql_cronjob 			= Datenbank-Tabellen mit möglicherweise personenbezogenen Daten ("Recht auf Vergessen")
-check_dsgvo_dementiasql_cronjob_description = In der REDAXO-Datenbank könnten ebenfalls personenbezogene Daten archiviert sein, zum Beispiel Anfragen über eine Kontaktformular. Nicht mehr benötigte Datensätze können nach einer bestimmten Zeitspanne automatisch durch einen Cronjob gelöscht werden.
-
 dsgvo_dementiasql_add_cronjob 				= Jetzt Cronjob einrichten
 
-check_dsgvo_external_template_id 			= ID
-check_dsgvo_external_template_name 			= Name
-check_dsgvo_external_template_column 		= Template bearbeiten?
-check_dsgvo_external_template_edit 			= Template bearbeiten
 
-check_dsgvo_external_module_id 				= ID
-check_dsgvo_external_module_name 			= Name
-check_dsgvo_external_module_column 			= Modul bearbeiten?
-check_dsgvo_external_module_edit 			= Modul bearbeiten
 
 # Datenschutz-Erklärung im Backend
 

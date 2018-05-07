@@ -27,11 +27,11 @@ dsgvo_server_domain_column_last_call_none 	= Nie
 
 # Texte verwalten
 
-dsgvo_server_default_title = Default Texte übernehmen
-dsgvo_server_default_text_copy_de = Deutsche Texte kopieren
-dsgvo_server_default_text_copy_en = Englische Texte kopieren
+dsgvo_server_default_title 					= Default Texte übernehmen
+dsgvo_server_default_text_copy_de 			= Deutsche Texte kopieren
+dsgvo_server_default_text_copy_en 			= Englische Texte kopieren
 
-dsgvo_server_text_default_copied = Texte erfolgreich kopiert
+dsgvo_server_text_default_copied 			= Texte erfolgreich kopiert
 
 dsgvo_server_text_column_category			= Kategorie
 dsgvo_server_text_column_category_1			= 1. Datenschutz auf einen Blick
@@ -84,19 +84,3 @@ dsgvo_server_project_log_id 				= ID
 dsgvo_server_project_log_domain 			= Domain
 dsgvo_server_project_log_status 			= Status
 dsgvo_server_project_log_createdate 		= Erstellt am...
-
-
-check_dsgvo_backupcronjob_title             = Backup-Cronjobs
-check_dsgvo_backupcronjob_name              = Name
-check_dsgvo_backupcronjob_nexttime          = nächste geplante Ausführung
-check_dsgvo_backupcronjob_status            = Status
-check_dsgvo_backupcronjob_edit              = Backup-Cronjob bearbeiten
-
-
-check_dsgvo_phpmailer-logs_cronjob = PHP-Mailer Logs
-
-check_dsgvo_phpmailer-logs_caption = Log-Dateien
-check_dsgvo_phpmailer-logs_filename = Dateiname
-check_dsgvo_phpmailer-logs_folder = Ordner
-check_dsgvo_phpmailer-logs_filesize = Dateigröße
-check_dsgvo_phpmailer-logs_createdate = Erstellt am...
