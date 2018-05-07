@@ -10,33 +10,35 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
 
 
         $url = $this->getParam('url') . 
-        "?api_key=" . $this->getParam('api_key') . 
-        "&domains=" . $this->getParam('domains') .
-        "&version=" . rex_addon::get('dsgvo')->getProperty('version')) .
+        "&api_key=" . $this->getParam('api_key') . 
+        "&domains=" . $this->getParam('domain') .
+        "&version=" . rex_addon::get('dsgvo')->getProperty('version') .
         "&rex_version=" . rex::getVersion();
 
-        dump($url);
         $curl = curl_init();
         curl_setopt_array($curl,array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
         $resp = curl_exec($curl);
 
         if (!curl_errno($curl)) { 
+            rex_sql::factory()->setDebug(0)->setQuery("DELETE FROM rex_dsgvo_client WHERE domain = :domain", [":domain" => $this->getParam('domain')]);
             $keys = json_decode($resp, true);
 
             foreach($keys as $key) {
-                dump($key);
                 $insert_query = '
                 INSERT INTO rex_dsgvo_client
-                    (`category`, `keyword`, name, text, source, source_url, status, lang)
+                    (`category`, domain, `keyword`, prio, name, text, code, source, source_url, status, lang, updatedate)
                 VALUES
-                    (:category, :keyword, :name, :text, :source, :source_url, :status, :lang)';
+                    (:category, :domain, :keyword, :prio, :name, :text, :code, :source, :source_url, :status, :lang, NOW())';
 
                 $values = [];
                 $values[':category']    = $key['category'];
+                $values[':domain']      = $key['domain'];
                 $values[':keyword']     = $key['keyword'];
+                $values[':prio']        = $key['prio'];
                 $values[':lang']        = $key['lang'];
                 $values[':name']        = $key['name'];
                 $values[':text']        = $key['text'];
+                $values[':code']        = $key['code'];
                 $values[':source']      = $key['source'];
                 $values[':source_url']  = $key['source_url'];
                 $values[':status']      = $key['status'];
@@ -62,12 +64,11 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
     {
         $default_url = 'http://dsgvo.pixelfirma.de/?rex-api-call=dsgvo';
         
-
         $domains = [];
-        $domains[0] => "Bitte wählen";
         if(rex_addon::get('yrewrite')->isAvailable()) {
             foreach(rex_yrewrite::getDomains(true) as $domain => $object) {
-                $domains[$domain] = $domain;
+                preg_match('/([http]*[s]*:\/\/)*(www\.)*([a-zA-Z0-9\-\.]*)[\/]*/', $domain, $matches);
+                $domains[$matches[3]] = $matches[3];
             } 
         } else {
                 $domains[rex::getServer()] = rex::getServer();
@@ -82,12 +83,11 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
                 'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_url_notice'),
             ],
             [
-                'label' => rex_i18n::msg('dsgvo_privacy_cronjob_domains_label'),
-                'name' => 'domains',
+                'label' => rex_i18n::msg('dsgvo_privacy_cronjob_domain_label'),
+                'name' => 'domain',
                 'type' => 'select',
                 'options' => $domains,
-                'default' => "0",
-                'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_domains_notice'),
+                'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_domain_notice'),
             ],
             [
                 'label' => rex_i18n::msg('dsgvo_privacy_cronjob_api_key_label'),

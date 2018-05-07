@@ -20,6 +20,7 @@ dsgvo_docs_navigation = Navigation
 
 # Cronjobs-Beschriftungen
 
+
 dsgvo_dementia_cronjob_name = DSGVO: Alte Datensätze entfernen
 
 dsgvo_dementia_cronjob_rex_table_label 		= Tabelle 
@@ -31,22 +32,25 @@ dsgvo_dementia_cronjob_interval_notice 		= Alter des Datensatzes in Monaten, bis
 dsgvo_dementia_cronjob_field_label 			= Feldname
 dsgvo_dementia_cronjob_field_notice 		= Name des Feldes, in dem der Zeitstempel gespeichert ist, z.B. <code>createdate</code> oder <code>updatedate</code>
 
-dsgvo_privacy_cronjob_name 					= DSGVO: Texte für die Datenschutz-Seite laden...
+
+dsgvo_privacy_cronjob_name 	= DSGVO: Texte für die Datenschutz-Seite laden...
 
 dsgvo_privacy_cronjob_url_label 			= Quell-API
 dsgvo_privacy_cronjob_url_notice 			= 
 
-dsgvo_privacy_cronjob_fields_label 			= Schlüssel 
-dsgvo_privacy_cronjob_fields_notice 		= z.B. <code>contact,cookies,facebook</code>
+dsgvo_privacy_cronjob_domain_label 		    = Domains 
+dsgvo_privacy_cronjob_domain_notice 		= z.B. <code>redaxo.org</code> 
 
-dsgvo_privacy_cronjob_lang_codes_label 		= Sprachen 
-dsgvo_privacy_cronjob_lang_codes_notice 	= z.B. <code>de,en</code> 
+dsgvo_privacy_cronjob_domain_label 		    = API-Key 
+dsgvo_privacy_cronjob_domain_notice 		= vom Server vorgegeben
 
-dsgvo_privacy_cronjob_domains_label 		= Domains 
-dsgvo_privacy_cronjob_domains_notice 		= z.B. <code>redaxo.org</code> 
 
-dsgvo_privacy_cronjob_version_label 		= API-Version 
-dsgvo_privacy_cronjob_version_notice 		= z.B. <code>beta</code> 
+dsgvo_phpmailerlogs_cronjob_name = DSGVO: PHP-Mailer Logs löschen
+
+dsgvo_phpmailerlogs_delete_interval         = Ablauf-Zeitraum
+dsgvo_phpmailerlogs_delete_interval_notice  = ACHTUNG: CRONJOB HAT NOCH KEINE FUNKTION! MITHILFE AUF GITHUB ERWÜNSCHT.
+dsgvo_phpmailerlogs_delete_interval_monthly = monatlich
+dsgvo_phpmailerlogs_delete_interval_weekly  = wöchentlich
 
 # Setup Übersicht
 
@@ -101,7 +105,7 @@ dsgvo_setup_contactform_general_content 	= Bei händisch erzeugten Kontakt-Formu
 #Setup Automatisiertes Löschen
 
 check_dsgvo_dementiasql_cronjob 			= Datenbank-Tabellen mit möglicherweise personenbezogenen Daten ("Recht auf Vergessen")
-check_dsgvo_dementiasql_cronjob_description = In der REDAXO-Datenbank könnten ebenfalls personenbezogene Daten archiviert sein, zum Beispiel Anfragen über eine Kontaktformular. Nicht mehr benötigte Datensätze können nach einer bestimmten Zeitspanne automatisch durch einen Cronjob gelöscht werden.
+check_dsgvo_dementiasql_cronjob_description = In der REDAXO-Datenbank könnten ebenfalls personenbezogene Daten archiviert sein, zum Beispiel Anfragen über ein Kontaktformular. Nicht mehr benötigte Datensätze können nach einer bestimmten Zeitspanne automatisch durch einen Cronjob gelöscht werden.
 check_dsgvo_dementia_cronjob 				= Cronjob für alte Datensätze einrichten
 
 check_dsgvo_dementia_cronjob_table_name 	= Tabellenname
@@ -195,3 +199,9 @@ dsgvo_consent_css_title 					= Cookie-Einverständnis-Banner
 dsgvo_consent_css_label 					= CSS eingeben
 dsgvo_consent_css_notice 					= Dieses CSS für den Cookie-Einverständnis-Banner kann je nach Bedarf an das Aussehen der Website angepasst werden.  
 save                    					= Speichern
+
+dsgvo_setup_overview_template_tracking      = Tracking-Code-Ausgabe
+dsgvo_setup_overview_template_tracking_description = Diesen Template-Code-Abschnitt im <code><head></code> des Templates kopieren.
+dsgvo_setup_overview_template_consent       = Cookie-Einverständnis-Banner
+dsgvo_consent_template_code_title           = Cookie-Einverständnis-Banner einbinden
+dsgvo_consent_template_code_description     = Diesen Template-Code-Abschnitt am Fuß der Website einfügen, vorzugsweise vor dem Schließen des <code><body></code>-Tags.

@@ -56,7 +56,7 @@ class rex_api_dsgvo extends rex_api_function
         // LOG
 
         $raw = ["version" => $version, "domains" => $domains, "langs" => $langs, "keywords" => $keywords, "rex_version" => $rex_version];
-        rex_sql::factory()->setDebug(0)->setQuery('INSERT INTO rex_dsgvo_server_log (`domain`, `status`, `createdate`, `raw`) VALUES(?,?,?,?)', [$domains, 1, date('Y-m-d G:i:s'), json_encode($raw)] );
+        rex_sql::factory()->setDebug(0)->setQuery('INSERT INTO rex_dsgvo_server_log (`domain`, `status`, `createdate`, `rex_version`, `raw`) VALUES(?,?,?,?,?)', [$domains, 1, date('Y-m-d G:i:s'), $rex_version, json_encode($raw)] );
 
         exit();
 
