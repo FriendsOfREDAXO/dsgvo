@@ -33,6 +33,7 @@
         }
     ?>
 </div>
+<? if(!rex::isBackend()) { ?>
 <script>
 DsgvoCookies = Cookies.noConflict();
 
@@ -49,3 +50,4 @@ DsgvoCookies = Cookies.noConflict();
         }
     }
 </script>
+<? } ?>
