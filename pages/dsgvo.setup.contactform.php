@@ -3,6 +3,14 @@
 echo rex_view::title($this->i18n('dsgvo'));
 
 if (rex::getUser()->isAdmin()) {
+
+    $content1 = '';
+    $content1 .= '<p>'.$this->i18n('dsgvo_setup_contactform_description').'</p>';
+
+    $fragment = new rex_fragment();
+    $fragment->setVar('title', $this->i18n('dsgvo_setup_contactform_title'), false);
+    $fragment->setVar('body', $content1, false);
+    echo $fragment->parse('core/page/section.php');
    
 
     $checkbox_pipe_title .= $this->i18n('dsgvo_setup_contactform_pipe_title');
