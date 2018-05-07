@@ -1,11 +1,12 @@
 package: dsgvo
-version: '0.3.6'
+version: '0.4'
 title: 'translate:title'
-author: 'Pixelfirma, alexplus_de'
+author: 'Pixelfirma, alexplus_de, pixeldaniel'
 supportpage: 'https://github.com/alexplusde/dsgvo/'
 icon: fa-gavel
 
 requires:
+    redaxo: ^5.4.0
     packages:
         cronjob: '^2.0'
         markitup: '^3.0'
