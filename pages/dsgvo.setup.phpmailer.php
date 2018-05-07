@@ -15,6 +15,7 @@ if (rex::getUser()->isAdmin() && rex_addon::get('phpmailer')->isAvailable()) {
 
     $dir = rex_path::addonData('phpmailer').'mail_log';
 
+    if(@opendir($dir)) {
     $files = [];
 
     function getDir($dir,$pre) {
@@ -38,6 +39,8 @@ if (rex::getUser()->isAdmin() && rex_addon::get('phpmailer')->isAvailable()) {
     
     $files = getDir($dir, "");
 
+    }
+
     $content = '<table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -50,21 +53,22 @@ if (rex::getUser()->isAdmin() && rex_addon::get('phpmailer')->isAvailable()) {
     </thead>
     <tbody>';
 
-    foreach ($files as $folder => $file) {
-        $filec = date('d.m.Y H:i', filemtime($folder."/".$file));
-        $filesize = rex_file::formattedSize($folder."/".$file);
+    if(count($files)) {
+        foreach ($files as $folder => $file) {
+            $filec = date('d.m.Y H:i', filemtime($folder."/".$file));
+            $filesize = rex_file::formattedSize($folder."/".$file);
 
 
-        $content .= '<tr>
-                        <td class="rex-table-icon"><i class="rex-icon rex-icon-article"></i></td>
-                        <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_filename') . '">' . $file . '</td>
-                        <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_folder') . '">' . $folder . '</td>
-                        <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_filesize') . '">' . $filesize . '</td>
-                        <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_createdate') . '">' . $filec . '</td>
-                    </tr>
-        ';
+            $content .= '<tr>
+                            <td class="rex-table-icon"><i class="rex-icon rex-icon-article"></i></td>
+                            <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_filename') . '">' . $file . '</td>
+                            <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_folder') . '">' . $folder . '</td>
+                            <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_filesize') . '">' . $filesize . '</td>
+                            <td data-title="' . rex_i18n::msg('check_dsgvo_phpmailer-logs_createdate') . '">' . $filec . '</td>
+                        </tr>
+            ';
+        }
     }
-    
     $content .= '
                         </tbody>
                     </table>';
