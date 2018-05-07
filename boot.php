@@ -29,4 +29,3 @@ rex_sql_table::get(rex::getTable('dsgvo_client'))
     ->ensureColumn(new rex_sql_column('updatedate', 'timestamp', false, '0000-00-00 00:00:00', 'on update CURRENT_TIMESTAMP'))
     ->setPrimaryKey('id')
     ->ensure();
-

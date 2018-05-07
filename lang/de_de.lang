@@ -54,12 +54,12 @@ dsgvo_description_all_title 				= Übersicht
 dsgvo_description_all 						= Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. Ein Rechtsanspruch besteht jedoch nicht. Für die DSGVO-konforme Umsetzung ist die ganzheitliche Betrachtung der auf einer Website anfallenden Daten und deren Nutzung unerlässlich. Hierzu gibt es im Bereich Hilfe eine wachsende Sammlung an Tipps und Empfehlungen.
 
 dsgvo_description_ad_title 					= Weiterentwicklung unterstützen
-dsgvo_description_ad 						= Hat dieses Addon dir wertvolle Zeit gespart oder in besonderem Maße bei der Umsetzung genutzt? Dann würden wir uns über eine Spende freuen.
+dsgvo_description_ad 						= Hat dieses Addon dir wertvolle Zeit gespart oder in besonderem Maße bei der Umsetzung genutzt? Schicke ein Danke an <a href="mailto:danke@alexplus.de?subject=Ein Danke von ...">danke@alexplus.de</a>
 
 # Setup Datenschutz-Erklärung einbinden
 
 install_dsgvo_modul 						= Modul zur Datenschutz-Erklärung installieren
-install_dsgvo_modul_description 			= Dieses Modul auf der Seite "Datenschutz" ausgeben, um die im Cronjob importierten Texte auszugeben. Bei Diensten, bei denen ein Opt-Out möglich ist, wird automatisch ein Opt-Out-Link generiert, der dem Nutzer die Möglichkeit gibt, den Tracking-Code abzuschalten.
+install_dsgvo_modul_description 			= Dieses Modul auf der Seite "Datenschutz" ausgeben, um die Texte aus dem Reiter "Datenschutz-Erklärung" auszugeben. Bei Diensten, bei denen ein Opt-Out möglich ist, wird automatisch ein Opt-Out-Link generiert, der dem Nutzer die Möglichkeit gibt, den Tracking-Code abzuschalten.
 
 install_dsgvo_module 						= Modul installieren
 install_update_dsgvo_module 				= Modul reinstallieren

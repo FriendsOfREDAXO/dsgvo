@@ -18,5 +18,5 @@ rex_sql_table::get(rex::getTable('dsgvo_client'))
     ->ensure();
 
 if (!$this->hasConfig()) {
-    $this->setConfig('dsgvo_consent_css', file_get_contents('assets/css/consent.css'));
+    $this->setConfig('dsgvo_consent_css', file_get_contents(rex_path::addon('dsgvo').'assets/css/default-consent.css'));
 }    
