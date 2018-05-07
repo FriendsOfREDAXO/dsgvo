@@ -9,11 +9,16 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
     {
 
 
-        $url = $this->getParam('url') . "&version=" . $this->getParam('version') . "&keywords=" . $this->getParam('fields') . "&lang_codes=" . $this->getParam('lang_codes') . "&domains=" . $this->getParam('domains');
+        $url = $this->getParam('url') . 
+        "?api_key=" . $this->getParam('api_key') . 
+        "&domains=" . $this->getParam('domains') .
+        "&version=" . rex_addon::get('dsgvo')->getProperty('version')) .
+        "&rex_version=" . rex::getVersion();
+
+        dump($url);
         $curl = curl_init();
         curl_setopt_array($curl,array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
         $resp = curl_exec($curl);
-        dump($url);
 
         if (!curl_errno($curl)) { 
             $keys = json_decode($resp, true);
@@ -22,18 +27,19 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
                 dump($key);
                 $insert_query = '
                 INSERT INTO rex_dsgvo_client
-                    (`keyword`, name, text, source, source_url, status, lang)
+                    (`category`, `keyword`, name, text, source, source_url, status, lang)
                 VALUES
-                    (:keyword, :name, :text, :source, :source_url, :status, :lang)';
+                    (:category, :keyword, :name, :text, :source, :source_url, :status, :lang)';
 
                 $values = [];
+                $values[':category']    = $key['category'];
                 $values[':keyword']     = $key['keyword'];
+                $values[':lang']        = $key['lang'];
                 $values[':name']        = $key['name'];
                 $values[':text']        = $key['text'];
                 $values[':source']      = $key['source'];
                 $values[':source_url']  = $key['source_url'];
                 $values[':status']      = $key['status'];
-                $values[':lang']        = $key['lang'];
     
                 rex_sql::factory()->setDebug(0)->setQuery($insert_query, $values);
             }
@@ -56,6 +62,17 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
     {
         $default_url = 'http://dsgvo.pixelfirma.de/?rex-api-call=dsgvo';
         
+
+        $domains = [];
+        $domains[0] => "Bitte wählen";
+        if(rex_addon::get('yrewrite')->isAvailable()) {
+            foreach(rex_yrewrite::getDomains(true) as $domain => $object) {
+                $domains[$domain] = $domain;
+            } 
+        } else {
+                $domains[rex::getServer()] = rex::getServer();
+        }
+
         $fields = [
             [
                 'label' => rex_i18n::msg('dsgvo_privacy_cronjob_url_label'),
@@ -65,35 +82,20 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
                 'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_url_notice'),
             ],
             [
-                'label' => rex_i18n::msg('dsgvo_privacy_cronjob_version_label'),
-                'name' => 'version',
-                'type' => 'select',
-                'options' => ["beta" => "beta"],
-                'default' => "beta",
-                'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_version_notice'),
-            ],
-            [
-                'label' => rex_i18n::msg('dsgvo_privacy_cronjob_lang_codes_label'),
-                'name' => 'lang_codes',
-                'type' => 'text',
-                'default' => "de",
-                'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_lang_codes_notice'),
-            ],
-            [
                 'label' => rex_i18n::msg('dsgvo_privacy_cronjob_domains_label'),
                 'name' => 'domains',
                 'type' => 'select',
-                'options' => [0 => "Bitte wählen", "dsgvo.pixelfirma.de" => "dsgvo.pixelfirma.de"],
+                'options' => $domains,
                 'default' => "0",
                 'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_domains_notice'),
             ],
             [
-                'label' => rex_i18n::msg('dsgvo_privacy_cronjob_fields_label'),
-                'name' => 'fields',
+                'label' => rex_i18n::msg('dsgvo_privacy_cronjob_api_key_label'),
+                'name' => 'api_key',
                 'type' => 'text',
-                'default' => "facebook,cookies,kontakt",
-                'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_fields_notice'),
-            ],
+                'default' => "",
+                'notice' => rex_i18n::msg('dsgvo_privacy_cronjob_api_key_notice'),
+            ]
         ];
 
         return $fields;
