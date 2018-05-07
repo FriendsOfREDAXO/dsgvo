@@ -7,8 +7,8 @@ class rex_api_dsgvo extends rex_api_function
     public function execute()
     {
         ob_end_clean();
-        $version = rex_request('version','int', 0.1); // Version der API
-        $subversion = rex_request('subversion','int'); // Version der API
+        $version = rex_request('version','string', 0); // Version der API
+        $rex_version = rex_request('rex_version','string', 0); // Version der REDAXO-Installation
         $domains = rex_request('domains','string', ""); // Domain(s), kommasepariert
         $langs = rex_request('langs','string', ""); // Sprache(n) als ISO-Code, kommasepariert, optional 
         $keywords = rex_request('keywords','string', ""); // Schlüssel der einzelnen Dienste, kommasepariert, optional
@@ -55,7 +55,7 @@ class rex_api_dsgvo extends rex_api_function
 
         // LOG
 
-        $raw = ["version" => $version, "domains" => $domains, "langs" => $langs, $keywords => $keywords];
+        $raw = ["version" => $version, "domains" => $domains, "langs" => $langs, "keywords" => $keywords, "rex_version" => $rex_version];
         rex_sql::factory()->setDebug(0)->setQuery('INSERT INTO rex_dsgvo_server_log (`domain`, `status`, `createdate`, `raw`) VALUES(?,?,?,?)', [$domains, 1, date('Y-m-d G:i:s'), json_encode($raw)] );
 
         exit();
