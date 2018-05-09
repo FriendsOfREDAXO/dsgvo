@@ -41,8 +41,8 @@ dsgvo_privacy_cronjob_url_notice 			=
 dsgvo_privacy_cronjob_domain_label 		    = Domains 
 dsgvo_privacy_cronjob_domain_notice 		= z.B. <code>redaxo.org</code> 
 
-dsgvo_privacy_cronjob_domain_label 		    = API-Key 
-dsgvo_privacy_cronjob_domain_notice 		= vom Server vorgegeben
+dsgvo_privacy_cronjob_api_key_label 		= API-Key 
+dsgvo_privacy_cronjob_api_key_notice 		= vom Server vorgegeben
 
 
 dsgvo_phpmailerlogs_cronjob_name = DSGVO: PHP-Mailer Logs löschen

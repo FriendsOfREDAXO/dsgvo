@@ -58,10 +58,10 @@ htmlentities('
 <?php
 $output = new rex_fragment();
 
-$output->setVar("info", "Diese Seite verwendet Cookies");
-$output->setVar("learn_more", "Datenschutz-Informationen anzeigen");
+$output->setVar("info", "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu. Weitere Informationen zu Cookies erhalten Sie in unserer");
+$output->setVar("learn_more", "Datenschutzerklärung.");
 $output->setVar("dismiss", "OK");
-$output->setVar("url", "/datenschutzerklaerung/");
+$output->setVar("url", "/datenschutz/");
 
 echo $output->parse("dsgvo-consent.fragment.inc.php");
 ?>')."</pre>";
