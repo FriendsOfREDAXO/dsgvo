@@ -1,3 +1,4 @@
+<script language="javascript" type="text/javascript" src="/assets/addons/dsgvo/js/cookie.js"></script>
 <!-- dsgvo-tracking-fragment -->
     <?php foreach ($this->dsgvo_pool as $dsgvo_item) { 
     

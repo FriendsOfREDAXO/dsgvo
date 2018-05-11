@@ -15,7 +15,6 @@ if (rex::getUser()->isAdmin()) {
 '<pre class="pre-scrollable">'.
 htmlentities('
 <!-- DSGVO Tracking und Cookie -->
-<script language="javascript" type="text/javascript" src="/assets/addons/dsgvo/js/cookie.js"></script>
 <?php
 $lang = rex_clang::getCurrent()->getCode();
 $dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray("SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio",[":lang"=>$lang]);
@@ -41,8 +40,8 @@ echo html_entity_decode($output->parse("dsgvo-tracking.fragment.inc.php"), ENT_H
     $consent_content .= 
 '<pre class="pre-scrollable">'.
 htmlentities('
-<?php
 <!-- DSGVO Cookie-Einverständnis -->
+<?php
 // DSGVO Consent-HTML + JS
 $output = new rex_fragment();
     
@@ -50,6 +49,7 @@ $output->setVar("info", "Um unsere Webseite für Sie optimal zu gestalten und fo
 $output->setVar("learn_more", "Datenschutzerklärung");
 $output->setVar("dismiss", "OK");
 $output->setVar("url", "/datenschutz/");
+$output->setVar("html_padding", "Bottom");
 echo $output->parse("dsgvo-consent.fragment.inc.php");
 
 ?>
