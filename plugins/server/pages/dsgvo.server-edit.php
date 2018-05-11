@@ -140,10 +140,12 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 
-		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',100);
+		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',50);
+		$list->addParam('domain', $domain);
+		$list->addParam('func', $func);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
-		
+
 		// icon column
 		$thIcon = '<a href="'.$list->getUrl(['func' => 'text_add', 'domain' => $domain,'start' => $start]).'"><i class="rex-icon rex-icon-add-action"></i></a>';
 		$tdIcon = '<i class="rex-icon fa-file-text-o"></i>';
