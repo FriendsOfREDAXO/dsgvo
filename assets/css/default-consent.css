@@ -25,11 +25,17 @@
         flex: 1 1 auto;
         width: auto;
     }
+    
+    .dsgvo-cookie_consent-text { /* Absatz mit Cookie-Hinweis-Text */
+    }
+    
+    .dsgvo-cookie_consent-more { /* Anker zur Datenschutz-Erklärung */
+    }
     .dsgvo-cookie_consent-dismiss {
         flex: 0 0 auto;
         width: auto;
     }
-    .dsgvo-cookie_consent-dismiss button {
+    .dsgvo-cookie_consent-dismiss button { /* OK-Button */
         border: 1px solid grey; /* Farbe anpassen */
         background: white;
         padding: 5px;
