@@ -18,8 +18,8 @@ if (rex::getUser()->isAdmin()) {
 $checkbox_pipe .= '<p>'.$this->i18n('dsgvo_setup_contactform_pipe_content').'</p>';
 $checkbox_pipe .=
 '<pre class="pre-scrollable">'.
-htmlentities('checkbox|dsgvo_checkbox|Ich habe die <a href="">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.|0,1|0|no_db|<br />
-validate|empty|dsgvo_checkbox|Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben und stimmen Sie der elektronischen Verwendung Ihrer Daten zur Beantwortung Ihrer Anfrage zu.|<br />
+htmlentities('checkbox|dsgvo_checkbox|Ich habe die <a href="">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.|0,1|0|no_db|
+validate|empty|dsgvo_checkbox|Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben und stimmen Sie der elektronischen Verwendung Ihrer Daten zur Beantwortung Ihrer Anfrage zu.|
 html|dsgvo_notice||<p>Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an E-Mail-Adresse@xyz.de widerrufen.</p>|').
 '</pre>';
     
@@ -33,8 +33,8 @@ html|dsgvo_notice||<p>Hinweis: Sie können Ihre Einwilligung jederzeit für die 
 $checkbox_php .= '<p>'.$this->i18n('dsgvo_setup_contactform_php_content').'</p>';
 $checkbox_php .=
 '<pre class="pre-scrollable">'.
-htmlentities('$yform->setValueField(\'checkbox\', array(\'dsgvo_checkbox\',\'Ich habe die <a href="">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.\',\'0,1\',\'0\',\'no_db\'));<br />
-$yform->setValidateField(\'empty\', array(\'dsgvo_checkbox\',\'Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben und stimmen Sie der elektronischen Verwendung Ihrer Daten zur Beantwortung Ihrer Anfrage zu.\'));<br />
+htmlentities('$yform->setValueField(\'checkbox\', array(\'dsgvo_checkbox\',\'Ich habe die <a href="">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.\',\'0,1\',\'0\',\'no_db\'));
+$yform->setValidateField(\'empty\', array(\'dsgvo_checkbox\',\'Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben und stimmen Sie der elektronischen Verwendung Ihrer Daten zur Beantwortung Ihrer Anfrage zu.\'));
 $yform->setValueField(\'html\', array(\'dsgvo_notice\',\'\',\'<p>Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an E-Mail-Adresse@xyz.de widerrufen.</p>\'));').
 '</pre>';
     
