@@ -12,7 +12,7 @@
 </h1>
         </div>
     <div class="dsgvo-item-body">
-            <p class="dsgvo-item-text"><?= html_entity_decode($dsgvo_item['text']) ?></p>
+            <div class="dsgvo-item-text"><?= html_entity_decode($dsgvo_item['text']) ?></div>
         </div>
         <? if($_COOKIE["dsgvo_".$dsgvo_item['keyword']] != -1) {
             $display[-1] = "block";
