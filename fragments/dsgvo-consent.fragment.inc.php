@@ -1,3 +1,4 @@
+<!-- dsgvo-consent-fragment -->
 <? if($_COOKIE['dsgvo_cookie_consent'] != 1) { ?>
 <div class="dsgvo-cookie_consent">
 	<div class="dsgvo-cookie_consent-inner">
@@ -20,3 +21,4 @@ function dsgvoConsent(status) {
 </script>
 <?= rex_config::get("dsgvo", "dsgvo_consent_css"); ?>
 <? } ?>
+<!-- / dsgvo-consent-fragment -->

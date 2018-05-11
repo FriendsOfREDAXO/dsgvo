@@ -1,3 +1,4 @@
+<!-- dsgvo-privacy-fragment -->
 <div class="dsgvo-privacy dsgvp-privacy-redaxo5">
     <? foreach ($this->dsgvo_pool as $dsgvo_item) { ?>
     <div class="dsgvo-item" data-dsgvo="<?= $dsgvo_item['keyword'] ?>">
@@ -51,3 +52,4 @@ DsgvoCookies = Cookies.noConflict();
     }
 </script>
 <? } ?>
+<!--/ dsgvo-privacy-fragment -->
