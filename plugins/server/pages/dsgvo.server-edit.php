@@ -4,6 +4,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 	$func = rex_request('func', 'string');
 	$domain = rex_request('domain', 'string');
 	$result = rex_request('result', 'string', false);
+    $start = rex_request('start', 'int');
 
 	if (($func == '' && !$result) || $func == "domain_delete") { 
 
@@ -21,16 +22,16 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
 		// icon column (Domain hinzufügen bzw. bearbeiten)
-		$thIcon = '<a href="'.$list->getUrl(['func' => 'domain_add']).'"><i class="rex-icon rex-icon-add-action"></i></a>';
+		$thIcon = '<a href="'.$list->getUrl(['func' => 'domain_add','start' => $start]).'"><i class="rex-icon rex-icon-add-action"></i></a>';
 		$tdIcon = '<i class="rex-icon fa-file-text-o"></i>';
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
-		$list->setColumnParams($thIcon, ['func' => 'domain_edit', 'id' => '###id###']);
+		$list->setColumnParams($thIcon, ['func' => 'domain_edit', 'id' => '###id###','start' => $start]);
 		
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_domain_column_domain'));
-		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit']);
+		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit','start' => $start]);
 			
 		$list->addColumn($this->i18n('dsgvo_server_domain_column_manage_text'), $this->i18n('dsgvo_server_domain_column_manage_text'), 3);
-		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
+		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###','start' => $start]);
 
 		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_domain_column_api_key'));
 
@@ -48,7 +49,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		});
 		
 		$list->addColumn('domain_delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_server_domain_column_delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
-    	$list->setColumnParams('domain_delete', ['func' => 'domain_delete', 'oid' => '###id###', 'domain' => '###domain###']);
+    	$list->setColumnParams('domain_delete', ['func' => 'domain_delete', 'oid' => '###id###', 'domain' => '###domain###','start' => $start]);
     	$list->addLinkAttribute('domain_delete', 'data-confirm', $this->i18n('dsgvo_server_domain_delete_confirm'));
 
     	$list->removeColumn('id');
@@ -78,7 +79,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server_project', '', 'id='.$id);
-		
+        $form->addParam('start', $start);
+
 		//Start - add domain-field
 		$field = $form->addTextField('domain');
 		$field->setLabel($this->i18n('dsgvo_server_domain_column_domain'));
@@ -143,14 +145,14 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
 		// icon column
-		$thIcon = '<a href="'.$list->getUrl(['func' => 'text_add', 'domain' => $domain]).'"><i class="rex-icon rex-icon-add-action"></i></a>';
+		$thIcon = '<a href="'.$list->getUrl(['func' => 'text_add', 'domain' => $domain,'start' => $start]).'"><i class="rex-icon rex-icon-add-action"></i></a>';
 		$tdIcon = '<i class="rex-icon fa-file-text-o"></i>';
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
-		$list->setColumnParams($thIcon, ['func' => 'text_edit', 'domain' => $domain, 'id' => '###id###']);
+		$list->setColumnParams($thIcon, ['func' => 'text_edit', 'domain' => $domain, 'id' => '###id###','start' => $start]);
 		
 		//$list->setColumnLabel('name', $this->i18n('sets_column_name'));
 		$list->setColumnLabel('type', $this->i18n('sets_column_type'));		
-		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'text_edit', 'domain' => $domain]);
+		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'text_edit', 'domain' => $domain,'start' => $start]);
 
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_text_column_domain'));
 		
@@ -160,7 +162,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_server_text_column_source'));
 		$list->setColumnLabel('prio', $this->i18n('dsgvo_server_text_column_prio'));
 		$list->setColumnLabel('status', $this->i18n('dsgvo_server_text_column_status'));
-		$list->setColumnParams('status', ['func' => 'set_text_status', 'oldstatus' => '###status###', 'oid' => '###id###', 'domain' => '###domain###']);
+		$list->setColumnParams('status', ['func' => 'set_text_status', 'oldstatus' => '###status###', 'oid' => '###id###', 'domain' => '###domain###','start' => $start]);
 		$list->setColumnFormat('status', 'custom', function ($params) {
 			$list = $params['list'];  
 			if ($params['value'] == "") {
@@ -175,7 +177,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('updatedate', $this->i18n('dsgvo_server_text_column_updatedate'));
 
 		$list->addColumn('text_delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_server_text_column_delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
-    	$list->setColumnParams('text_delete', ['func' => 'text_delete', 'oid' => '###id###', 'domain' => '###domain###']);
+    	$list->setColumnParams('text_delete', ['func' => 'text_delete', 'oid' => '###id###', 'domain' => '###domain###','start' => $start]);
     	$list->addLinkAttribute('text_delete', 'data-confirm', $this->i18n('dsgvo_server_text_delete_confirm'));
 		
 		$list->removeColumn('keyword');
@@ -238,6 +240,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server', '', 'id='.$id);
+        $form->addParam('start', $start);
 
 		//Start - add status-field 
 		$field = $form->addSelectField('category');
