@@ -28,10 +28,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnParams($thIcon, ['func' => 'domain_edit', 'id' => '###id###','start' => $start]);
 		
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_domain_column_domain'));
-		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit','start' => $start]);
+		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit']);
 			
 		$list->addColumn($this->i18n('dsgvo_server_domain_column_manage_text'), $this->i18n('dsgvo_server_domain_column_manage_text'), 3);
-		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###','start' => $start]);
+		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
 
 		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_domain_column_api_key'));
 
@@ -139,8 +139,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 			}
 		}
 		
-
-		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',50);
+		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',50,'',false);
 		$list->addParam('domain', $domain);
 		$list->addParam('func', $func);
 		$list->addTableAttribute('class', 'table-striped');
@@ -201,7 +200,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		// LOGS
 		$domain = rex_request('domain', 'string', "");
-		$list = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY createdate DESC LIMIT 30', 10, "domain");
+		$list = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY createdate DESC LIMIT 30', 10);
 
 		$list->setColumnLabel('id', $this->i18n('dsgvo_server_project_log_id'));
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_project_log_domain'));
