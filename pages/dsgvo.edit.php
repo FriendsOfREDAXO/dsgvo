@@ -2,6 +2,7 @@
 echo rex_view::title($this->i18n('dsgvo'));
 
 	$func = rex_request('func', 'string');
+	$start = rex_request('start', 'int');
 	// $csrfToken = rex_csrf_token::factory('dsgvo');
 
 	// if (in_array($func, ['setstatus', 'delete']) && !$csrfToken->isValid()) {
@@ -34,10 +35,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setNoRowsMessage($this->i18n('dsgvo_client_norows_message'));
 		
 		// icon column
-		$thIcon = '<a href="'.$list->getUrl(['func' => 'add']).'"><i class="rex-icon rex-icon-add-action"></i></a>';
+		$thIcon = '<a href="'.$list->getUrl(['func' => 'add','start' => $start]).'"><i class="rex-icon rex-icon-add-action"></i></a>';
 		$tdIcon = '<i class="rex-icon fa-edit"></i>';
 		$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
-		$list->setColumnParams($thIcon, ['func' => 'edit', 'id' => '###id###']);
+		$list->setColumnParams($thIcon, ['func' => 'edit', 'id' => '###id###', 'start' => $start]);
 		
 		$list->setColumnLabel('category', $this->i18n('dsgvo_client_text_column_category'));
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_client_text_column_domain'));
@@ -46,7 +47,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('source', $this->i18n('dsgvo_client_text_column_source'));
 		$list->setColumnLabel('prio', $this->i18n('dsgvo_client_text_column_prio'));
 		$list->setColumnLabel('status', $this->i18n('dsgvo_client_text_column_status'));
-		$list->setColumnParams('status', ['func' => 'setstatus', 'oldstatus' => '###status###', 'oid' => '###id###']);
+		$list->setColumnParams('status', ['func' => 'setstatus', 'oldstatus' => '###status###', 'oid' => '###id###', 'start' => $start]);
 		$list->setColumnFormat('status', 'custom', function ($params) {
 			$list = $params['list'];  
 	        if ($params['value'] == "") {
@@ -59,10 +60,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 	        return $str;
 	    });
 	    $list->setColumnLabel('updatedate', $this->i18n('dsgvo_client_text_column_updatedate'));
-		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);	
+		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit', 'start' => $start]);
 
 		$list->addColumn('entry_delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_client_text_column_delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
-    	$list->setColumnParams('entry_delete', ['func' => 'entry_delete', 'oid' => '###id###']);
+    	$list->setColumnParams('entry_delete', ['func' => 'entry_delete', 'oid' => '###id###', 'start' => $start]);
     	$list->addLinkAttribute('entry_delete', 'data-confirm', $this->i18n('dsgvo_server_domain_delete_confirm'));
 
 		$list->removeColumn('keyword');
@@ -106,7 +107,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 	} else if ($func == 'add' || $func == 'edit') {
 		$id = rex_request('id', 'int');
-		
+
 		if ($func == 'edit') {
 			$formLabel = $this->i18n('dsgvo_client_text_edit');
 		} elseif ($func == 'add') {
@@ -114,6 +115,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_client', '', 'id='.$id);
+        $form->addParam('start', $start);
 
 		//Start - add keyword-field
 			$field = $form->addTextField('keyword');
