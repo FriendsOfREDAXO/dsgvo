@@ -29,7 +29,7 @@
 	</script>
 	<script>
 			var DsgvoConsentPadding = function (event) {
-				document.body.parentNode.style.padding<?= $this->html_padding ?> = document.querySelectorAll('.dsgvo-cookie_consent')[0].offsetHeight+"px";
+				document.body.style.padding<?= $this->html_padding ?> = document.querySelectorAll('.dsgvo-cookie_consent')[0].offsetHeight+"px";
 			};
 			window.onresize = DsgvoConsentPadding;
 			window.onload = DsgvoConsentPadding;
