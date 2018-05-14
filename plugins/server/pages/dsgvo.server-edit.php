@@ -16,7 +16,7 @@ echo rex_view::title($this->i18n('dsgvo'));
     	}	
 
 		// Domain-Übersicht ANFANG //
-		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
+		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate, last_change FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain, updatedate AS last_change FROM rex_dsgvo_server GROUP BY domain ORDER BY updatedate) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
 		$list = rex_list::factory($query);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
@@ -42,9 +42,13 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnLabel('logdate', $this->i18n('dsgvo_server_domain_column_last_call'));
 		$list->setColumnFormat('logdate', 'custom', function ($params) {
 			if ($params['list']->getValue('logdate') != "") {
-				return $params['list']->getValue('logdate');
+				if($params['list']->getValue('logdate') > $params['list']->getValue('last_change')) {
+					return $params['list']->getValue('logdate'); 
+				} else {
+					return '<span class="rex-icon fa-exclamation-triangle"></span> '.$params['list']->getValue('logdate');
+				};
 			} else { 
-				return rex_i18n::msg("dsgvo_server_domain_column_last_call_none");
+				return '<span class="rex-icon fa-exclamation-triangle"></span> '.rex_i18n::msg("dsgvo_server_domain_column_last_call_none");
 			}
 		});
 		
