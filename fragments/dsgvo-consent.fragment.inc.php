@@ -18,7 +18,7 @@
 			DsgvoCookies.set("dsgvo_cookie_consent", 1, { expires: 365 });
 			document.querySelectorAll('.dsgvo-cookie_consent')[0].style.display = 'none';
 			<? if($this->html_padding) { ?>
-				document.body.parentNode.style.padding<?= $this->html_padding ?> = "0px";
+				document.body.style.padding<?= $this->html_padding ?> = "0px";
 			<? } ?>
 		} else {
 			DsgvoCookies.set("dsgvo_cookie_consent", -1, { expires: 365 });
@@ -30,6 +30,7 @@
 	<script>
 			var DsgvoConsentPadding = function (event) {
 				document.body.style.padding<?= $this->html_padding ?> = document.querySelectorAll('.dsgvo-cookie_consent')[0].offsetHeight+"px";
+				document.body.style.height = "auto";
 			};
 			window.onresize = DsgvoConsentPadding;
 			window.onload = DsgvoConsentPadding;
