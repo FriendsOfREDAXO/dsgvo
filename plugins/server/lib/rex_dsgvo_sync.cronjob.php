@@ -1,6 +1,6 @@
 <?php
 
-class rex_cronjob_dsgvo_sync extends rex_cronjob
+class rex_cronjob_dsgvo_sync2 extends rex_cronjob
 {
 
     public function execute()
@@ -30,7 +30,7 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
     }
     public function getTypeName()
     {
-        return rex_i18n::msg('rex_cronjob_dsgvo_sync_name');
+        return rex_i18n::msg('rex_cronjob_dsgvo_sync2_name');
     }
 
     public function getParamFields()
