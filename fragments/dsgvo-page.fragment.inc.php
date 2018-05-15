@@ -10,7 +10,7 @@
                 </a>
         <? } ?>
         <?= $dsgvo_item['name'] ?>
-</h1>
+        </h2>
         </div>
     <div class="dsgvo-item-body">
             <div class="dsgvo-item-text"><?= html_entity_decode($dsgvo_item['text']) ?></div>
