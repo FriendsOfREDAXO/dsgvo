@@ -9,6 +9,7 @@
 				<button class="dsgvo-cookie_consent-ok" onClick="dsgvoConsent(1);"><?= $this->dismiss; ?></button>
 			</div>
 		</div>
+	</div>
 	<script>
 	DsgvoCookies = Cookies.noConflict();
 
