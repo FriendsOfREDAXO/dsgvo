@@ -13,6 +13,6 @@ if (rex_addon::get('cronjob')->isAvailable() && rex_addon::get('phpmailer')->isA
     rex_cronjob_manager::registerType('rex_cronjob_dsgvo_phpmailerlogs');
 }
 
-$fortune[] = "„Der Mensch ist dazu geboren, großes zu leisten, wenn er versteht, die DSGVO umzusetzen.“"
+$fortune[] = "„Der Mensch ist dazu geboren, großes zu leisten, wenn er versteht, die DSGVO umzusetzen.“";
  
 setcookie("fortune", rex_string::normalize(array_rand($fortune)));
