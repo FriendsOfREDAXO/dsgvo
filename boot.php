@@ -13,6 +13,13 @@ if (rex_addon::get('cronjob')->isAvailable() && rex_addon::get('phpmailer')->isA
     rex_cronjob_manager::registerType('rex_cronjob_dsgvo_phpmailerlogs');
 }
 
-$fortune[] = "„Der Mensch ist dazu geboren, großes zu leisten, wenn er versteht, die DSGVO umzusetzen.“";
- 
-setcookie("fortune", rex_string::normalize(array_rand($fortune)));
+if (rex::getUser()->isAdmin()) {
+    $fortune[] = "„Der Mensch ist dazu geboren, großes zu leisten, wenn er versteht, die DSGVO umzusetzen.“";
+    $fortune[] = "„Die beste Möglichkeit, Träume zu verwirklichen, ist datenschutzkonformes Handeln.“";
+    $fortune[] = "„Hilfe!!! Ich werde in einer deutschen Abmahn-Kanzlei gefangen gehalten.“";
+    $fortune[] = "„404 – fortune not found.“";
+    $fortune[] = "„Cookie's Fortune Cookie Fortunes with Cookie \"Fortune Cookie\" Masterson.“";
+    $fortune[] = "„Für den Optimisten ist das Leben kein Problem. Für den Datenschutzbeauftragten schon.“";
+    $fortune[] = "„Man verliert die meiste Zeit damit, dass man eine rechtssichere Website umsetzen will.“";
+    setcookie("dsgvo_fortune", rex_string::normalize($fortune[array_rand($fortune)]));
+}
