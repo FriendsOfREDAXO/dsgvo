@@ -17,7 +17,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		// Domain-Übersicht ANFANG //
 		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate, last_change FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain, max(updatedate) AS last_change FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
-		$list = rex_list::factory($query,100);
+		$list = rex_list::factory($query,200);
         $list->addParam('start', $start);
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
