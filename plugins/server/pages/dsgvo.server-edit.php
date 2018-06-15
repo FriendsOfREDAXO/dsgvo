@@ -16,7 +16,7 @@ echo rex_view::title($this->i18n('dsgvo'));
     	}	
 
 		// Domain-Übersicht ANFANG //
-		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate, last_change FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain, max(updatedate) AS last_change FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
+		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate, last_change, description FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain, max(updatedate) AS last_change FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
 		$list = rex_list::factory($query,200);
         $list->addParam('start', $start);
 		$list->addTableAttribute('class', 'table-striped');
@@ -35,6 +35,14 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
 
 		$list->setColumnLabel('api_key', $this->i18n('dsgvo_server_domain_column_api_key'));
+		$list->setColumnFormat('api_key', 'custom', function ($params) {
+			return substr($params['list']->getValue('api_key'),0,10)."...";
+		});
+
+		$list->setColumnLabel('description', $this->i18n('dsgvo_server_domain_column_description'));
+		$list->setColumnFormat('description', 'custom', function ($params) {
+			return str_replace(" ", '&nbsp;', $params['list']->getValue('description'));
+		});
 
 		$list->setColumnLabel('count_text', $this->i18n('dsgvo_server_domain_column_count_text'));
 		$list->setColumnLabel('count_total', $this->i18n('dsgvo_server_domain_column_count_total'));
@@ -53,9 +61,18 @@ echo rex_view::title($this->i18n('dsgvo'));
 			}
 		});
 		
+
 		$list->addColumn('domain_delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_server_domain_column_delete'), -1, ['', '<td class="rex-table-action">###VALUE###</td>']);
-    	$list->setColumnParams('domain_delete', ['func' => 'domain_delete', 'oid' => '###id###', 'domain' => '###domain###','start' => $start]);
-    	$list->addLinkAttribute('domain_delete', 'data-confirm', $this->i18n('dsgvo_server_domain_delete_confirm'));
+		$list->setColumnFormat('domain_delete', 'custom', function ($params) {
+			if($params['list']->getValue('domain') == "default") {
+				return false;
+			} else {
+				return '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('dsgvo_server_domain_column_delete');
+			}
+		});
+	   	$list->setColumnParams('domain_delete', ['func' => 'domain_delete', 'oid' => '###id###', 'domain' => '###domain###','start' => $start]);
+		$list->addLinkAttribute('domain_delete', 'data-confirm', $this->i18n('dsgvo_server_domain_delete_confirm'));
+
 
     	$list->removeColumn('id');
 		$list->removeColumn('updatedate');
@@ -92,11 +109,17 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$field->setNotice($this->i18n('dsgvo_server_domain_column_domain_note'));
 		//End - add domain-field
 
-		//Start - add domain-field
+		//Start - add api_key-field
 		$field = $form->addTextField('api_key');
 		$field->setLabel($this->i18n('dsgvo_server_domain_column_api_key'));
 		$field->setNotice($this->i18n('dsgvo_server_domain_column_api_key_note', md5(time())));
-		//End - add domain-field
+		//End - add api_key-field
+
+		//Start - add description-field
+		$field = $form->addTextField('description');
+		$field->setLabel($this->i18n('dsgvo_server_domain_column_description'));
+		$field->setNotice($this->i18n('dsgvo_server_domain_column_description_note'));
+		//End - add description-field
 		
 		if ($func == 'domain_edit') {
 			$form->addParam('id', $id);
@@ -113,7 +136,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		echo $content3;
 		// Domain bearbeiten ENDE //
 
-	} else if ($func == 'domain_details' || $func == 'text_copy_default_de' || $func == 'text_copy_default_en'|| $func == 'text_delete' || $func == 'set_text_status' || ($func == '' && $result)) {
+	} else if ($func == 'domain_details' || $func == 'text_copy_default_de' || $func == 'text_copy_default_en'|| $func == 'text_copy_by_id'|| $func == 'text_delete' || $func == 'set_text_status' || ($func == '' && $result)) {
 
 		if($func == 'text_delete') {
     		$oid = rex_request('oid', 'int');
@@ -128,6 +151,11 @@ echo rex_view::title($this->i18n('dsgvo'));
 		if($func == 'text_copy_default_en') {
 			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE domain = "default" AND lang = "en" AND status = 1)';
 			rex_sql::factory()->setDebug(0)->setQuery($query, [":domain" => $domain]);
+			echo rex_view::success( $this->i18n('dsgvo_server_text_default_copied'));
+		}	
+		if($func == 'text_copy_by_id') {
+			$query = 'INSERT INTO rex_dsgvo_server (`domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, `status`, `updatedate`) (SELECT :domain AS `domain`, `lang`, `name`, `category`,`keyword`, `text`, `source`, `source_url`, `prio`, 0 as `status`, NOW() FROM rex_dsgvo_server WHERE id=:id)';
+			rex_sql::factory()->setDebug(0)->setQuery($query, [":domain" => $domain, ":id" => rex_request('text_copy_id')]);
 			echo rex_view::success( $this->i18n('dsgvo_server_text_default_copied'));
 		}	
 				
@@ -227,11 +255,30 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$buttons_de = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default_de&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy_de') . '</a>';
 			$buttons_en = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default_en&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy_en') . '</a>';
 
+			// Todo: Einzelne Texte kopieren können //
+
+			$list = rex_list::factory('SELECT d.* FROM 
+			(SELECT id, prio, lang, keyword, name, concat(lang, "_", keyword) AS slug FROM rex_dsgvo_server WHERE domain = "default") d
+			LEFT JOIN 
+			(SELECT id, prio, lang, keyword, name, concat(lang, "_", keyword) AS slug FROM rex_dsgvo_server WHERE domain = "'.$domain.'") p
+			ON d.slug = p.slug
+			WHERE p.slug IS NULL ORDER BY lang, prio',200,'',false);
+			$list->removeColumn('id');
+			$list->removeColumn('slug');
+			$thIcon = '';
+			$tdIcon = '<i class="rex-icon rex-icon-add-action"></i>';
+			$list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
+			$list->setColumnParams($thIcon, ['func' => 'text_copy_by_id', 'text_copy_id' => '###id###','domain' => $domain]);
+	
 			$fragment = new rex_fragment();
 			$fragment->setVar('class', 'default', false);
 			$fragment->setVar('title', $this->i18n('dsgvo_server_default_title'), false);
-			$fragment->setVar('body', $buttons_de." ".$buttons_en, false);
+			$fragment->setVar('body', $buttons_de." ".$buttons_en . $list->get(), false);
+			$fragment->setVar('footer', $this->i18n('dsgvo_server_default_title'), false);
+			$fragment->setVar('header', $this->i18n('dsgvo_server_default_title'), false);
+
 			echo $fragment->parse('core/page/section.php');
+	
 		}
 
 

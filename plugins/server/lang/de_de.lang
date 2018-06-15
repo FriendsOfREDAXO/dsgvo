@@ -11,6 +11,7 @@ dsgvo_server_domain_list_title				= Domainliste
 dsgvo_server_domain_column_domain 			= Domain
 dsgvo_server_domain_column_manage_text 		= Texte verwalten
 dsgvo_server_domain_column_api_key 			= API Schlüssel
+dsgvo_server_domain_column_description   	= Hinweis
 dsgvo_server_domain_column_count_text 		= online
 dsgvo_server_domain_column_count_total		= gesamt
 dsgvo_server_domain_column_has_code 		= Tracking
@@ -21,6 +22,7 @@ dsgvo_server_domain_deleted 				= Domain wurde gelöscht.
 
 dsgvo_server_domain_column_domain_note 		= 
 dsgvo_server_domain_column_api_key_note 	= API-Key (optional) abrufen, um unbefugten Zugriff auf die Texte zu verweigern, z.B. <code>{0}</code>
+dsgvo_server_domain_column_description_note = zusätzliches Beschreibungs-, Hinweis- oder Notizfeld
 
 dsgvo_server_project_log_title 				= Letzer Abruf
 dsgvo_server_domain_column_last_call_none 	= Nie
