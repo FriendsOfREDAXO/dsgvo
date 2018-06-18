@@ -22,6 +22,7 @@ rex_sql_table::get(rex::getTable('dsgvo_server_project'))
     ->ensureColumn(new rex_sql_column('domain', 'text'))
     ->ensureColumn(new rex_sql_column('api_key', 'text'))
     ->ensureColumn(new rex_sql_column('updatedate', 'timestamp', false, '0000-00-00 00:00:00', 'on update CURRENT_TIMESTAMP'))
+    ->ensureColumn(new rex_sql_column('description', 'text'))
     ->setPrimaryKey('id')
     ->ensure();
     
