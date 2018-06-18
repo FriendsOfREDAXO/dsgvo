@@ -16,7 +16,7 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
         "&rex_version=" . rex::getVersion();
 
         $curl = curl_init();
-        curl_setopt_array($curl,array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
+        curl_setopt_array($curl,array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true, CURLOPT_FAILONERROR => true));
         $resp = curl_exec($curl);
 
         if (!curl_errno($curl)) { 
@@ -46,12 +46,12 @@ class rex_cronjob_dsgvo_sync extends rex_cronjob
                 rex_sql::factory()->setDebug(0)->setQuery($insert_query, $values);
             }
             $this->setMessage("DSGVO: Datenschutz-Texte abgeglichen.");
+            return true;
 
         } else {
             $this->setMessage("Fehler beim Aufruf des DSGVO: Texte-Servers");
+            return false;
         }
-
-        return true;
 
     }
 
