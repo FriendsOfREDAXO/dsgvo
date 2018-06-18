@@ -4,7 +4,6 @@ echo rex_view::title($this->i18n('dsgvo'));
 	$func = rex_request('func', 'string');
 	$domain = rex_request('domain', 'string');
 	$result = rex_request('result', 'string', false);
-    $start = rex_request('start', 'int');
 
 	if (($func == '' && !$result) || $func == "domain_delete") { 
 
@@ -17,8 +16,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		// Domain-Übersicht ANFANG //
 		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate, last_change, description FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain, max(updatedate) AS last_change FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT createdate AS logdate, domain FROM rex_dsgvo_server_log ORDER BY createdate DESC) AS L ON P.domain = L.domain GROUP BY P.`domain` ORDER BY P.`domain` ASC';
-		$list = rex_list::factory($query,200);
-        $list->addParam('start', $start);
+		$list = rex_list::factory($query,20,'domain');
+        $list->addParam('domain_start', rex_request('domain_start', 'int'));
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 		
@@ -76,6 +75,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 
     	$list->removeColumn('id');
 		$list->removeColumn('updatedate');
+
+		$list->setColumnSortable('domain');
+		$list->setColumnSortable('updatedate');
+		$list->setColumnSortable('logdate');
 		
 		$content1 = $list->get();
 		
@@ -101,7 +104,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server_project', '', 'id='.$id);
-        $form->addParam('start', $start);
+        $form->addParam('domain_start', $start);
 
 		//Start - add domain-field
 		$field = $form->addTextField('domain');
@@ -172,10 +175,11 @@ echo rex_view::title($this->i18n('dsgvo'));
 			}
 		}
 		
-		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',50,'',false);
+		$list = rex_list::factory('SELECT * FROM `'.rex::getTablePrefix().'dsgvo_server` WHERE domain = "'.$domain.'" ORDER BY `prio` ASC',20,'text',false);
 		$list->addParam('domain', $domain);
 		$list->addParam('func', $func);
-		$list->addParam('start', $start);
+        $list->addParam('log_start', rex_request('log_start', 'int'));
+        $list->addParam('text_start', rex_request('text_start', 'int'));
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('dsgvo_server_norows_message'));
 
@@ -234,7 +238,11 @@ echo rex_view::title($this->i18n('dsgvo'));
 
 		// LOGS
 		$domain = rex_request('domain', 'string', "");
-		$list = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY createdate DESC LIMIT 30', 10);
+		$list = rex_list::factory('SELECT * FROM rex_dsgvo_server_log WHERE domain = "'.$domain.'" ORDER BY createdate DESC LIMIT 30', 10, 'log');
+		$list->addParam('domain', $domain);
+		$list->addParam('func', $func);
+        $list->addParam('log_start', rex_request('log_start', 'int'));
+        $list->addParam('text_start', rex_request('text_start', 'int'));
 
 		$list->setColumnLabel('id', $this->i18n('dsgvo_server_project_log_id'));
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_project_log_domain'));
@@ -262,7 +270,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 			LEFT JOIN 
 			(SELECT id, prio, lang, keyword, name, concat(lang, "_", keyword) AS slug FROM rex_dsgvo_server WHERE domain = "'.$domain.'") p
 			ON d.slug = p.slug
-			WHERE p.slug IS NULL ORDER BY lang, prio',200,'',false);
+			WHERE p.slug IS NULL ORDER BY lang, prio',100,'',false);
 			$list->removeColumn('id');
 			$list->removeColumn('slug');
 			$thIcon = '';
@@ -294,7 +302,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server', '', 'id='.$id);
-        $form->addParam('start', $start);
+        $form->addParam('log_start', rex_request('log_start', 'int'));
+        $form->addParam('text_start', rex_request('text_start', 'int'));
 
 		//Start - add status-field 
 		$field = $form->addSelectField('category');
