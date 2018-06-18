@@ -2,7 +2,7 @@ package: dsgvo
 version: '0.7beta4'
 title: 'translate:title'
 author: 'Friends Of REDAXO, Pixelfirma, alexplus_de, pixeldaniel'
-supportpage: 'https://github.com/alexplusde/dsgvo/'
+supportpage: 'https://github.com/FriendsOfREDAXO/dsgvo/'
 icon: fa-gavel
 
 requires:
