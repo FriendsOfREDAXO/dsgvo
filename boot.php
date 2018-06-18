@@ -13,7 +13,7 @@ if (rex_addon::get('cronjob')->isAvailable() && rex_addon::get('phpmailer')->isA
     rex_cronjob_manager::registerType('rex_cronjob_dsgvo_phpmailerlogs');
 }
 
-if (rex::getUser()->isAdmin()) {
+if (rex::getUser() && rex::getUser()->isAdmin()) {
     $fortune[] = "„Der Mensch ist dazu geboren, großes zu leisten, wenn er versteht, die DSGVO umzusetzen.“";
     $fortune[] = "„Die beste Möglichkeit, Träume zu verwirklichen, ist datenschutzkonformes Handeln.“";
     $fortune[] = "„Hilfe!!! Ich werde in einer deutschen Abmahn-Kanzlei gefangen gehalten.“";
