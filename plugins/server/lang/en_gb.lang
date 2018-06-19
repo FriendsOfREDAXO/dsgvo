@@ -1,0 +1,88 @@
+dsgvo_server_text_title 					= These text blocks will be sent from the central server.
+dsgvo_server_project_title 					= The text blocks wil be sent to this domain.
+
+dsgvo_server_text_edit 						= Edit privacy statement page text
+dsgvo_server_text_add 						= Add privacty statement page text
+
+# Domainliste
+
+dsgvo_server_domain_list_title				= Domains
+
+dsgvo_server_domain_column_domain 			= Domain
+dsgvo_server_domain_column_manage_text 		= Manage texts
+dsgvo_server_domain_column_api_key 			= API key
+dsgvo_server_domain_column_description   	= Notice
+dsgvo_server_domain_column_count_text 		= online
+dsgvo_server_domain_column_count_total		= total
+dsgvo_server_domain_column_has_code 		= Tracking
+dsgvo_server_domain_column_last_call 		= Last call
+dsgvo_server_domain_column_delete 			= delete
+dsgvo_server_domain_delete_confirm 			= Delete entry?
+dsgvo_server_domain_deleted 				= Domain deleted
+
+dsgvo_server_domain_column_domain_note 		= 
+dsgvo_server_domain_column_api_key_note 	= Check API key (optional), to restrict access to the texts, ex. <code>{0}</code>
+dsgvo_server_domain_column_description_note = Additional field for description, notices or notes
+
+dsgvo_server_project_log_title 				= Last call
+dsgvo_server_domain_column_last_call_none 	= Never
+
+# Texte verwalten
+
+dsgvo_server_default_title 					= Use default texts
+dsgvo_server_default_text_copy_de 			= Copy german texts
+dsgvo_server_default_text_copy_en 			= Copy english texts
+
+dsgvo_server_text_default_copied 			= Texts successfully copied
+
+dsgvo_server_text_column_category			= Category
+dsgvo_server_text_column_category_1			= 1. Privacy statement at a glance
+dsgvo_server_text_column_category_2			= 2. General notices and essential information
+dsgvo_server_text_column_category_3			= 3. Data security official
+dsgvo_server_text_column_category_4			= 4. Data acquistion
+dsgvo_server_text_column_category_5			= 5. Social media
+dsgvo_server_text_column_category_6			= 6. Analytics and advertisment
+dsgvo_server_text_column_category_7			= 7. Newsletter
+dsgvo_server_text_column_category_8			= 8. Plugins and tools
+dsgvo_server_text_column_domain 			= Domain
+dsgvo_server_text_column_lang 				= Language
+dsgvo_server_text_column_keyword 			= Key
+dsgvo_server_text_column_name 				= Headline
+dsgvo_server_text_column_text 				= Privacy statement
+dsgvo_server_text_column_custom_text 		= Custom privacy statement
+dsgvo_server_text_column_source 			= Source
+dsgvo_server_text_column_source_url 		= Link to source
+dsgvo_server_text_column_status 			= Show in privacy statement?
+dsgvo_server_text_column_prio 				= Order
+dsgvo_server_text_column_updatedate 		= Last modified ...
+dsgvo_server_text_column_delete				= delete
+dsgvo_server_text_delete_confirm			= Delete entry?
+dsgvo_server_text_deleted					= Entry successfully deleted.
+
+dsgvo_server_status_activate_success 		= Status successfully changed to "show"
+dsgvo_server_status_deactivate_success 		= Status successfully changed to "hidden"
+
+dsgvo_server_norows_message 				= No entries found
+
+dsgvo_server_text_column_keyword_note 		= The key may only consist of <code>a-zA-Z1-9_-</code>, for example <code>facebook_pixel</code>
+dsgvo_server_text_column_name_note 			= Headline from privacy statement
+dsgvo_server_text_column_status_note 		=
+dsgvo_server_text_column_text_note 			= Privacy statement text in textile code format. May be overwritten from central text server.
+dsgvo_server_text_column_source_note 		= Source of privacy statement, ex. <code>E-Recht 24</code>
+dsgvo_server_text_column_source_url_note 	= Link to source
+dsgvo_server_text_column_domain_note 		= If this is a multi domain REDAXO installation, please select the domain this text corresponds to.
+dsgvo_server_text_column_code 				= Tracking code
+dsgvo_server_text_column_code_note 			= Service or tracking code. Ex. the actual code of the Facebook Pixel, Google Analytics etc. - a matching opt out link will be generated.
+dsgvo_server_text_column_prio_note 			= 
+dsgvo_server_text_column_status_note 		= 
+dsgvo_server_text_column_lang_note 			= Double digit ISO code
+
+dsgvo_server_text_column_status_is_offline 	= hide
+dsgvo_server_text_column_status_is_online 	= show
+
+# Änderungslog
+
+dsgvo_server_project_log_id 				= ID
+dsgvo_server_project_log_domain 			= Domain
+dsgvo_server_project_log_status 			= Status
+dsgvo_server_project_log_createdate 		= Created ...
