@@ -1,0 +1,207 @@
+# Menü-Einträge
+
+dsgvo 										= DGPR - Addon till dataskyddsförordningen
+title 										= DGPR
+setup 										= Setup
+dsgvo_page_edit								= Integritetspolicy
+consent 									= Cookie akceptans
+docs 										= Hjälp
+
+setup-overview 								= Översikt
+setup-modul 								= Implementera dataskyddsförordningen
+setup-backup 								= SQL-backups
+setup-phpmailer 							= PHP-mailer logs
+setup-contactform 							= Kontaktformulär
+setup-dementia 								= Automatiserad radering
+setup-external 								= Externa tjänster
+setup-consent 								= Cookie samtycke
+
+dsgvo_docs_navigation = Navigation
+
+# Cronjobs-Beschriftungen
+
+
+dsgvo_dementia_cronjob_name = DGPR: radera gamla data
+
+dsgvo_dementia_cronjob_rex_table_label 		= Tabell
+dsgvo_dementia_cronjob_rex_table_notice 	= Namn av tabellen, deras data ska raderas regelbundet.
+
+dsgvo_dementia_cronjob_interval_label 		= Lagringstid
+dsgvo_dementia_cronjob_interval_notice 		= Ålder av data i månader tills data ska raderas, t.ex. <Kod> 6 </ code>
+
+dsgvo_dementia_cronjob_field_label 			= Fältnamn
+dsgvo_dementia_cronjob_field_notice 		= Namnet på det fält där tidsstämpeln är lagrad, t.ex. <code> createate </ code> eller <code> uppdatering </ code>
+
+
+dsgvo_privacy_cronjob_name 	= DGPR: ladda texter till dataskyddsförordningssida ...
+
+dsgvo_privacy_cronjob_url_label 			= Käll-API
+dsgvo_privacy_cronjob_url_notice 			= 
+
+dsgvo_privacy_cronjob_domain_label 		    = Domäner
+dsgvo_privacy_cronjob_domain_notice 		= t.ex. <code>redaxo.org</code>
+
+dsgvo_privacy_cronjob_api_key_label 		= API-nyckel
+dsgvo_privacy_cronjob_api_key_notice 		= specificerad av servern
+
+
+dsgvo_phpmailerlogs_cronjob_name = DGPR: radera PHP-mailer logs
+
+dsgvo_phpmailerlogs_delete_interval         = Utgångsperiod
+dsgvo_phpmailerlogs_delete_interval_notice  = OBS: CRONJOB HAR INGEN FUNKTION! Stöd till Github önskat.
+dsgvo_phpmailerlogs_delete_interval_monthly = månadsvis
+dsgvo_phpmailerlogs_delete_interval_weekly  = veckovis
+
+# Setup Übersicht
+
+dsgvo_description_all_title 				= Översikt
+dsgvo_description_all 						= Denna tillägg ger stöd för DGPR-kompatibel implementering av en eller flera REDAXO-webbplatser. Det finns emellertid inga rättsliga krav. För den DGPR-kompatibla implementeringen är det helhetshänsyn för data som genereras på en webbplats och dess användning viktigt. Det finns en växande samling tips och rekommendationer i hjälpavsnittet.
+
+dsgvo_description_ad_title 					= Stöd vidareutveckling
+dsgvo_description_ad 						= Har denna tillägg sparat dig värdefull tid eller använt den till en särskild grad under genomförandet? Skicka ett tack till <a href="mailto:danke@alexplus.de?subject=A tack ... "> danke@alexplus.de </a>
+
+# Setup Datenschutz-Erklärung einbinden
+
+install_dsgvo_modul 						= Installera modul för sekretesspolicy
+install_dsgvo_modul_description 			= Skriv ut den här modulen på sidan "Sekretess" för att skriva ut texten från fliken "Sekretesspolicy". För tjänster där en opt-out är möjlig genereras en opt-out länk automatiskt, vilket ger användaren möjlighet att stänga av spårningskoden.
+
+install_dsgvo_module 						= Installera modul
+install_update_dsgvo_module 				= Återinstallera modul
+
+# Setup SQL-Backups
+
+dsgvo_backup_title 							= REDAXO-backup
+dsgvo_backup_description 					= Om REDAXO manuellt eller automatiskt skapar vanliga säkerhetskopior kan de innehålla känslig data. Därför bör säkerhetskopieringen också raderas efter en rimlig tid.
+
+check_dsgvo_backupcronjob_title             = Backup-cronjobs
+check_dsgvo_backupcronjob_name              = Namn
+check_dsgvo_backupcronjob_nexttime          = nästa planerade utförandet
+check_dsgvo_backupcronjob_status            = Status
+check_dsgvo_backupcronjob_edit              = Redigera backup cronjobb
+
+# Setup PHP-Mailer Logs
+
+check_dsgvo_phpmailer-logs_cronjob 			= PHP-mailer logs
+check_dsgvo_phpmailer-logs_cronjob_description = 
+
+check_dsgvo_phpmailer-logs_caption 			= Log-fil
+check_dsgvo_phpmailer-logs_filename 		= Filnamn
+check_dsgvo_phpmailer-logs_folder 			= Mapp
+check_dsgvo_phpmailer-logs_filesize 		= Filstorlek
+check_dsgvo_phpmailer-logs_createdate 		= Skapat den ...
+
+# Setup Kontaktformular
+
+dsgvo_setup_contactform_title 				= DGPR-konform kontaktformulär
+dsgvo_setup_contactform_description			= Med de nya DGPR-riktlinjerna måste en databehandlingsformulär uttryckligen godkännas.
+
+dsgvo_setup_contactform_pipe_title 			= YForm pipe-stavning
+dsgvo_setup_contactform_php_title 			= YForm PHP stavning
+dsgvo_setup_contactform_general_title 		= Allmän stavning
+dsgvo_setup_contactform_pipe_content 		=
+dsgvo_setup_contactform_php_content 		=
+dsgvo_setup_contactform_general_content 	= För manuellt genererade kontaktformulär rekommenderas det också att ange och validera en kryssruta
+
+#Setup Automatisiertes Löschen
+
+check_dsgvo_dementiasql_cronjob 			= Databas tabeller med eventuellt personliga uppgifter ("rätt att glömma")
+check_dsgvo_dementiasql_cronjob_description = Personuppgifter kan också arkiveras i REDAXO-databasen, till exempel via en kontaktformulär. Dataposter som inte längre behövs kan automatiskt raderas av ett cron-jobb efter en viss tid.
+check_dsgvo_dementia_cronjob 				= Ställ in cronjob för gamla poster
+
+check_dsgvo_dementia_cronjob_table_name 	= Tabellnamn
+check_dsgvo_dementia_cronjob_column_name 	= Spaltnamn
+check_dsgvo_dementia_cronjob_data_type 		= Datatyp
+check_dsgvo_dementia_cronjob_column 		= Skapa cronjob?
+check_dsgvo_dementia_cronjob_edit 			= Bearbeta cronjob
+check_dsgvo_dementia_cronjob_add 			= Tillfoga cronjob
+
+#Setup Externe Dienste
+
+check_dsgvo_tracking 						= Migrera / anpassa spårningskoder och externa tjänster manuellt
+check_dsgvo_tracking_description 			= I det här installationssteget söker mallar efter följande sökord: <code> {0} </ code>. Om det behövs, kolla här om externa tjänster är inblandade, t.ex. direkt via <code> <link> </ code>, <code> <iframe> </ code> eller <code> <script > </ code> taggen.
+check_dsgvo_tracking_templates_danger 		= Mallar
+check_dsgvo_tracking_templates_success 		= Inga mallar hittades som innehåller följande nyckelord: <code> {0} </ code>
+check_dsgvo_tracking_modules_danger 		= Moduler
+check_dsgvo_tracking_modules_success 		= Inga moduler hittades innehållande följande nyckelord: <code> {0} </ code>
+
+check_dsgvo_external_template_id 			= ID
+check_dsgvo_external_template_name 			= Namn
+check_dsgvo_external_template_column 		= Bearbeta mallar?
+check_dsgvo_external_template_edit 			= Bearbeta mallar
+
+check_dsgvo_external_module_id 				= ID
+check_dsgvo_external_module_name 			= Namn
+check_dsgvo_external_module_column 			= Bearbeta modul?
+check_dsgvo_external_module_edit 			= Bearbeta modul
+
+# Setup Cronjob
+
+check_dsgvo_cronjob 						= Cronjob för att kolla upp textmoduler / centraliserad hantering av spårningskoder
+check_dsgvo_cronjob_description 			= Om sekretess texterna ska hanteras centralt kan ett cronjobb upprättas, vilket hämtar dessa texter beroende på webbplatsen och språket. DGPR addon kommer med en server plugin.
+
+dsgvo_add_cronjob 							= Skapa nytt cronjob
+dsgvo_edit_cronjob 							= Bearbeta befintlig cronjob
+
+dsgvo_edit_text 							= skapa texter manuellt
+
+
+check_dsgvo_dementia_cronjob_description 	= Gamla personuppgifter bör kontrolleras för att se om känsliga / personliga poster samlas in, t.ex. på kontaktformulär eller i historia.
+
+
+dsgvo_dementiasql_add_cronjob 				= Rätta in Cronjob nu
+
+
+
+# Datenschutz-Erklärung im Backend
+
+dsgvo_client_text_title 					= Externa tjänster för sekretessutlåtandet administreras här.
+
+dsgvo_client_text_column_category			= Kategori
+dsgvo_client_text_column_domain 			= Domän
+dsgvo_client_text_column_lang 				= Språk
+dsgvo_client_text_column_keyword 			= Nyckel
+dsgvo_client_text_column_name 				= Rubrik
+dsgvo_client_text_column_text 				= Integritetspolicy
+dsgvo_client_text_column_custom_text 		= Egen integritetspolicy
+dsgvo_client_text_column_code 				= Trackingcode
+dsgvo_client_text_column_source 			= källa
+dsgvo_client_text_column_source_url 		= Länk till källan
+dsgvo_client_text_column_status 			= Visa i integritetspolicy?
+dsgvo_client_text_column_status_is_offline 	= göm
+dsgvo_client_text_column_status_is_online 	= visa
+dsgvo_client_text_column_prio 				= Ordning
+dsgvo_client_text_column_updatedate 		= Senast ändrat den ...
+dsgvo_client_text_column_delete 			= radera
+
+dsgvo_client_text_column_domain_note 		= Om REDAXO-installationen har flera domäner, till exempel i YRewrite: domän som texten gäller.
+dsgvo_client_text_column_lang_note 			= REDAXO-språk
+dsgvo_client_text_column_keyword_note 		= Den här nyckeln kan bara bestå av <code> a-zA-Z1-9 _- </ code>, t.ex. <code> facebook_pixel </ code>
+dsgvo_client_text_column_name_note 			= Rubrik, som anges i sekretesspolicyen
+dsgvo_client_text_column_status_note 		= 
+dsgvo_client_text_column_text_note 			= Texten i sekretessförklaringen som textile-kod. Om det behövs skrivs den över av textservern.
+dsgvo_client_text_column_custom_text_note 	= Texten i sekretessförklaringen som textilkod. Överskriver texter från textservern.
+dsgvo_client_text_column_source_note 		= Källa till sekretesspolicyen, t.ex. <code>E-Recht  24 </ code>
+dsgvo_client_text_column_source_url_note 	= Länk till källan
+dsgvo_client_text_column_prio_note 			= 
+dsgvo_client_text_column_code_note 			= Tjänst eller spårningskod, t.ex. den faktiska koden för Facebook Pixel, Google Analytics eller liknande - vem kompletteras sedan med en bortkoppling.
+
+dsgvo_client_status_activate_success 		= Status ändras framgångsrikt till "visa"
+dsgvo_client_status_deactivate_success 		= Status ändras framgångsrikt till "göm"
+
+dsgvo_client_text_edit 						= Bearbeta tjänst
+dsgvo_client_text_add 						= Tillfoga tjänst
+
+dsgvo_client_norows_message 				= Inga tillägg tillgängliga
+
+# Cookie-Consent
+
+dsgvo_consent_css_title 					= Cookie samtycke banner
+dsgvo_consent_css_label 					= Mata in CSS
+dsgvo_consent_css_notice 					= Denna cookie samtycke banner CSS kan anpassas till utseendet på webbplatsen efter behov.
+save                    					= Spara
+
+dsgvo_setup_overview_template_tracking      = Trackingcode output
+dsgvo_setup_overview_template_tracking_description = Kopiera den här mallkodsavsnittet i <code> <head> </ code> i mallen.
+dsgvo_setup_overview_template_consent       = Cookie samtycke banner
+dsgvo_consent_template_code_title           = Migrera cookie samtycke banner
+dsgvo_consent_template_code_description     = Sätt in denna mallkodsektion längst ner på webbplatsen, helst innan du stänger taggen <code> <body> </ code>.
