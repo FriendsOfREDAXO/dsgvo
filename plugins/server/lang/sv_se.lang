@@ -1,0 +1,88 @@
+dsgvo_server_text_title 					= Dessa textmoduler skickas av servern.
+dsgvo_server_project_title 					= Texter skickas till dessa domäner.
+
+dsgvo_server_text_edit 						= Redigera text på sekretessidan
+dsgvo_server_text_add 						= Lägg till text till sekretessidan
+
+# Domainliste
+
+dsgvo_server_domain_list_title				= Domänlist
+
+dsgvo_server_domain_column_domain 			= Domän
+dsgvo_server_domain_column_manage_text 		= Förvalta texter
+dsgvo_server_domain_column_api_key 			= API nyckel
+dsgvo_server_domain_column_description   	= Ledtråd
+dsgvo_server_domain_column_count_text 		= online
+dsgvo_server_domain_column_count_total		= totalt
+dsgvo_server_domain_column_has_code 		= Tracking
+dsgvo_server_domain_column_last_call 		= Senaste upprop
+dsgvo_server_domain_column_delete 			= radera
+dsgvo_server_domain_delete_confirm 			= Vill du verkligen radera inlägget?
+dsgvo_server_domain_deleted 				= Domän raderades.
+
+dsgvo_server_domain_column_domain_note 		= 
+dsgvo_server_domain_column_api_key_note 	= Hämta API-nyckeln (valfritt) för att neka obehörig åtkomst till texterna, t.ex. <Kod> {0} </ code>
+dsgvo_server_domain_column_description_note = ytterligare beskrivnings, antecknings eller notisfält
+
+dsgvo_server_project_log_title 				= Senaste upprop
+dsgvo_server_domain_column_last_call_none 	= Aldrig
+
+# Texte verwalten
+
+dsgvo_server_default_title 					= Ta över default texter
+dsgvo_server_default_text_copy_de 			= Kopiera tyska texter
+dsgvo_server_default_text_copy_en 			= Kopiera engelska texter
+
+dsgvo_server_text_default_copied 			= Texter kopierades
+
+dsgvo_server_text_column_category			= Kategori
+dsgvo_server_text_column_category_1			= 1. Dataskydd / överblick
+dsgvo_server_text_column_category_2			= 2. Allmän och obligatorisk information
+dsgvo_server_text_column_category_3			= 3. Dataskyddsansvarig
+dsgvo_server_text_column_category_4			= 4. Datainsamling på vår hemsida
+dsgvo_server_text_column_category_5			= 5. Sociala media
+dsgvo_server_text_column_category_6			= 6. Analysverktyg och reklam
+dsgvo_server_text_column_category_7			= 7. Newsletter
+dsgvo_server_text_column_category_8			= 8. Tillägg och verktyg
+dsgvo_server_text_column_domain 			= Domän
+dsgvo_server_text_column_lang 				= Språk
+dsgvo_server_text_column_keyword 			= Nyckel
+dsgvo_server_text_column_name 				= Rubrik
+dsgvo_server_text_column_text 				= Sekretesspolicy
+dsgvo_server_text_column_custom_text 		= Egen sekretesspolicy
+dsgvo_server_text_column_source 			= Källa
+dsgvo_server_text_column_source_url 		= Länk till källan
+dsgvo_server_text_column_status 			= Visa i sekretesspolicyn?
+dsgvo_server_text_column_prio 				= Ordning
+dsgvo_server_text_column_updatedate 		= Senast ändrat den ...
+dsgvo_server_text_column_delete				= radera
+dsgvo_server_text_delete_confirm			= Vill du verkligen radera inlägget?
+dsgvo_server_text_deleted					= Inlägg raderades.
+
+dsgvo_server_status_activate_success 		= Status ändrades framgångsrikt till "visa"
+dsgvo_server_status_deactivate_success 		= Status ändrades framgångsrikt till "gömma"
+
+dsgvo_server_norows_message 				= Inga inlägg tillgängliga
+
+dsgvo_server_text_column_keyword_note 		= Den här nyckeln kan bara bestå av <code> a-zA-Z1-9 _- </ code>, t.ex. <code> facebook_pixel </ code>
+dsgvo_server_text_column_name_note 			= Rubrik, som anges i sekretesspolicyen
+dsgvo_server_text_column_status_note 		=
+dsgvo_server_text_column_text_note 			= Texten i sekretessförklaringen som textile-kod
+dsgvo_server_text_column_source_note 		= Källa till sekretesspolicyen, t.ex. <code> e-law 24 </ code>
+dsgvo_server_text_column_source_url_note 	= Länk till källan
+dsgvo_server_text_column_domain_note 		= Om REDAXO-installationen har flera domäner, till exempel i YRewrite: domän som texten gäller.
+dsgvo_server_text_column_code 				= Tracking kod
+dsgvo_server_text_column_code_note 			= Tjänst eller spårningskod, t.ex. den faktiska koden för Facebook Pixel, Google Analytics eller liknande - Detta kompletteras sedan av en opt-out länk.
+dsgvo_server_text_column_prio_note 			= 
+dsgvo_server_text_column_status_note 		= 
+dsgvo_server_text_column_lang_note 			= Språk som tvåsiffrig ISO-kod, t.ex. <code>de</code>
+
+dsgvo_server_text_column_status_is_offline 	= dölj
+dsgvo_server_text_column_status_is_online 	= visa
+
+# Änderungslog
+
+dsgvo_server_project_log_id 				= ID
+dsgvo_server_project_log_domain 			= Domän
+dsgvo_server_project_log_status 			= Status
+dsgvo_server_project_log_createdate 		= Skapat den ..
