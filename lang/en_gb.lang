@@ -1,0 +1,207 @@
+# Menü-Einträge
+
+dsgvo 										= GDPR - Addon for the general data protection regulation
+title 										= GDPR
+setup 										= Setup
+dsgvo_page_edit								= Privacy statement
+consent 									= Cookie agreement
+docs 										= Help
+
+setup-overview 								= Overview
+setup-modul 								= Include privavy statement
+setup-backup 								= SQL backups
+setup-phpmailer 							= PHP mailer logs
+setup-contactform 							= Contact form
+setup-dementia 								= automatic deletion
+setup-external 								= external services
+setup-consent 								= Cookie agreement
+
+dsgvo_docs_navigation = Navigation
+
+# Cronjobs-Beschriftungen
+
+
+dsgvo_dementia_cronjob_name = GDPR: remove old records
+
+dsgvo_dementia_cronjob_rex_table_label 		= Table
+dsgvo_dementia_cronjob_rex_table_notice 	= Name of table wherein records will be deleted at regular intervals
+
+dsgvo_dementia_cronjob_interval_label 		= Retention time
+dsgvo_dementia_cronjob_interval_notice 		= Age of record in months, until the record should be deleted, ex. <code>6</code>
+
+dsgvo_dementia_cronjob_field_label 			= Column name
+dsgvo_dementia_cronjob_field_notice 		= Name of column containing timestamp, ex. <code>createdate</code> or <code>updatedate</code>
+
+
+dsgvo_privacy_cronjob_name 	= GDPR: loading text from privacy statement page...
+
+dsgvo_privacy_cronjob_url_label 			= Source API
+dsgvo_privacy_cronjob_url_notice 			= 
+
+dsgvo_privacy_cronjob_domain_label 		    = Domains
+dsgvo_privacy_cronjob_domain_notice 		= Ex. <code>redaxo.org</code>
+
+dsgvo_privacy_cronjob_api_key_label 		= API key
+dsgvo_privacy_cronjob_api_key_notice 		= provided by server
+
+
+dsgvo_phpmailerlogs_cronjob_name = GDPR: delete PHP mailer logs
+
+dsgvo_phpmailerlogs_delete_interval         = Interval time
+dsgvo_phpmailerlogs_delete_interval_notice  = NOTE: CRONJOB IS NOT YET FUNCTIONAL. HELP WANTED ON GITHUB.
+dsgvo_phpmailerlogs_delete_interval_monthly = monthly
+dsgvo_phpmailerlogs_delete_interval_weekly  = weekly
+
+# Setup Übersicht
+
+dsgvo_description_all_title 				= overview
+dsgvo_description_all 						= This addon provides assistance in creating one or more REDAXO websites which conform to the GDPR, importantly without legal claim. To ensure GDPR conformity it is essential to review a specific website in its entirety and especially in regards to the collection of cookies and/or personal data as well as the handling/usage of said information. More information on this can be found in the help section where a growing collection of tips and recommendations are provided.
+
+dsgvo_description_ad_title 					= Support development
+dsgvo_description_ad 						= Has this addon helped you to save valuable time or in any other way? Send a thank you note to <a href="mailto:danke@alexplus.de?subject=A thank you note from ...">danke@alexplus.de</a>
+
+# Setup Datenschutz-Erklärung einbinden
+
+install_dsgvo_modul 						= Install module for privacy statement
+install_dsgvo_modul_description 			= Output this module on the "privacy statement" page in order to output the text from the "Privacy statement" tab. For services where opting out is possible a matching opt out link will be generated automatically allowing visitors to opt out and disable any tracking codes.
+
+install_dsgvo_module 						= Install module
+install_update_dsgvo_module 				= Reinstall module
+
+# Setup SQL-Backups
+
+dsgvo_backup_title 							= REDAXO backups
+dsgvo_backup_description 					= If REDAXO creates backups manually or automatically at regular intervals these backups may contain sensitive data. For this reason backups it is recommended to delete backups after an adequate amount of time.
+
+check_dsgvo_backupcronjob_title             = Backup cronjobs
+check_dsgvo_backupcronjob_name              = Name
+check_dsgvo_backupcronjob_nexttime          = next scheduled task
+check_dsgvo_backupcronjob_status            = Status
+check_dsgvo_backupcronjob_edit              = Edit backup cronjob
+
+# Setup PHP-Mailer Logs
+
+check_dsgvo_phpmailer-logs_cronjob 			= PHP mailer logs
+check_dsgvo_phpmailer-logs_cronjob_description = 
+
+check_dsgvo_phpmailer-logs_caption 			= Log files
+check_dsgvo_phpmailer-logs_filename 		= Filename
+check_dsgvo_phpmailer-logs_folder 			= Folder
+check_dsgvo_phpmailer-logs_filesize 		= Filesize
+check_dsgvo_phpmailer-logs_createdate 		= Created
+
+# Setup Kontaktformular
+
+dsgvo_setup_contactform_title 				= GDPR conform contact form
+dsgvo_setup_contactform_description			= The latest GDPR guidelines demands explicit user confirmation for data processing in a contact form.
+
+dsgvo_setup_contactform_pipe_title 			= YForm pipe notation
+dsgvo_setup_contactform_php_title 			= YForm PHP notation
+dsgvo_setup_contactform_general_title 		= General notation
+dsgvo_setup_contactform_pipe_content 		=
+dsgvo_setup_contactform_php_content 		=
+dsgvo_setup_contactform_general_content 	= Custom contact forms should provide and validate a checkbox to allow user to opt in their data being processed
+
+#Setup Automatisiertes Löschen
+
+check_dsgvo_dementiasql_cronjob 			= Database tables which may contain personal data ("right to forget")
+check_dsgvo_dementiasql_cronjob_description = Personal data may additionally be archived in the REDAXO database, for example data provided over contact forms. Data which is not required any longer can automatically be deleted after a certain time period using a cronjob.
+check_dsgvo_dementia_cronjob 				= Schedule a cronjob to remove old records
+
+check_dsgvo_dementia_cronjob_table_name 	= Table name
+check_dsgvo_dementia_cronjob_column_name 	= Column name
+check_dsgvo_dementia_cronjob_data_type 		= File type
+check_dsgvo_dementia_cronjob_column 		= Schedule cronjob
+check_dsgvo_dementia_cronjob_edit 			= Edit cronjob
+check_dsgvo_dementia_cronjob_add 			= Add cronjob
+
+#Setup Externe Dienste
+
+check_dsgvo_tracking 						= Manually migrate/adapt tracking codes and external services
+check_dsgvo_tracking_description 			= In this step templates will be scanned for the following terms: <code>{0}</code>. Please check if these are external services which are included directly via tags such as <code><link></code>, <code><iframe></code> or <code><script></code>.
+check_dsgvo_tracking_templates_danger 		= Templates
+check_dsgvo_tracking_templates_success 		= No templates containing the terms <code>{0}</code> have been found.
+check_dsgvo_tracking_modules_danger 		= Modules
+check_dsgvo_tracking_modules_success 		= No modules containing the terms <code>{0}</code> have been found.
+
+check_dsgvo_external_template_id 			= ID
+check_dsgvo_external_template_name 			= Name
+check_dsgvo_external_template_column 		= Edit template?
+check_dsgvo_external_template_edit 			= Edit template
+
+check_dsgvo_external_module_id 				= ID
+check_dsgvo_external_module_name 			= Name
+check_dsgvo_external_module_column 			= Edit module?
+check_dsgvo_external_module_edit 			= Edit module
+
+# Setup Cronjob
+
+check_dsgvo_cronjob 						= Cronjob for quering text blocks / central administration of tracking codes
+check_dsgvo_cronjob_description 			= If the privacy statement texts are administered centrally a cronjob can be scheduled to get the corresponding texts depending on the website and language. A serverside plugin is provided with the GDPR addon.
+
+dsgvo_add_cronjob 							= Schedule new cronjob
+dsgvo_edit_cronjob 							= Edit existing cronjob
+
+dsgvo_edit_text 							= Manually provide texts
+
+
+check_dsgvo_dementia_cronjob_description 	= Old records containing personal data should be reviewed in regards to the collection/containment of sensible personal data. Like in contact forms or in the History (addon).
+
+
+dsgvo_dementiasql_add_cronjob 				= Schedule cronjob now
+
+
+
+# Datenschutz-Erklärung im Backend
+
+dsgvo_client_text_title 					= Here you can manage external services for the privacy statement.
+
+dsgvo_client_text_column_category			= Category
+dsgvo_client_text_column_domain 			= Domain
+dsgvo_client_text_column_lang 				= Language
+dsgvo_client_text_column_keyword 			= Key
+dsgvo_client_text_column_name 				= Headline
+dsgvo_client_text_column_text 				= Privacy statement
+dsgvo_client_text_column_custom_text 		= Custom privacy statement
+dsgvo_client_text_column_code 				= Tracking code
+dsgvo_client_text_column_source 			= Source
+dsgvo_client_text_column_source_url 		= Link to source
+dsgvo_client_text_column_status 			= Show in privacy statement?
+dsgvo_client_text_column_status_is_offline 	= hide
+dsgvo_client_text_column_status_is_online 	= show
+dsgvo_client_text_column_prio 				= Order
+dsgvo_client_text_column_updatedate 		= Modified
+dsgvo_client_text_column_delete 			= delete
+
+dsgvo_client_text_column_domain_note 		= If this is a multi domain REDAXO installation, please select the domain this text corresponds to.
+dsgvo_client_text_column_lang_note 			= REDAXO language
+dsgvo_client_text_column_keyword_note 		= The key may only consist of <code>a-zA-Z1-9_-</code>, for example <code>facebook_pixel</code>
+dsgvo_client_text_column_name_note 			= Headline from privacy statement
+dsgvo_client_text_column_status_note 		= 
+dsgvo_client_text_column_text_note 			= Privacy statement text in textile code format. May be overwritten from central text server.
+dsgvo_client_text_column_custom_text_note 	= Privacy statement text in textile code format. May be overwritten from central text server.
+dsgvo_client_text_column_source_note 		= Source of privacy statement, ex. <code>E-Recht 24</code>
+dsgvo_client_text_column_source_url_note 	= Link to source
+dsgvo_client_text_column_prio_note 			= 
+dsgvo_client_text_column_code_note 			= Service or tracking code. Ex. the actual code of the Facebook Pixel, Google Analytics etc. - a matching opt out link will be generated.
+
+dsgvo_client_status_activate_success 		= Status successfully changed to "show"
+dsgvo_client_status_deactivate_success 		= Status successfully changed to "hidden"
+
+dsgvo_client_text_edit 						= Edit service
+dsgvo_client_text_add 						= Add service
+
+dsgvo_client_norows_message 				= No entries
+
+# Cookie-Consent
+
+dsgvo_consent_css_title 					= Cookie consent banner
+dsgvo_consent_css_label 					= Enter CSS
+dsgvo_consent_css_notice 					= The CSS for the cookie consent banner can be customized to reflect the websites design.
+save                    					= Save
+
+dsgvo_setup_overview_template_tracking      = Tracking code output
+dsgvo_setup_overview_template_tracking_description = Enter this template code in <code><head></code> of the corresponding template.
+dsgvo_setup_overview_template_consent       = Cookie consent banner
+dsgvo_consent_template_code_title           = Include cookie consent banner
+dsgvo_consent_template_code_description     = Enter this template code in the foot of the corresponding template, preferably right bevor the closing <code><body></code> tag.
