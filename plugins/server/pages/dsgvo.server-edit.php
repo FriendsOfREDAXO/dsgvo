@@ -53,10 +53,10 @@ echo rex_view::title($this->i18n('dsgvo'));
 				if($params['list']->getValue('logdate') > $params['list']->getValue('last_change')) {
 					return $params['list']->getValue('logdate'); 
 				} else {
-					return '<span class="rex-icon fa-exclamation-triangle"></span> '.$params['list']->getValue('logdate');
+					return '<a href="http://www.'.$params['list']->getValue('domain').'/dsgvo/dsgvo.inc.php?rex-api-call=dsgvo_sync&api_key='.$params['list']->getValue('api_key').'" target="_blank"><span class="rex-icon fa-exclamation-triangle"></span> '.$params['list']->getValue('logdate').'</a>';
 				};
 			} else { 
-				return '<span class="rex-icon fa-exclamation-triangle"></span> '.rex_i18n::msg("dsgvo_server_domain_column_last_call_none");
+				return '<a href="http://www.'.$params['list']->getValue('domain').'/dsgvo/dsgvo.inc.php?rex-api-call=dsgvo_sync&api_key='.$params['list']->getValue('api_key').'" target="_blank"><span class="rex-icon fa-exclamation-triangle"></span> '.rex_i18n::msg("dsgvo_server_domain_column_last_call_none").'</a>';
 			}
 		});
 		
@@ -262,9 +262,38 @@ echo rex_view::title($this->i18n('dsgvo'));
 		if(rex_request('domain','string') != 'default') {
 			$buttons_de = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default_de&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy_de') . '</a>';
 			$buttons_en = '<a class="btn btn-edit" href="index.php?page=dsgvo/server-edit&func=text_copy_default_en&domain='.$domain.'">' . rex_i18n::msg('dsgvo_server_default_text_copy_en') . '</a>';
+			
+			// Vorschau 
+			$button_preview = ' <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-preview-modal-lg">Vorschau</button>';
+			
+			$modal_preview = $button_preview.'<div class="modal bd-preview-modal-lg" tabindex="-1" role="dialog" aria-labelledby="Vorschau" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+			  <div class="modal-content">      <div class="modal-header">Vorschau</div>      <div class="modal-body">
+			  
+			  ';
+			
+			$dsgvo_pool = array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_server WHERE status = 1 AND domain = :domain AND lang = "de" ORDER by prio',[':domain'=> $domain]));
+		
+			foreach($dsgvo_pool AS $key => $dsgvo_item) {
+				$dsgvo_pool[$key]['text'] = markitup::parseOutput ('textile', $dsgvo_item['text']);
+			}
+		
+			$output = new rex_fragment();
+			// ggf. Sprache anpassen
+			$output->setVar("dsgvo_pool", $dsgvo_pool);
+			$output->setVar("lang", $lang);
+			$output->setVar("domain", $domain);
+			$output->setVar("consent", "Einwilligen");
+			$output->setVar("revoke", "Widerrufen");
+			$output->setVar("source", "Quelle:");
+			$modal_preview .= $output->parse('dsgvo-page.fragment.inc.php');
 
-			// Todo: Einzelne Texte kopieren können //
+			$modal_preview .= '</div></div></div></div>';
 
+
+
+
+			// Einzelne Texte kopieren //
 			$list = rex_list::factory('SELECT d.* FROM 
 			(SELECT id, prio, lang, keyword, name, concat(lang, "_", keyword) AS slug FROM rex_dsgvo_server WHERE domain = "default") d
 			LEFT JOIN 
@@ -281,7 +310,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$fragment = new rex_fragment();
 			$fragment->setVar('class', 'default', false);
 			$fragment->setVar('title', $this->i18n('dsgvo_server_default_title'), false);
-			$fragment->setVar('body', $buttons_de." ".$buttons_en . $list->get(), false);
+			$fragment->setVar('body', $buttons_de." ".$buttons_en . $modal_preview . $list->get(), false);
 			$fragment->setVar('footer', $this->i18n('dsgvo_server_default_title'), false);
 			$fragment->setVar('header', $this->i18n('dsgvo_server_default_title'), false);
 
@@ -304,6 +333,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server', '', 'id='.$id);
         $form->addParam('log_start', rex_request('log_start', 'int'));
         $form->addParam('text_start', rex_request('text_start', 'int'));
+		$form->addErrorMessage(REX_FORM_ERROR_VIOLATE_UNIQUE_KEY, rex_i18n::msg('dsgvo_server_text_edit_error_unique'));
 
 		//Start - add status-field 
 		$field = $form->addSelectField('category');
@@ -325,12 +355,16 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$field = $form->addTextField('keyword');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_keyword'));
 			$field->setNotice($this->i18n('dsgvo_server_text_column_keyword_note'));
+			$field->getValidator()->add('notEmpty', '');
+
 		//End - add keyword-field
 		
 		//Start - add name-field
 			$field = $form->addTextField('name');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_name'));
 			$field->setNotice($this->i18n('dsgvo_server_text_column_name_note'));
+			$field->getValidator()->add('notEmpty', '');
+
 		//End - add name-field
 
 		//Start - add domain-field
@@ -341,12 +375,16 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$select->addDBSqlOptions("select domain as name, domain as id FROM rex_dsgvo_server_project ORDER BY domain");
 			$select->setSelected($domain);
 			$field->setNotice($this->i18n('dsgvo_server_text_column_domain_note'));
+			$field->getValidator()->add('notEmpty', '');
+
 		//End - add domain-field
 
 		//Start - add lang-field
 			$field = $form->addTextField('lang');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_lang'));
 			$field->setNotice($this->i18n('dsgvo_server_text_column_lang_note'));
+			$field->getValidator()->add('notEmpty', '');
+
 		//End - add lang-field
 		
 		//Start - add text-field
@@ -354,6 +392,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$field->setLabel($this->i18n('dsgvo_server_text_column_text'));
 			$field->setAttribute('class', 'form-control markitupEditor-textile_dsgvo');
 			$field->setNotice($this->i18n('dsgvo_server_text_column_text_note'));
+			$field->getValidator()->add('notEmpty', '');
 		//End - add text-field
 
 		//Start - add code-field
@@ -373,6 +412,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$field = $form->addTextField('source_url');
 			$field->setLabel($this->i18n('dsgvo_server_text_column_source_url'));
 			$field->setNotice($this->i18n('dsgvo_server_text_column_source_url_note'));
+			$field->getValidator()->add('url', '');
+
 		//End - add source_url-field
 
 		//Start - add prio-field
