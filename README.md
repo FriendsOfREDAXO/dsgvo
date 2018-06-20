@@ -22,9 +22,13 @@
   - [Auftragsverarbeitungs-Verträge / Data-processing-agreements](#avv-dpa)
 
 <a name="einleitung"></a>
+
 ## Einleitung
 
+![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/dsgvo/assets/dsgvo_01.png)
+
 <a name="ueber-das-addon"></a>
+
 ### Über das Addon
 
 Dieses Addon bietet Unterstützung bei der DSGVO-konformen Umsetzung von ein oder mehreren REDAXO-Websites. 
@@ -34,6 +38,7 @@ Das Addon kann eine anwaltliche Beratung und sorgfältige Prüfung des Einzelfal
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="features"></a>
+
 ### Features
 
 Die Client-Funktion ist für die Darstellung und die ggf. automatische Aktualisierung von Datenschutz-Textbausteinen und der Verwaltung von Tracking-Codes gedacht.
@@ -51,6 +56,7 @@ Die Client-Funktion ist für die Darstellung und die ggf. automatische Aktualisi
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="bug-help-links"></a>
+
 ### Bug-Meldungen, Hilfe und Links
 
 * Auf Github: https://github.com/alexplusde/dsgvo/issues/
@@ -60,6 +66,7 @@ Die Client-Funktion ist für die Darstellung und die ggf. automatische Aktualisi
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="installation"></a>
+
 ### Installation
 
 Voraussetzung für die aktuelle Version des DSGVO-Addons: REDAXO 5.3, Cronjob-Addon, MarkItUp-Addon
@@ -69,6 +76,7 @@ Nach erfolgreicher Installation gibt es im Backend unter AddOns einen Eintrag "D
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="setup"></a>
+
 ## Setup
 
 ### Übersicht
@@ -86,9 +94,11 @@ Unter dem Reiter **Setup** wird in mehreren Schritten die aktuelle Installation 
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="datenschutz-erklaerung"></a>
+
 ## Datenschutz-Erklärung 
 
 <a name="dse-uebersicht"></a>
+
 ### Übersicht
 
 Unter dem Reiter **Datenschutz-Erklärung** werden Text-Bausteine der Datenschutz-Erklärung sowie deren Codes verwaltet. Diese können 
@@ -111,6 +121,7 @@ Die einzelnen Felder sind:
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="dse-einrichten"></a>
+
 ### Einrichtung der Datenschutz-Erklärung (Modul)
 
 Dem Addon liegt ein generisches Modul bei, das automatisch in Abhängigkeit der gewählten REDAXO-Sprache und der gewählten Domain einen Code erzeugt. Es erzeugt ebenfalls bei den passenden Diensten einen Opt-Out-Code.
@@ -181,6 +192,7 @@ foreach($dsgvo_pool AS $key => $dsgvo_item) {
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="tracking-codes"></a>
+
 ### Einrichtung der Tracking-Codes
 
 Dem Addon liegt eine generische Umsetzung bei, die die hinterlegten Tracking-Codes in Abhängigkeit des vom Nutzer gewählten Opt-Outs ausgibt oder die Ausgabe verhindert. Diese Code-Zeilen zwischen den `<head>`-Tag schreiben:
@@ -206,6 +218,7 @@ echo html_entity_decode($output->parse('dsgvo-tracking.fragment.inc.php'), ENT_H
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="cookie-banner"></a>
+
 ### Einrichtung des Cookie-Einverständnis-Banners
 
 Dem Addon liegt eine generischer Code bei, der ein minimalistisches Cookie-Einverständnis-Banner ("Cookie Consent") erzeugt. Das CSS kann im Reiter **Cookie-Einverständnis** angepasst werden.
@@ -228,9 +241,11 @@ echo $output->parse('dsgvo-consent-custom.fragment.inc.php');
 
 
 <a name="server-plugin"></a>
+
 ## Server-PlugIn
 
 <a name="server-plugin-features"></a>
+
 ### Features
 
 Die Server-Funktion ist für das zentrale Verwalten und Bereitstellen der Datenschutz-Erklärung und Tracking-Codes für ein oder mehrere Projekte gedacht.
@@ -245,6 +260,7 @@ Die Server-Funktion ist für das zentrale Verwalten und Bereitstellen der Datens
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="projekte-server"></a>
+
 ### Server
 
 Unter dem Reiter **Server** werden Domains verwaltet.
@@ -275,6 +291,7 @@ Die einzelnen Felder sind:
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="sync-cronjob"></a>
+
 ### Sync-Cronjob
 
 Der Sync-Cronjob kann sich mit externen REDAXO-Installationen (und Standalone-Versionen) verbinden und deren Datenschutz-Texte aktualisieren. Der Abruf der Texte vom Client wird über einen API-Call umgesetzt. (in Arbeit)
@@ -282,14 +299,17 @@ Der Sync-Cronjob kann sich mit externen REDAXO-Installationen (und Standalone-Ve
 &uarr; [zurück zur Übersicht](#top)
 
 <a name="standalone-version"></a>
+
 ### Standalone-Version
 
 Dem DSGVO-Server-Plugin liegt ein Standalone-Client bei, um beim Server verwaltete Texte auch am Client zu aktualisieren. Es befindet sich unter `/redaxo/src/addons/dsgvo/plugins/server/standalone`
 
 <a name="more-info"></a>
+
 ## Weiterführende Informationen und Links zur DSGVO
 
 <a name="avv-dpa"></a>
+
 ### Auftragsverarbeitungs-Verträge 
 
 (AV-Vertrag, vormals Auftragsdatenverarbeitungs-Vertrag ADV-Vertrag) / Data-processing-agreements (DPA-contract)

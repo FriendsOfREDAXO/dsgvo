@@ -1,63 +1,71 @@
 <?php
-/**
- * DSGVO Addon.
- *
- * @author alexplusde,
- *
- * @package redaxo\dsgvo
- *
- * @var rex_addon $this
- */
-echo rex_view::title($this->i18n('dsgvo'));
 
-$content = file_get_contents(rex_path::addon('dsgvo')."README.md");
-$content_blocks = [];
-$h2_blocks = explode("\n## ", "\n".$content);
-foreach ($h2_blocks as $h2_i => $h2_block) {
-    preg_match('/(.*)\n^(?:.|\n(?!#))*/m', $h2_block, $headline);
-    if (isset($headline[1])) {
-        $navi_list[] = '* '.$headline[1];
-        $content_h2_block = '# '.$headline[0];
-        preg_match_all('/(?!### )*^### (.*)\n((?:.|\n(?!### ))*)/m', $h2_block, $matches);
-        if (count($matches[0]) > 0) {
-            $navi_elements = $matches[1];
-            $blocks = $matches[2];
-            $content_blocks['chapter'.$h2_i] = $content_h2_block;
-            foreach ($navi_elements as $h3_i => $navi_element) {
-                $navi_list[] = '	* <a href="index.php?page=dsgvo/docs&amp;n=chapter'.$h2_i.'#section'.$h3_i.'">'.$navi_element.'</a>';
-                $content_blocks["chapter".$h2_i] .= "\n## ".$navi_element.$blocks[$h3_i];
-            }
+echo rex_view::title($this->i18n($this->getName()));
+
+$readme = file_get_contents(rex_path::addon($this->getName())."README.md");
+$readme = preg_replace('/<a name=".*"\>\<\/a\>/', '', $readme); // manuelle Navigations-Anker entfernen
+$readme = preg_replace('/http.*\/assets\//', '/assets/addons/'.$this->getName().'/', $readme); // Bilder lokal laden
+$readme_chapters = [];
+$docs_chapter_active = rex_request('docs_chapter_active', 'string', false);
+
+$h2_chapter = explode("\n## ", "\n".$readme);
+foreach ($h2_chapter as $h2_index => $h2_content) {
+    preg_match('/(.*)\n^(?:.|\n(?!#))*/m', $h2_content, $headline);
+    $h2_index = rex_string::normalize($headline[0]);
+    preg_match_all('/(?!### )*^### (.*)\n((?:.|\n(?!### ))*)/m', $h2_content, $matches);
+    if (isset($headline[1]) && count(array_filter($matches))) {
+        
+        if($docs_chapter_active && $docs_chapter_active == $h2_index) {
+            $class = "panel-primary";
+            $navi_list[] = '<div class="panel '.$class.'"><div class="panel-heading"><strong>'.$headline[0].'</strong></div><div class="list-group">';
+
+        } else {
+            $class = "panel-default";
+            $navi_list[] = '<div class="panel '.$class.'"><div class="panel-heading"><a class="" href="index.php?page='.$this->getName().'/docs&amp;docs_chapter_active='.$h2_index.'"><strong>'.$headline[0].'</strong></a></div><div class="list-group">';
         }
+        $readme_h2_content = '# '.$headline[0];
+        $navi_elements = $matches[1];
+        $blocks = $matches[2];
+        $readme_chapters[$h2_index] = $readme_h2_content;
+        foreach ($navi_elements as $h3_index => $navi_element) {
+            $navi_list[] = '<a class="list-group-item" href="index.php?page='.$this->getName().'/docs&amp;docs_chapter_active='.$h2_index.'#'.rex_string::normalize($navi_element).'">'.$navi_element.'</a>';
+            $readme_chapters[$h2_index] .= "".'<a name="'.rex_string::normalize($navi_element).'"></a>'."\n## ".$navi_element.$blocks[$h3_index]."\n";
+        }
+        $navi_list[] = '</div></div>';
+
     }
 }
-reset($content_blocks);
-$n = rex_request('n', 'string', key($content_blocks));
+reset($readme_chapters);
+$docs_chapter_active = rex_request('docs_chapter_active', 'string', key($readme_chapters));
 
-if (!isset($content_blocks[$n])) {
-    $n = key($content_blocks);
+if (!isset($readme_chapters[$docs_chapter_active])) {
+    $docs_chapter_active = key($readme_chapters);
 }
 $navi_view = implode("\n", $navi_list);
-    $blocks_view = $content_blocks[$n];
+    $blocks_view = $readme_chapters[$docs_chapter_active];
 
     $miu = rex_markdown::factory();
 
 // Navigation 
-$navi_view = $miu->parse($navi_view);
-$fragment = new rex_fragment();
-$fragment->setVar('title', rex_i18n::msg('dsgvo_docs_navigation').'', false);
-$fragment->setVar('body', $navi_view, false);
-$navi = $fragment->parse('core/page/section.php');
-
 
 $blocks_view = $miu->parse($blocks_view);
 $fragment = new rex_fragment();
-$fragment->setVar('title', $this->i18n('docs').' [ <a href="https://github.com/alexplusde/dsgvo/blob/master/README.md">README.md</a> ]', false);
+$fragment->setVar('title', $this->i18n('docs').' [ <a target="_blank" href="'.$this->getSupportPage().'blob/master/README.md">bearbeiten</a> ]', false);
 $fragment->setVar('body', $blocks_view, false);
 $content = $fragment->parse('core/page/section.php');
 
-echo '<section class="rex-yform-docs">
+
+$name = $this->getPackageId();
+$version = $this->getVersion();
+$author = $this->getAuthor();
+
+$navi_view .= 'Credits: ' . $author;
+
+echo '<section class="rex-docs">
     <div class="row">
-    <div class="col-md-4 yform-docs-navi">'.$navi.'</div>
-    <div class="col-md-8 yform-docs-content">'.$content.'</div>
+        <div class="col-md-4 docs-nav">'.$navi_view.'</div>
+        <div class="col-md-8 docs-content">'.$content.'</div>
     </div>
 </section>';
+// Dirty image overflow fix
+echo '<style> .rex-docs img { max-width: 100%; } </style>';
