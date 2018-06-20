@@ -1,5 +1,7 @@
 ## Inhaltsübersicht
 
+![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/dsgvo/assets/dsgvo_01.png)
+
 * [Einleitung](#einleitung)
   - [Über das AddOn](#ueber-das-addon)
   - [Features](#features)
