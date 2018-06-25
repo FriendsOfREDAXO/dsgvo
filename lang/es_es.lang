@@ -1,0 +1,207 @@
+# Menü-Einträge
+
+dsgvo 										= RGPD - Complemento para la regulación general de protección de datos
+title 										= RGPD
+setup 										= Instalar
+dsgvo_page_edit								= Política de privacidad
+consent 									= Acuerdo de cookies
+docs 										= Ayuda
+
+setup-overview 								= Visión de conjunto
+setup-modul 								= Incluir declaración de privacidad
+setup-backup 								= Copias de seguridad SQL
+setup-phpmailer 							= Registros PHP-Mailer
+setup-contactform 							= Formulario de contacto
+setup-dementia 								= eliminación automática
+setup-external 								= servicios externos
+setup-consent 								= Acuerdo de cookies
+
+dsgvo_docs_navigation = Navegación
+
+# Cronjobs-Beschriftungen
+
+
+dsgvo_dementia_cronjob_name = RGPD: Eliminar registros antiguos
+
+dsgvo_dementia_cronjob_rex_table_label 		= Tabla
+dsgvo_dementia_cronjob_rex_table_notice 	= Nombre de la tabla cuyos registros deben eliminarse regularmente.
+
+dsgvo_dementia_cronjob_interval_label 		= Tiempo de almacenamiento
+dsgvo_dementia_cronjob_interval_notice 		= Edad del registro en meses hasta que se elimine el registro, ej. <code>6</code>
+
+dsgvo_dementia_cronjob_field_label 			= Nombre del campo
+dsgvo_dementia_cronjob_field_notice 		= Nombre del campo en el que se almacena la marca de tiempo, p. <code> createdate </ code> o <code> updatedate </ code>
+
+
+dsgvo_privacy_cronjob_name 	= RGPD: Cargando textos para la página de privacidad...
+
+dsgvo_privacy_cronjob_url_label 			= API fuente
+dsgvo_privacy_cronjob_url_notice 			= 
+
+dsgvo_privacy_cronjob_domain_label 		    = Dominios
+dsgvo_privacy_cronjob_domain_notice 		= Ej. <code>redaxo.org</code>
+
+dsgvo_privacy_cronjob_api_key_label 		= Clave de API
+dsgvo_privacy_cronjob_api_key_notice 		= Especificado por el servidor
+
+
+dsgvo_phpmailerlogs_cronjob_name = RGPD: Eliminar registros de correo de PHP
+
+dsgvo_phpmailerlogs_delete_interval         = Tiempo de intervalo
+dsgvo_phpmailerlogs_delete_interval_notice  = ATENCIÓN: ¡CRONJOB NO TIENE FUNCIÓN! AYUDA A GITHUB QUERIDO.
+dsgvo_phpmailerlogs_delete_interval_monthly = mensual
+dsgvo_phpmailerlogs_delete_interval_weekly  = semanal
+
+# Setup Übersicht
+
+dsgvo_description_all_title 				= Visión de conjunto
+dsgvo_description_all 						= Este complemento brinda soporte para la implementación conforme a RGPD de uno o más sitios web de REDAXO. Sin embargo, no hay reclamo legal. Para la implementación conforme a DSGVO, la consideración holística de los datos generados en un sitio web y su uso es esencial. Hay una colección creciente de consejos y recomendaciones en la sección de Ayuda.
+
+dsgvo_description_ad_title 					= Desarrollo de soporte
+dsgvo_description_ad 						= ¿Este complemento te ayudó a ahorrar un tiempo valioso o de alguna otra manera? Enviar una nota de agradecimiento a <a href="mailto:danke@alexplus.de?subject=A gracias nota de ..."> danke@alexplus.de </a>
+
+# Setup Datenschutz-Erklärung einbinden
+
+install_dsgvo_modul 						= Instalar el módulo para la declaración de privacidad
+install_dsgvo_modul_description 			= Imprima este módulo en la página "Privacidad" para imprimir los textos de la pestaña "Declaración de privacidad". Para los servicios donde es posible una exclusión, se genera automáticamente un enlace de exclusión, que le da al usuario la opción de desactivar el código de seguimiento.
+
+install_dsgvo_module 						= Instalar módulo
+install_update_dsgvo_module 				= Reinstalar el módulo
+
+# Setup SQL-Backups
+
+dsgvo_backup_title 							= REDAXO backups
+dsgvo_backup_description 					= Si REDAXO crea copias de seguridad periódicas de forma manual o automática, pueden contener datos confidenciales. Por lo tanto, las copias de seguridad también deben eliminarse después de un tiempo razonable.
+
+check_dsgvo_backupcronjob_title             = Backup-Cronjobs
+check_dsgvo_backupcronjob_name              = Nombre
+check_dsgvo_backupcronjob_nexttime          = próxima tarea programada
+check_dsgvo_backupcronjob_status            = Estado
+check_dsgvo_backupcronjob_edit              = Editar copia de seguridad cronjob
+
+# Setup PHP-Mailer Logs
+
+check_dsgvo_phpmailer-logs_cronjob 			= Registros PHP-Mailer
+check_dsgvo_phpmailer-logs_cronjob_description = 
+
+check_dsgvo_phpmailer-logs_caption 			= Archivos de registro
+check_dsgvo_phpmailer-logs_filename 		= Nombre del archivo
+check_dsgvo_phpmailer-logs_folder 			= Carpeta
+check_dsgvo_phpmailer-logs_filesize 		= Tamaño del archivo
+check_dsgvo_phpmailer-logs_createdate 		= Creadoen ...
+
+# Setup Kontaktformular
+
+dsgvo_setup_contactform_title 				= Formulario de contacto compatible con RGPD
+dsgvo_setup_contactform_description			= Con las nuevas directrices de RGPD, se debe aprobar explícitamente un formulario de procesamiento de datos.
+
+dsgvo_setup_contactform_pipe_title 			= Notación de tubería YForm
+dsgvo_setup_contactform_php_title 			= YForm notación PHP
+dsgvo_setup_contactform_general_title 		= Notación general
+dsgvo_setup_contactform_pipe_content 		=
+dsgvo_setup_contactform_php_content 		=
+dsgvo_setup_contactform_general_content 	= Para formularios de contacto generados manualmente, también se recomienda ingresar y validar una casilla de verificación
+
+#Setup Automatisiertes Löschen
+
+check_dsgvo_dementiasql_cronjob 			= Tablas de base de datos con datos posiblemente personales ("derecho al olvido")
+check_dsgvo_dementiasql_cronjob_description = Los datos personales también pueden archivarse en la base de datos REDAXO, por ejemplo, a través de un formulario de contacto. Los registros de datos que ya no se necesitan pueden ser borrados automáticamente por un trabajo cron después de un cierto período de tiempo.
+check_dsgvo_dementia_cronjob 				= Configurar cronjob para registros antiguos
+
+check_dsgvo_dementia_cronjob_table_name 	= Nombre de la tabla
+check_dsgvo_dementia_cronjob_column_name 	= Nombre de la columna
+check_dsgvo_dementia_cronjob_data_type 		= Tipo de archivo
+check_dsgvo_dementia_cronjob_column 		= Crear cronjob?
+check_dsgvo_dementia_cronjob_edit 			= Editar cronjob
+check_dsgvo_dementia_cronjob_add 			= Agregar cronjob
+
+#Setup Externe Dienste
+
+check_dsgvo_tracking 						= Manualmente migrar/adaptar códigos de seguimiento y servicios externos
+check_dsgvo_tracking_description 			= En este paso, las plantillas se analizarán en busca de los siguientes términos: <code> {0} </ code>. Compruebe si se trata de servicios externos que se incluyen directamente a través de etiquetas como <code><link></code>, <code><iframe></code>o<code><script></code>.
+check_dsgvo_tracking_templates_danger 		= Plantillas
+check_dsgvo_tracking_templates_success 		= No se han encontrado plantillas que contengan los términos <code>{0}</code>.
+check_dsgvo_tracking_modules_danger 		= Módulos
+check_dsgvo_tracking_modules_success 		= No se han encontrado módulos que contengan los términos <code>{0}</code>.
+
+check_dsgvo_external_template_id 			= ID
+check_dsgvo_external_template_name 			= Nombre
+check_dsgvo_external_template_column 		= Editar plantilla?
+check_dsgvo_external_template_edit 			= Editar plantilla
+
+check_dsgvo_external_module_id 				= ID
+check_dsgvo_external_module_name 			= Nombre
+check_dsgvo_external_module_column 			= Editar módulo?
+check_dsgvo_external_module_edit 			= Editar módulo
+
+# Setup Cronjob
+
+check_dsgvo_cronjob 						= Cronjob para consultar los módulos de texto/gestión centralizada de códigos de seguimiento
+check_dsgvo_cronjob_description 			= Si los textos de privacidad deben administrarse centralmente, se puede configurar un trabajo cron, que recupera estos textos según el sitio web y el idioma. El complemento RGPD viene con un complemento de servidor.
+
+dsgvo_add_cronjob 							= Crear nuevo cronjob
+dsgvo_edit_cronjob 							= Editar el cronjob existente
+
+dsgvo_edit_text 							= Crear textos manualmente
+
+
+check_dsgvo_dementia_cronjob_description 	= Se deben verificar los registros antiguos con datos personales para ver si se están recopilando registros confidenciales/personales, por ejemplo, en un formulario de contacto o en el historial.
+
+
+dsgvo_dementiasql_add_cronjob 				= Configurar Cronjob ahora
+
+
+
+# Datenschutz-Erklärung im Backend
+
+dsgvo_client_text_title 					= Los servicios externos para la declaración de privacidad se administran aquí.
+
+dsgvo_client_text_column_category			= Categoría
+dsgvo_client_text_column_domain 			= Dominio
+dsgvo_client_text_column_lang 				= Idioma
+dsgvo_client_text_column_keyword 			= Clave
+dsgvo_client_text_column_name 				= Titular
+dsgvo_client_text_column_text 				= Política de privacidad
+dsgvo_client_text_column_custom_text 		= Declaración de privacidad propia
+dsgvo_client_text_column_code 				= Código de localización
+dsgvo_client_text_column_source 			= Fuente
+dsgvo_client_text_column_source_url 		= Enlace a la fuente
+dsgvo_client_text_column_status 			= Mostrar en la declaración de privacidad?
+dsgvo_client_text_column_status_is_offline 	= desaparecer
+dsgvo_client_text_column_status_is_online 	= mostrar
+dsgvo_client_text_column_prio 				= Orden
+dsgvo_client_text_column_updatedate 		= Modificado
+dsgvo_client_text_column_delete 			= Borrar
+
+dsgvo_client_text_column_domain_note 		= Si se trata de una instalación REDAXO de varios dominios, seleccione el dominio al que corresponde este texto.
+dsgvo_client_text_column_lang_note 			= Idioma REDAXO
+dsgvo_client_text_column_keyword_note 		= La clave solo puede consistir en <code>a-zA-Z1-9 _-</code>, por ejemplo, <code>facebook_pixel</code>
+dsgvo_client_text_column_name_note 			= Título de la declaración de privacidad
+dsgvo_client_text_column_status_note 		= 
+dsgvo_client_text_column_text_note 			= Texto de la Declaración de Privacidad como Código Textil. Si es necesario, sobrescribe el servidor de texto.
+dsgvo_client_text_column_custom_text_note 	= Texto de la Declaración de Privacidad como Código Textil. Sobrescribe los textos del servidor de texto.
+dsgvo_client_text_column_source_note 		= Fuente de la declaración de privacidad, por ejemplo, <code>e-law 24</code>
+dsgvo_client_text_column_source_url_note 	= Enlace a la fuente
+dsgvo_client_text_column_prio_note 			= 
+dsgvo_client_text_column_code_note 			= Servicio o código de seguimiento. Ej. el código real de Facebook Pixel, Google Analytics, etc., se generará un enlace de exclusión correspondiente.
+
+dsgvo_client_status_activate_success 		= El estado cambió exitosamente a "mostrar"
+dsgvo_client_status_deactivate_success 		= El estado cambió exitosamente a "oculto"
+
+dsgvo_client_text_edit 						= Editar servicio
+dsgvo_client_text_add 						= Añadir servicio
+
+dsgvo_client_norows_message 				= Sin entradas
+
+# Cookie-Consent
+
+dsgvo_consent_css_title 					= Banner de consentimiento de cookies
+dsgvo_consent_css_label 					= Ingresa CSS
+dsgvo_consent_css_notice 					= El CSS para el banner de consentimiento de cookie se puede personalizar para reflejar el diseño de los sitios web.
+save                    					= Guardar
+
+dsgvo_setup_overview_template_tracking      = Salida del código de seguimiento
+dsgvo_setup_overview_template_tracking_description = Copie esta sección de código de plantilla en el <code><head></code> de la plantilla.
+dsgvo_setup_overview_template_consent       = Banner de consentimiento de cookies
+dsgvo_consent_template_code_title           = Incluir banner de acuerdo de cookies
+dsgvo_consent_template_code_description     = Inserte esta sección de código de plantilla en la parte inferior del sitio, preferiblemente antes de cerrar la etiqueta <code><body></code>.
