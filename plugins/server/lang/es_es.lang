@@ -1,0 +1,88 @@
+dsgvo_server_text_title 					= Estos módulos de texto son enviados por el servidor.
+dsgvo_server_project_title 					= Los textos se envían a estos dominios.
+
+dsgvo_server_text_edit 						= Editar texto de la página de privacidad
+dsgvo_server_text_add 						= Agregar texto a la página de privacidad
+
+# Domainliste
+
+dsgvo_server_domain_list_title				= Dominios
+
+dsgvo_server_domain_column_domain 			= Dominio
+dsgvo_server_domain_column_manage_text 		= Administrar textos
+dsgvo_server_domain_column_api_key 			= Clave API
+dsgvo_server_domain_column_description   	= Aviso
+dsgvo_server_domain_column_count_text 		= En linea
+dsgvo_server_domain_column_count_total		= Total
+dsgvo_server_domain_column_has_code 		= Rastreo
+dsgvo_server_domain_column_last_call 		= Última llamada
+dsgvo_server_domain_column_delete 			= Borrar
+dsgvo_server_domain_delete_confirm 			= ¿Eliminar la entrada?
+dsgvo_server_domain_deleted 				= Dominio eliminado
+
+dsgvo_server_domain_column_domain_note 		= 
+dsgvo_server_domain_column_api_key_note 	= Llamar a la API (opcional) para denegar el acceso no autorizado a los textos, por ejemplo, <code>{0}</code>
+dsgvo_server_domain_column_description_note = Descripción adicional, nota o campo de notas
+
+dsgvo_server_project_log_title 				= Última llamada
+dsgvo_server_domain_column_last_call_none 	= No
+
+# Texte verwalten
+
+dsgvo_server_default_title 					= Usa textos predeterminados
+dsgvo_server_default_text_copy_de 			= Copie textos en alemán
+dsgvo_server_default_text_copy_en 			= Copiar textos en inglés
+
+dsgvo_server_text_default_copied 			= Textos copiados con éxito
+
+dsgvo_server_text_column_category			= Categoría
+dsgvo_server_text_column_category_1			= 1. Declaración de privacidad de un vistazo
+dsgvo_server_text_column_category_2			= 2. Avisos generales e información esencial
+dsgvo_server_text_column_category_3			= 3. Oficial de seguridad de datos
+dsgvo_server_text_column_category_4			= 4. Recopilación de datos en nuestro sitio web
+dsgvo_server_text_column_category_5			= 5. Redes sociales
+dsgvo_server_text_column_category_6			= 6. Analítica y publicidad
+dsgvo_server_text_column_category_7			= 7. Boletín
+dsgvo_server_text_column_category_8			= 8. Complementos y herramientas
+dsgvo_server_text_column_domain 			= Dominio
+dsgvo_server_text_column_lang 				= Idioma
+dsgvo_server_text_column_keyword 			= Clave
+dsgvo_server_text_column_name 				= Titular
+dsgvo_server_text_column_text 				= Política de privacidad
+dsgvo_server_text_column_custom_text 		= Política de privacidad personalizada
+dsgvo_server_text_column_source 			= Fuente
+dsgvo_server_text_column_source_url 		= Enlace a la fuente
+dsgvo_server_text_column_status 			= Mostrar en la declaración de privacidad?
+dsgvo_server_text_column_prio 				= Orden
+dsgvo_server_text_column_updatedate 		= Última modificación en ...
+dsgvo_server_text_column_delete				= Borrar
+dsgvo_server_text_delete_confirm			= ¿Eliminar la entrada?
+dsgvo_server_text_deleted					= Entrada borrada exitosamente
+
+dsgvo_server_status_activate_success 		= El estado cambió exitosamente a "mostrar"
+dsgvo_server_status_deactivate_success 		= El estado cambió exitosamente a "oculto"
+
+dsgvo_server_norows_message 				= No hay entradas disponibles
+
+dsgvo_server_text_column_keyword_note 		= La clave solo puede consistir en <code>a-zA-Z1-9 _-</code>, por ejemplo, <code>facebook_pixel</code>
+dsgvo_server_text_column_name_note 			= Título de la declaración de privacidad
+dsgvo_server_text_column_status_note 		=
+dsgvo_server_text_column_text_note 			= Texto de la declaración de privacidad como código de materia textil
+dsgvo_server_text_column_source_note 		= Fuente de declaración de privacidad, ej. <code>E-Recht 24</code>
+dsgvo_server_text_column_source_url_note 	= Enlace a la fuente
+dsgvo_server_text_column_domain_note 		= Si la instalación de REDAXO tiene múltiples dominios, por ejemplo, en YRewrite: dominio al que se aplica el texto.
+dsgvo_server_text_column_code 				= Codigo de localización
+dsgvo_server_text_column_code_note 			= Servicio o código de seguimiento. Ex. el código real de Facebook Pixel, Google Analytics, etc., se generará un enlace de exclusión correspondiente.
+dsgvo_server_text_column_prio_note 			= 
+dsgvo_server_text_column_status_note 		= 
+dsgvo_server_text_column_lang_note 			= Código ISO de doble dígito
+
+dsgvo_server_text_column_status_is_offline 	= ocultar
+dsgvo_server_text_column_status_is_online 	= show
+
+# Änderungslog
+
+dsgvo_server_project_log_id 				= ID
+dsgvo_server_project_log_domain 			= Dominio
+dsgvo_server_project_log_status 			= Estado
+dsgvo_server_project_log_createdate 		= Creado ...
