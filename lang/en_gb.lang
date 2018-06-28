@@ -1,20 +1,20 @@
 # Menü-Einträge
 
 dsgvo 										= GDPR - Addon for the general data protection regulation
-title 										= GDPR
-setup 										= Setup
+dsgvo_title 								= GDPR
+dsgvo_setup 								= Setup
 dsgvo_page_edit								= Privacy statement
-consent 									= Cookie agreement
-docs 										= Help
+dsgvo_consent 						    	= Cookie agreement
+dsgvo_docs 							    	= Help
 
-setup-overview 								= Overview
-setup-modul 								= Include privavy statement
-setup-backup 								= SQL backups
-setup-phpmailer 							= PHP mailer logs
-setup-contactform 							= Contact form
-setup-dementia 								= automatic deletion
-setup-external 								= external services
-setup-consent 								= Cookie agreement
+dsgvo_setup-overview 						= Overview
+dsgvo_setup-modul 							= Include privavy statement
+dsgvo_setup-backup 							= SQL backups
+dsgvo_setup-phpmailer 						= PHP mailer logs
+dsgvo_setup-contactform 					= Contact form
+dsgvo_setup-dementia 						= automatic deletion
+dsgvo_setup-external 				    	= external services
+dsgvo_setup-consent 						= Cookie agreement
 
 dsgvo_docs_navigation = Navigation
 

@@ -1,20 +1,20 @@
 # Menü-Einträge
 
 dsgvo 										= DSGVO - Addon zur Datenschutz-Grundverordnung
-title 										= DSGVO
-setup 										= Setup
+dsgvo_title 							    = DSGVO
+dsgvo_setup 				    			= Setup
 dsgvo_page_edit								= Datenschutz-Erklärung
-consent 									= Cookie-Einverständnis
-docs 										= Hilfe
+dsgvo_consent 						    	= Cookie-Einverständnis
+dsgvo_docs 									= Hilfe
 
-setup-overview 								= Übersicht
-setup-modul 								= Datenschutz-Erklärung einbinden
-setup-backup 								= SQL-Backups
-setup-phpmailer 							= PHP-Mailer Logs
-setup-contactform 							= Kontaktformular
-setup-dementia 								= automatisiertes Löschen
-setup-external 								= externe Dienste
-setup-consent 								= Cookie-Einverständnis
+dsgvo_setup-overview 		    			= Übersicht
+dsgvo_setup-modul 							= Datenschutz-Erklärung einbinden
+dsgvo_setup-backup 							= SQL-Backups
+dsgvo_setup-phpmailer 						= PHP-Mailer Logs
+dsgvo_setup-contactform 					= Kontaktformular
+dsgvo_setup-dementia 			    		= automatisiertes Löschen
+dsgvo_setup-external 						= externe Dienste
+dsgvo_setup-consent 						= Cookie-Einverständnis
 
 dsgvo_docs_navigation = Navigation
 

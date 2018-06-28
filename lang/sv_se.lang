@@ -1,20 +1,20 @@
 # Menü-Einträge
 
-dsgvo 										= DGPR - Addon till dataskyddsförordningen
-title 										= DGPR
-setup 										= Setup
+dsgvo_dsgvo 								= DGPR - Addon till dataskyddsförordningen
+dsgvo_title 								= DGPR
+dsgvo_setup 								= Setup
 dsgvo_page_edit								= Integritetspolicy
-consent 									= Cookie akceptans
-docs 										= Hjälp
+dsgvo_consent 							    = Cookie akceptans
+dsgvo_docs 									= Hjälp
 
-setup-overview 								= Översikt
-setup-modul 								= Implementera dataskyddsförordningen
-setup-backup 								= SQL-backups
-setup-phpmailer 							= PHP-mailer logs
-setup-contactform 							= Kontaktformulär
-setup-dementia 								= Automatiserad radering
-setup-external 								= Externa tjänster
-setup-consent 								= Cookie samtycke
+dsgvo_setup-overview 		    			= Översikt
+dsgvo_setup-modul 							= Implementera dataskyddsförordningen
+dsgvo_setup-backup 							= SQL-backups
+dsgvo_setup-phpmailer 						= PHP-mailer logs
+dsgvo_setup-contactform 					= Kontaktformulär
+dsgvo_setup-dementia 						= Automatiserad radering
+dsgvo_setup-external 						= Externa tjänster
+dsgvo_setup-consent 						= Cookie samtycke
 
 dsgvo_docs_navigation = Navigation
 
