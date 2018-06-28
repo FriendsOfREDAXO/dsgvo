@@ -13,7 +13,7 @@ if (rex::getUser()->isAdmin() && rex_addon::get('backup')->isAvailable()) {
     
     $sql = rex_sql::factory();
     $query = 'SELECT `id`, `name`, parameters, nexttime, environment, `status` FROM `rex_cronjob` WHERE `type` = "rex_cronjob_export"';
-    $list = rex_list::factory($query, 10, $listName, $debug);
+    $list = rex_list::factory($query, 10, "dsgvo_backup", 0);
   
     $list->setNoRowsMessage($this->i18n("check_dsgvo_backupcronjob_none"));
 

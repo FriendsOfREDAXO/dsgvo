@@ -13,9 +13,9 @@ if (rex::getUser()->isAdmin()) {
     echo $fragment->parse('core/page/section.php');
    
 
-    $checkbox_pipe_title .= $this->i18n('dsgvo_setup_contactform_pipe_title');
+    $checkbox_pipe_title = $this->i18n('dsgvo_setup_contactform_pipe_title');
 
-$checkbox_pipe .= '<p>'.$this->i18n('dsgvo_setup_contactform_pipe_content').'</p>';
+$checkbox_pipe = '<p>'.$this->i18n('dsgvo_setup_contactform_pipe_content').'</p>';
 $checkbox_pipe .=
 '<pre class="pre-scrollable">'.
 htmlentities('checkbox|dsgvo_checkbox|Ich habe die <a href="">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.|0,1|0|no_db|
@@ -28,9 +28,9 @@ html|dsgvo_notice||<p>Hinweis: Sie können Ihre Einwilligung jederzeit für die 
     $fragment->setVar('body', $checkbox_pipe, false);
     echo $fragment->parse('core/page/section.php');
     
-    $checkbox_php_title .= $this->i18n('dsgvo_setup_contactform_php_title');
+    $checkbox_php_title = $this->i18n('dsgvo_setup_contactform_php_title');
     
-$checkbox_php .= '<p>'.$this->i18n('dsgvo_setup_contactform_php_content').'</p>';
+$checkbox_php = '<p>'.$this->i18n('dsgvo_setup_contactform_php_content').'</p>';
 $checkbox_php .=
 '<pre class="pre-scrollable">'.
 htmlentities('$yform->setValueField(\'checkbox\', array(\'dsgvo_checkbox\',\'Ich habe die <a href="">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.\',\'0,1\',\'0\',\'no_db\'));

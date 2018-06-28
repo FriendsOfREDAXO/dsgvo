@@ -10,8 +10,7 @@ if (rex::getUser()->isAdmin()) {
     $fragment->setVar('body', $content, false);
     echo $fragment->parse('core/page/section.php');
 
-
-    $tracking_content .= 
+    $tracking_content = 
 '<pre class="pre-scrollable">'.
 htmlentities('
 <!-- DSGVO Tracking und Cookie -->
@@ -37,7 +36,7 @@ echo html_entity_decode($output->parse("dsgvo-tracking.fragment.inc.php"), ENT_H
     echo $fragment->parse('core/page/section.php');
 
     
-    $consent_content .= 
+    $consent_content = 
 '<pre class="pre-scrollable">'.
 htmlentities('
 <!-- DSGVO Cookie-Einverständnis -->
