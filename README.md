@@ -25,9 +25,9 @@
 
 ## Einleitung
 
-![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/dsgvo/assets/dsgvo_01.png)
-
 <a name="ueber-das-addon"></a>
+
+![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/dsgvo/assets/dsgvo_01.png)
 
 ### Über das Addon
 
