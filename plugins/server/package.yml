@@ -1,5 +1,5 @@
 package: dsgvo/server
-version: '0.1'
+version: '0.8beta2'
 title: 'DSGVO Helferlein (Server-Addon)'
 author: 'Pixelfirma, alexplus_de'
 supportpage: 'https://github.com/alexplusde/dsgvo/'

@@ -12,7 +12,18 @@ echo rex_view::title($this->i18n('dsgvo'));
 			$delete = rex_sql::factory()->setQuery('DELETE FROM rex_dsgvo_server_project WHERE id = :oid',array(':oid' => $oid));
 			$delete = rex_sql::factory()->setDebug(0)->setQuery('DELETE FROM rex_dsgvo_server WHERE domain = :domain',array(':domain' => $domain));
 			echo rex_view::success( $this->i18n('dsgvo_server_domain_deleted'));
-    	}	
+		}	
+
+		$old_domain = rex_request("old_domain", "string", "");
+		$new_domain = array_shift(rex_sql::factory()->getArray('SELECT domain FROM rex_dsgvo_server_project WHERE id = :id',array(':id' => rex_request('id', 'int'))))['domain'];
+
+		if($old_domain && $old_domain != $new_domain) {
+			$update = rex_sql::factory()->setQuery('UPDATE rex_dsgvo_server SET domain = :new_domain WHERE domain = :old_domain',array(':new_domain' => $new_domain, ':old_domain' => $old_domain));
+			$update = rex_sql::factory()->setQuery('UPDATE rex_dsgvo_server_log SET domain = :new_domain WHERE domain = :old_domain',array(':new_domain' => $new_domain, ':old_domain' => $old_domain));
+			echo rex_view::success( $this->i18n('dsgvo_server_domain_renamed'));
+    	} else if ($old_domain) {
+			echo rex_view::success( $this->i18n('dsgvo_server_domain_updated'));
+		}
 
 		// Domain-Übersicht ANFANG //
 		$query = 'SELECT P.id, P.domain, api_key, count_text, count_total, has_code, logdate, last_change, description FROM `rex_dsgvo_server_project` AS P LEFT JOIN (SELECT COUNT(id) AS count_total, COUNT(IF(status=1,1,NULL)) AS count_text, COUNT(IF(code = "" OR code IS NULL,NULL,1)) AS has_code, domain, max(updatedate) AS last_change FROM rex_dsgvo_server GROUP BY domain) as S ON P.domain = S.domain LEFT JOIN (SELECT max(createdate) as logdate, domain FROM rex_dsgvo_server_log GROUP BY domain ORDER BY id DESC) AS L ON P.domain = L.domain ORDER BY domain';
@@ -28,7 +39,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		$list->setColumnParams($thIcon, ['func' => 'domain_edit', 'id' => '###id###','start' => $start]);
 		
 		$list->setColumnLabel('domain', $this->i18n('dsgvo_server_domain_column_domain'));
-		$list->setColumnParams('domain', ['id' => '###id###', 'func' => 'domain_edit']);
+		$list->setColumnParams('domain', ['id' => '###id###','domain' => '###domain###', 'func' => 'domain_edit']);
 			
 		$list->addColumn($this->i18n('dsgvo_server_domain_column_manage_text'), $this->i18n('dsgvo_server_domain_column_manage_text'), 3);
 		$list->setColumnParams($this->i18n('dsgvo_server_domain_column_manage_text'), ['data_id' => '###id###', 'func' => 'domain_details', 'domain' => '###domain###']);
@@ -104,7 +115,7 @@ echo rex_view::title($this->i18n('dsgvo'));
 		}
 		
 		$form = rex_form::factory(rex::getTablePrefix().'dsgvo_server_project', '', 'id='.$id);
-        $form->addParam('domain_start', $start);
+        $form->addParam('domain_start', rex_request('domain_start', 'int', 0));
 
 		//Start - add domain-field
 		$field = $form->addTextField('domain');
@@ -126,8 +137,8 @@ echo rex_view::title($this->i18n('dsgvo'));
 		
 		if ($func == 'domain_edit') {
 			$form->addParam('id', $id);
+			$form->addParam('old_domain', $form->getSql()->getValue('domain'));
 		}
-
 		$content3 = $form->get();
 
 		$fragment = new rex_fragment();
