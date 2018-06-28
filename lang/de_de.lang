@@ -81,8 +81,8 @@ check_dsgvo_backupcronjob_edit              = Backup-Cronjob bearbeiten
 
 # Setup PHP-Mailer Logs
 
-check_dsgvo_phpmailer-logs_cronjob 			= PHP-Mailer Logs
-check_dsgvo_phpmailer-logs_cronjob_description = 
+check_dsgvo_phpmailer-logs_cronjob 			= PHPMailer Logs
+check_dsgvo_phpmailer-logs_cronjob_description = In Logs des PHPMailer können sich personenenbezogene, sensible Daten befinden. Dieses sollten regelmäßig gelöscht werden.
 
 check_dsgvo_phpmailer-logs_caption 			= Log-Dateien
 check_dsgvo_phpmailer-logs_filename 		= Dateiname
