@@ -1,5 +1,5 @@
 package: dsgvo
-version: '0.7beta5'
+version: '0.8beta'
 title: 'translate:title'
 author: 'Friends Of REDAXO, Pixelfirma, alexplus_de, pixeldaniel'
 supportpage: 'https://github.com/FriendsOfREDAXO/dsgvo/'
@@ -10,6 +10,7 @@ requires:
     packages:
         cronjob: '^2.0'
         markitup: '^3.0'
+        yrewrite: '^2.2'
 page:
     title: 'translate:title'
     pjax: false
