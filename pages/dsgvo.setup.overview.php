@@ -15,8 +15,9 @@ if (rex::getUser()->isAdmin()) {
 htmlentities('
 <!-- DSGVO Tracking und Cookie -->
 <?php
+$domain = ''; // Hier Domain eintragen
 $lang = rex_clang::getCurrent()->getCode();
-$dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray("SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio",[":lang"=>$lang]);
+$dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray("SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang AND domain = :domain ORDER by prio",[":lang"=>$lang,":domain"=>$domain]);
 
 $output = new rex_fragment();
 $output->setVar("dsgvo_pool", $dsgvo_pool);
