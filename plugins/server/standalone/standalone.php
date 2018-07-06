@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once($_SERVER['DOCUMENT_ROOT']."/dsgvo/dsgvo.inc.php");
 
