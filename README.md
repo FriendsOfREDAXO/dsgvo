@@ -198,19 +198,19 @@ foreach($dsgvo_pool AS $key => $dsgvo_item) {
 Dem Addon liegt eine generische Umsetzung bei, die die hinterlegten Tracking-Codes in Abhängigkeit des vom Nutzer gewählten Opt-Outs ausgibt oder die Ausgabe verhindert. Diese Code-Zeilen zwischen den `<head>`-Tag schreiben:
 
 ```php
-        <!-- DSGVO -->
-        <script language="javascript" type="text/javascript" src="/assets/js/cookie.js"></script>
-        <?php
-$lang = rex_clang::getCurrent()->getCode();
-$dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio',[':lang'=>$lang]);
+<!-- DSGVO -->
+<script language="javascript" type="text/javascript" src="/assets/js/cookie.js"></script>
+<?php
+	$lang = rex_clang::getCurrent()->getCode();
+	$dsgvo_pool = rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND lang = :lang ORDER by prio',[':lang'=>$lang]);
 
-$output = new rex_fragment();
-$output->setVar("dsgvo_pool", $dsgvo_pool);
-$output->setVar("lang", $lang);
-$output->setVar("domain", $domain);
+	$output = new rex_fragment();
+	$output->setVar("dsgvo_pool", $dsgvo_pool);
+	$output->setVar("lang", $lang);
+	$output->setVar("domain", $domain);
 
-echo html_entity_decode($output->parse('dsgvo-tracking.fragment.inc.php'), ENT_HTML5 | ENT_QUOTES);
-        ?>
+	echo html_entity_decode($output->parse('dsgvo-tracking.fragment.inc.php'), ENT_HTML5 | ENT_QUOTES);
+?>
 ```
 
 > **Achtung:** Um die Funktionalität zu überprüfen, bitte auf der Live-Seite in den Entwickler-Einstellungen des Browsers das korrekte Setzen des Cookies überprüfen. Der Cookie lautet: `dsgvo_[schlüssel] = -1` - der entsprechende Dienst darf dann nicht im Tracking-Code auftauchen.
