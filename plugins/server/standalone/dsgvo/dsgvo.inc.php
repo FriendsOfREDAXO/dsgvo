@@ -1,4 +1,4 @@
-<?
+<?php
 
 $params['rex-api-call'] = 'dsgvo';
 $params['api_key']      = '';

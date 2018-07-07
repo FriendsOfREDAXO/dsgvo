@@ -1,6 +1,6 @@
 <?php // dsgvo_module_output - Diese Zeile nicht löschen ?>
 <section class="modul modul-privacy">
-<?
+<?php
     // Für mehrere YRewrite-Domains ggf. weiter eingrenzen mit `WHERE domain = "domain.de"`
     $lang = rex_clang::getCurrent()->getCode();
     $dsgvo_pool = array_filter(rex_sql::factory()->setDebug(0)->getArray('SELECT * FROM rex_dsgvo_client WHERE status = 1 AND domain = :domain AND lang = :lang ORDER by prio',[':domain'=> "REX_VALUE[1]", ':lang'=> "REX_VALUE[2]"]));
