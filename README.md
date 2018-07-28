@@ -161,7 +161,7 @@ if(rex_addon::get('mform')->isAvailable()) {
 
 ```
 
-** Modulausgabe **
+**Modulausgabe**
 
 ```php
 <?php // dsgvo_module_output - Diese Zeile nicht löschen ?>
