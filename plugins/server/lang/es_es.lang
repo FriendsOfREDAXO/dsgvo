@@ -19,6 +19,8 @@ dsgvo_server_domain_column_last_call 		= Última llamada
 dsgvo_server_domain_column_delete 			= Borrar
 dsgvo_server_domain_delete_confirm 			= ¿Eliminar la entrada?
 dsgvo_server_domain_deleted 				= Dominio eliminado
+dsgvo_server_domain_renamed                 = Se cambió el nombre del dominio y se tomaron los módulos de texto dependientes.
+dsgvo_server_domain_updated                 = El dominio ha sido actualizado.
 
 dsgvo_server_domain_column_domain_note 		= 
 dsgvo_server_domain_column_api_key_note 	= Llamar a la API (opcional) para denegar el acceso no autorizado a los textos, por ejemplo, <code>{0}</code>

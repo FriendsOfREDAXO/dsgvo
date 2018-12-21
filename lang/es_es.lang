@@ -1,20 +1,20 @@
 # Menü-Einträge
 
 dsgvo 										= RGPD - Complemento para la regulación general de protección de datos
-title 										= RGPD
-setup 										= Instalar
+dsgvo_title 							    = RGPD
+dsgvo_setup 				    			= Ajustes
 dsgvo_page_edit								= Política de privacidad
-consent 									= Acuerdo de cookies
-docs 										= Ayuda
+dsgvo_consent 						    	= Acuerdo de cookies
+dsgvo_docs 									= Ayuda
 
-setup-overview 								= Visión de conjunto
-setup-modul 								= Incluir declaración de privacidad
-setup-backup 								= Copias de seguridad SQL
-setup-phpmailer 							= Registros PHP-Mailer
-setup-contactform 							= Formulario de contacto
-setup-dementia 								= eliminación automática
-setup-external 								= servicios externos
-setup-consent 								= Acuerdo de cookies
+dsgvo_setup-overview 		    			= Vista general
+dsgvo_setup-modul 							= Incluir declaración de privacidad
+dsgvo_setup-backup 							= SQL-Backups
+dsgvo_setup-phpmailer 						= Registros de correo PHP
+dsgvo_setup-contactform 					= Contacto
+dsgvo_setup-dementia 			    		= Eliminación automática
+dsgvo_setup-external 						= Servicios externos
+dsgvo_setup-consent 						= Acuerdo de cookies
 
 dsgvo_docs_navigation = Navegación
 
@@ -82,7 +82,7 @@ check_dsgvo_backupcronjob_edit              = Editar copia de seguridad cronjob
 # Setup PHP-Mailer Logs
 
 check_dsgvo_phpmailer-logs_cronjob 			= Registros PHP-Mailer
-check_dsgvo_phpmailer-logs_cronjob_description = 
+check_dsgvo_phpmailer-logs_cronjob_description = Los registros de PHPMailer pueden contener datos confidenciales. Esto debe eliminarse regularmente.
 
 check_dsgvo_phpmailer-logs_caption 			= Archivos de registro
 check_dsgvo_phpmailer-logs_filename 		= Nombre del archivo
