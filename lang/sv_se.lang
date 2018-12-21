@@ -1,10 +1,10 @@
 # Menü-Einträge
 
-dsgvo_dsgvo 								= DGPR - Addon till dataskyddsförordningen
-dsgvo_title 								= DGPR
-dsgvo_setup 								= Setup
+dsgvo 										= GDPR - Addon for the general data protection regulation
+dsgvo_title 							    = DGPR
+dsgvo_setup 				    			= Setup
 dsgvo_page_edit								= Integritetspolicy
-dsgvo_consent 							    = Cookie akceptans
+dsgvo_consent 						    	= Cookie akceptans
 dsgvo_docs 									= Hjälp
 
 dsgvo_setup-overview 		    			= Översikt
@@ -12,7 +12,7 @@ dsgvo_setup-modul 							= Implementera dataskyddsförordningen
 dsgvo_setup-backup 							= SQL-backups
 dsgvo_setup-phpmailer 						= PHP-mailer logs
 dsgvo_setup-contactform 					= Kontaktformulär
-dsgvo_setup-dementia 						= Automatiserad radering
+dsgvo_setup-dementia 			    		= Automatiserad radering
 dsgvo_setup-external 						= Externa tjänster
 dsgvo_setup-consent 						= Cookie samtycke
 
@@ -82,7 +82,7 @@ check_dsgvo_backupcronjob_edit              = Redigera backup cronjobb
 # Setup PHP-Mailer Logs
 
 check_dsgvo_phpmailer-logs_cronjob 			= PHP-mailer logs
-check_dsgvo_phpmailer-logs_cronjob_description = 
+check_dsgvo_phpmailer-logs_cronjob_description = PHPMailer-loggar kan innehålla personliga, känsliga data. Detta bör raderas regelbundet.
 
 check_dsgvo_phpmailer-logs_caption 			= Log-fil
 check_dsgvo_phpmailer-logs_filename 		= Filnamn

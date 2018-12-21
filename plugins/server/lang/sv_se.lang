@@ -19,6 +19,8 @@ dsgvo_server_domain_column_last_call 		= Senaste upprop
 dsgvo_server_domain_column_delete 			= radera
 dsgvo_server_domain_delete_confirm 			= Vill du verkligen radera inlägget?
 dsgvo_server_domain_deleted 				= Domän raderades.
+dsgvo_server_domain_renamed                 = Domän har döpts om och beroende textmoduler har tagits över.
+dsgvo_server_domain_updated                 = Domänen aktualiserades
 
 dsgvo_server_domain_column_domain_note 		= 
 dsgvo_server_domain_column_api_key_note 	= Hämta API-nyckeln (valfritt) för att neka obehörig åtkomst till texterna, t.ex. <Kod> {0} </ code>
