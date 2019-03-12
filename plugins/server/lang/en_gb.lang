@@ -19,6 +19,8 @@ dsgvo_server_domain_column_last_call 		= Last call
 dsgvo_server_domain_column_delete 			= delete
 dsgvo_server_domain_delete_confirm 			= Delete entry?
 dsgvo_server_domain_deleted 				= Domain deleted
+dsgvo_server_domain_renamed                 = Domain has been renamed and dependent text blocks transfered.
+dsgvo_server_domain_updated                 = Domain has been updated.
 
 dsgvo_server_domain_column_domain_note 		= 
 dsgvo_server_domain_column_api_key_note 	= Check API key (optional), to restrict access to the texts, ex. <code>{0}</code>

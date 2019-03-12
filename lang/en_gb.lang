@@ -1,19 +1,19 @@
 # Menü-Einträge
 
 dsgvo 										= GDPR - Addon for the general data protection regulation
-dsgvo_title 								= GDPR
-dsgvo_setup 								= Setup
+dsgvo_title 							    = GDPR
+dsgvo_setup 				    			= Setup
 dsgvo_page_edit								= Privacy statement
 dsgvo_consent 						    	= Cookie agreement
-dsgvo_docs 							    	= Help
+dsgvo_docs 									= Help
 
-dsgvo_setup-overview 						= Overview
+dsgvo_setup-overview 		    			= Overview
 dsgvo_setup-modul 							= Include privavy statement
 dsgvo_setup-backup 							= SQL backups
 dsgvo_setup-phpmailer 						= PHP mailer logs
 dsgvo_setup-contactform 					= Contact form
-dsgvo_setup-dementia 						= automatic deletion
-dsgvo_setup-external 				    	= external services
+dsgvo_setup-dementia 			    		= automatic deletion
+dsgvo_setup-external 						= external services
 dsgvo_setup-consent 						= Cookie agreement
 
 dsgvo_docs_navigation = Navigation
@@ -82,7 +82,7 @@ check_dsgvo_backupcronjob_edit              = Edit backup cronjob
 # Setup PHP-Mailer Logs
 
 check_dsgvo_phpmailer-logs_cronjob 			= PHP mailer logs
-check_dsgvo_phpmailer-logs_cronjob_description = 
+check_dsgvo_phpmailer-logs_cronjob_description = PHPMailer logs may contain sensible personal information. Logs should be emptied regularly.
 
 check_dsgvo_phpmailer-logs_caption 			= Log files
 check_dsgvo_phpmailer-logs_filename 		= Filename
