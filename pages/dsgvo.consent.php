@@ -63,6 +63,7 @@ $output = new rex_fragment();
 $output->setVar("info", "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu. Weitere Informationen zu Cookies erhalten Sie in unserer");
 $output->setVar("learn_more", "Datenschutzerklärung");
 $output->setVar("dismiss", "OK");
+$output->setVar("dismiss_callback", "meine_callback_funktion()"); // wenn keine Callback-Funktion benötigt wird, einfach einen Leerwert "" übergeben
 $output->setVar("url", "/datenschutz/");
 $output->setVar("html_padding", "Bottom");
 echo $output->parse("dsgvo-consent.fragment.inc.php");
