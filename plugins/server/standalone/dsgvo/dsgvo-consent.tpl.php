@@ -5,7 +5,7 @@
 				<p class="dsgvo-cookie_consent-text"><?= $this->consent['info']; ?> <a class="dsgvo-cookie_consent-more" href="<?= $this->consent['url']; ?>"><?= $this->consent['more']; ?></a></p>
 			</div>
 			<div class="dsgvo-cookie_consent-dismiss">
-				<button class="dsgvo-cookie_consent-ok" onClick="dsgvoConsent(1);"><?= $this->consent['dismiss']; ?></button>
+				<button class="dsgvo-cookie_consent-ok" onClick="dsgvoConsent(1);<?= $this->consent['dismiss_callback']; ?>;"><?= $this->consent['dismiss']; ?></button>
 			</div>
 		</div>
 	<script>
