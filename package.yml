@@ -11,6 +11,9 @@ requires:
         cronjob: '^2.0'
         markitup: '^3.0'
         yrewrite: '^2.2'
+    php:
+        version: '^7.1'
+        
 page:
     title: 'translate:title'
     pjax: false
